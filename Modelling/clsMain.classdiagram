@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="726eae3e-a03e-477d-b032-e79342e58c3d" name="clsMain" linkedPackageId="3f97db41-3f84-42a9-bf42-0645f9d83c70" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="583dba00-4b9e-48b4-ad10-8544448a05ed" name="Recorder">
+        <elementDefinition Id="f02ed066-7b91-4387-9e2f-cb0a92483cd4" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="8acd5bf6-30dd-4291-acb5-318501c584d4" name="Sensor" isAbstract="true" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="672f3cc2-e662-40ae-895a-e7969e4241de" />
+              <generalsInternal>
+                <generalization Id="1848a2b1-6437-4bd8-8893-e76bfc5ba4aa" isSubstitutable="false">
+                  <classMoniker Id="7970c8b0-07dd-4e69-9af2-afbfd0e0a716" LastKnownName="SensorKinect" />
+                  <elementDefinition Id="fb83a98b-8713-4216-a477-ede5d8624186" />
+                </generalization>
+                <generalization Id="03726011-70bc-4861-8c42-7c856533a2e2" isSubstitutable="false">
+                  <classMoniker Id="b4d74c3a-194c-48ee-aae9-371ce84ec2c5" LastKnownName="SensorWebcam" />
+                  <elementDefinition Id="95d306b8-67b0-42cb-8b7c-3bbb99003844" />
+                </generalization>
+              </generalsInternal>
+              <ownedOperationsInternal>
+                <operation Id="de2b4c3a-2899-4634-bd92-d39f6e3fc6d6" name="TurnOnOrDie" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="de787dc4-e345-4b49-975f-339c79aaa224" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="24eee237-8f03-4824-8680-0f36381417e1" name="file_name" direction="In">
+                        <elementDefinition Id="248671aa-e6b4-4340-9c32-88316b6df131" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="34f195fa-4d6d-4fdd-b7ec-6881732b2247" LastKnownName="String" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="9405d48b-4bf2-49b0-b69f-aeaaf284948f" name="TurnOff" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="5fd2c9a9-5eba-45c0-935d-3409b5a6ea3e" />
+                </operation>
+                <operation Id="b1dba408-7ecc-4cf3-a0d9-08885f588aa8" name="StartRecordingOrDie" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="7d4621c7-2d1d-4dca-89be-8e1d679624f9" />
+                </operation>
+                <operation Id="9b86f855-23e6-49f8-8d44-b9e57fb45dad" name="StopRecording" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="ad643668-57fb-4dde-b547-8e8c649578bd" />
+                </operation>
+                <operation Id="ccccec31-7077-47c4-9003-ef868251b180" name="GrabFrame" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="b0920c34-6a21-4e74-8330-e4cf90c1f65d" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="bec51b2c-263b-451f-b707-3fcea93980f1" direction="Return">
+                        <elementDefinition Id="802b9be4-3886-4b49-adb2-9344d5ff82cd" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="e9a2dd4e-6031-4b91-b0c9-fb3e2de909e7" LastKnownName="char*" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="7970c8b0-07dd-4e69-9af2-afbfd0e0a716" name="SensorKinect" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="1fec5c03-b4c9-4650-8e60-fda70035ea4b" />
+              <ownedAttributesInternal>
+                <property Id="d45f78b8-ee07-42d4-8bcd-afbce4e923bd" name="status_openni_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4030c1ec-089e-40d6-88e0-6cbf71354f5f" />
+                </property>
+                <property Id="7fb0b9ae-972a-4ce9-bf39-84d0ef2875bd" name="device_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="85cb7bc4-55ed-4e02-86d5-3c18e90b080b" />
+                </property>
+                <property Id="78a7a048-cd8b-42d3-8186-6a5ffd4bd71c" name="depth_stream_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6a541068-76e7-41cc-bdbb-a8fd975832a4" />
+                </property>
+                <property Id="e2ac61e0-2fa5-43d6-a4db-a4bf15791f6c" name="color_stream_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="879920de-f327-453d-9130-30a0ccc70e35" />
+                </property>
+                <property Id="b4f5d3dd-94c0-4ceb-9e83-28df368db8e8" name="recorder_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="150837bc-a6eb-44f6-83c4-2b1be44703dd" />
+                </property>
+              </ownedAttributesInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="b4d74c3a-194c-48ee-aae9-371ce84ec2c5" name="SensorWebcam" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="7e02a817-b3f2-4a0a-92c3-9acae47d96f8" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <packageHasNamedElement>
+      <referencedType Id="34f195fa-4d6d-4fdd-b7ec-6881732b2247" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="e9a2dd4e-6031-4b91-b0c9-fb3e2de909e7" name="char*" isAbstract="false" isLeaf="false" cachedFullName="char*">
+        <elementDefinition Id="2e69bfa5-4c8e-4b58-affb-4573ec177321" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="17686e1a-53a6-4fc5-b65c-a36f456a4b0c" name="GUI (C# WPF)">
+        <elementDefinition Id="f22e0a4d-3c5f-4470-8e9a-ef04a9abefbc" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <Interface Id="323ebbac-cdd8-4f90-a58b-63907280eb37" name="GUIRecorderInterface" isAbstract="false" isLeaf="false">
+              <elementDefinition Id="617167a8-01f0-4dc8-bb61-d49754d16c0f" />
+              <suppliersInternal>
+                <dependency Id="20123dc9-9234-486f-83f8-aa5dab9978ac">
+                  <interfaceMoniker Id="a794b2bc-f27f-4724-b844-cb5f3ba8e966" LastKnownName="RecorderInterface" />
+                  <elementDefinition Id="404eaa93-2622-493b-a192-5a993448db9f" />
+                </dependency>
+              </suppliersInternal>
+              <ownedOperations>
+                <operation Id="b11eec41-9ad4-4bcd-a550-7791aa32c29f" name="GrabFrame" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="8e1b2543-bd57-47aa-802a-f689c6f994f8" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="be63cce6-ec0c-499e-8370-12bab8be9dc4" direction="Return" isUnique="false">
+                        <elementDefinition Id="ff5b822a-c897-4956-b1e2-0e133026422f" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="b076b995-7288-4380-9e3d-a17e334d94a2" LastKnownName="WriteableImage" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="eaed141e-c93c-4b6e-adea-acde48808e01" name="TurnOffKinectSensor" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="fed7e940-7eb3-4262-a554-f23f305bdb56" />
+                </operation>
+                <operation Id="5ba11201-9675-44aa-8ed3-46acaa485454" name="StopRecordingONI" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="5ce397d1-f7d0-4b97-86a5-4db3a9da8518" />
+                </operation>
+                <operation Id="9a7b7ccb-9305-479d-8ced-b357f729de38" name="StartRecordingONI" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="46fc2d5b-39a7-46f3-82e5-143c0b460a77" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="a173d783-636b-4b31-b358-6df6f4f5a19f" name="file_name" direction="In" isUnique="false">
+                        <elementDefinition Id="f8223b68-0f8b-416b-bc63-f0629d89c07b" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="34f195fa-4d6d-4fdd-b7ec-6881732b2247" LastKnownName="String" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="81888e7e-ff23-414e-99ef-2e6fa55b029f" name="TurnOnKinectSensor" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="bf9acbe6-e461-4137-ae94-9ed9fccd29be" />
+                </operation>
+              </ownedOperations>
+            </Interface>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <Interface Id="a934b4b4-2409-4591-befd-24bef371c089" name="GUIResultInterface" isAbstract="false" isLeaf="false">
+              <elementDefinition Id="7c899965-6438-4fbd-aedf-b919e6ef39d9" />
+              <suppliersInternal>
+                <dependency Id="edb3b4ff-7d2e-4f5c-8aca-1d744b2e67cc">
+                  <interfaceMoniker Id="316ed9c6-04a5-4598-9656-37a81a5ace85" LastKnownName="ResultInterface" />
+                  <elementDefinition Id="2bea1ee7-4ab9-4ad3-9537-f5c9cff27bee" />
+                </dependency>
+              </suppliersInternal>
+            </Interface>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <packageHasNamedElement>
+      <referencedType Id="b076b995-7288-4380-9e3d-a17e334d94a2" name="WriteableImage" isAbstract="false" isLeaf="false" cachedFullName="WriteableImage">
+        <elementDefinition Id="d415ba15-30f4-4171-95b7-fbffcabd0a7d" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="e4a8ef59-411b-4ffc-a5c5-bd6de2a44c5e" name="Interface For GUI">
+        <elementDefinition Id="0f76a511-72c3-4330-a1ea-65f9793a9130" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <Interface Id="a794b2bc-f27f-4724-b844-cb5f3ba8e966" name="RecorderInterface" isAbstract="false" isLeaf="false">
+              <elementDefinition Id="f792fc55-009f-41f7-ab06-b290106ffdce" />
+              <suppliersInternal>
+                <dependency Id="5b687eb8-65da-421a-b02a-368edb121825">
+                  <classMoniker Id="8acd5bf6-30dd-4291-acb5-318501c584d4" LastKnownName="Sensor" />
+                  <elementDefinition Id="3309f1ab-6521-460f-85b7-b54ad55975e9" />
+                </dependency>
+              </suppliersInternal>
+              <ownedOperations>
+                <operation Id="30e92cb9-4d3e-4fbc-bb7a-8e76dac30535" name="IStopRecordingONI" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="47ce6396-b90f-4b23-a4bb-ba1cac499cca" />
+                </operation>
+                <operation Id="4472bac8-6929-4423-ab25-a31808c485f8" name="ITurnOnKinectSensor" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="167a1a17-71c0-444f-b6f6-be83b5b37fd3" />
+                </operation>
+                <operation Id="715d659d-8c83-4799-b20e-d5e6f7b0c420" name="IStartRecordingONI" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="c97c425b-5960-4f08-b5b4-0681a942b27f" />
+                </operation>
+                <operation Id="5b970957-20c7-4dee-8239-ec775f560708" name="ITurnOffKinectSensor" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="9c5fb802-9b00-41cd-a9c9-1ab9ecbdb766" />
+                </operation>
+                <operation Id="45aab7f8-6ee6-4a50-8c6f-4d3e91991bdb" name="IGrabFrame" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="feabbee1-fdfc-47a4-afcc-fbbd3c7c398a" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="506598a4-2fc8-4b1c-ba33-259ee7b253bc" direction="Return">
+                        <elementDefinition Id="6e603e03-551d-43c9-b90e-1dde580339f6" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="3b48cf55-acb0-43da-8f20-d13e4e20f6f3" LastKnownName="WriteableImage" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+              </ownedOperations>
+            </Interface>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <Interface Id="316ed9c6-04a5-4598-9656-37a81a5ace85" name="ResultInterface" isAbstract="false" isLeaf="false">
+              <elementDefinition Id="739459c8-30a8-475a-8170-31d9e555d20a" />
+              <suppliersInternal>
+                <dependency Id="893fee17-6af1-452f-916b-beefd988287c">
+                  <classMoniker Id="4f5e04a1-006d-4d92-a4ee-a2687b65791d" LastKnownName="Result" />
+                  <elementDefinition Id="bace3d3a-3c92-42ab-b97e-1a7e72013385" />
+                </dependency>
+              </suppliersInternal>
+            </Interface>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <packageHasNamedElement>
+      <referencedType Id="3b48cf55-acb0-43da-8f20-d13e4e20f6f3" name="WriteableImage" isAbstract="false" isLeaf="false" cachedFullName="WriteableImage">
+        <elementDefinition Id="d415ba15-30f4-4171-95b7-fbffcabd0a7d" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="04a383ce-f33f-4b6f-89f9-c275d56606b5" name="Behaviour Analysis">
+        <elementDefinition Id="74a486c6-72fc-4467-a0b3-15bfc28527f1" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="4f5e04a1-006d-4d92-a4ee-a2687b65791d" name="Result" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="82d9b885-dc3d-4b78-8bcd-6d98566d1b33" />
+              <ownedAttributesInternal>
+                <property Id="5aaf7e91-32bc-448f-9974-d97c286eb2a1" name="overall_score_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b03c55b9-89ee-499e-a1dc-ed3d630750f8" />
+                </property>
+                <property Id="99d794a0-6ca3-44b3-902a-b578ff907359" name="score_contraction_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9776525d-52c8-4d72-86f8-9c0b05ecfd5c" />
+                </property>
+                <property Id="e54cdd73-b510-4a5b-8f9c-50e74ca53ae9" name="score_stability_" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f7f26cae-9626-4acb-b886-63d4cbceb113" />
+                </property>
+              </ownedAttributesInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="d70b8c39-6f9f-4d3b-b5ff-a15ccf7354aa" name="Analyser" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="2eab99d1-f873-4443-a92c-ce11d684898e" />
+              <suppliersInternal>
+                <dependency Id="dcee2d60-51d2-4d5b-9f0b-de98196ca9b9">
+                  <packageMoniker Id="aedfe4cc-675d-4261-8a6b-45668e434037" LastKnownName="Point Cloud Analyser" />
+                  <elementDefinition Id="85a2aa42-64ba-4212-b3b5-79a4cbeb427d" />
+                </dependency>
+                <dependency Id="6e722a32-3b5f-445f-ae74-aa4a91a4d219">
+                  <packageMoniker Id="57e4d9cd-03c2-4ac5-a061-df11123c259f" LastKnownName="Overall Assessment" />
+                  <elementDefinition Id="c1ca1fcf-abf9-4c63-ac9c-e4977cdf0c89" />
+                </dependency>
+                <dependency Id="ae40bbd4-3df4-4a89-9f24-f62afefdd22b">
+                  <packageMoniker Id="e075cb03-4928-4411-bcac-8806e4193297" LastKnownName="Skeleton Analyser" />
+                  <elementDefinition Id="fc0cc773-9461-433b-8cd1-498c8ea058c4" />
+                </dependency>
+                <dependency Id="4ec497cb-a7ed-4419-8e95-8b592e0f8e30">
+                  <classMoniker Id="f92fdcf6-f498-427c-8278-17a15e95ff3c" LastKnownName="ONIReader" />
+                  <elementDefinition Id="e01ffcef-646f-4ec2-9e75-1b684f3903dd" />
+                </dependency>
+              </suppliersInternal>
+              <targetEnds>
+                <association Id="7b2d3093-f492-4cd1-b170-d30e5133ef1d" isDerived="false" sourceEndRoleName="Analyser" targetEndRoleName="Result" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="4f5e04a1-006d-4d92-a4ee-a2687b65791d" LastKnownName="Result" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="52e24a59-8fcd-4d39-b4b5-c632c766e1fa" name="Analyser" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="18119bdb-c9be-4e66-8d2a-08bf350de33f" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="3f853f3d-2d7b-4d53-a892-1324a19c0a8f" name="Result" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                        <elementDefinition Id="620edb16-17c6-40e6-810b-b342ab04a886" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="fb9d4459-6a20-4454-9c68-b0b463316843" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <package Id="aedfe4cc-675d-4261-8a6b-45668e434037" name="Point Cloud Analyser">
+              <elementDefinition Id="9c5abec3-b707-4c11-9d04-c51db6163d35" />
+              <packagedElements>
+                <packageHasNamedElement>
+                  <class Id="78db805c-e20e-4936-b3d9-f98d3beab7f8" name="Contraction" isAbstract="false" isLeaf="false" isActiveClass="false">
+                    <elementDefinition Id="33d2eb4f-0c3e-4ef5-bcce-030e7d118ae1" />
+                  </class>
+                </packageHasNamedElement>
+                <packageHasNamedElement>
+                  <class Id="6f46748b-dfab-427c-9265-69ec3353115b" name="Stability" isAbstract="false" isLeaf="false" isActiveClass="false">
+                    <elementDefinition Id="1b9791b2-8d4d-43b0-b788-7de26b067b48" />
+                  </class>
+                </packageHasNamedElement>
+                <packageHasNamedElement>
+                  <class Id="2b17ab56-4d37-4103-85b9-cfcfe6314d02" name="Energy" isAbstract="false" isLeaf="false" isActiveClass="false">
+                    <elementDefinition Id="3c4632a7-2bc7-44f2-86db-8e1cdee596ee" />
+                  </class>
+                </packageHasNamedElement>
+              </packagedElements>
+            </package>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <package Id="e075cb03-4928-4411-bcac-8806e4193297" name="Skeleton Analyser">
+              <elementDefinition Id="7992a598-00de-4a02-9df4-f31bb44e74db" />
+              <packagedElements>
+                <packageHasNamedElement>
+                  <class Id="4ec63260-70d4-40f1-8c46-3c1de193b798" name="Hand Gestures" isAbstract="false" isLeaf="false" isActiveClass="false">
+                    <elementDefinition Id="2a6ddaa8-de0a-45f4-b353-0f76f7e53161" />
+                  </class>
+                </packageHasNamedElement>
+              </packagedElements>
+            </package>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <package Id="57e4d9cd-03c2-4ac5-a061-df11123c259f" name="Overall Assessment">
+              <elementDefinition Id="7b20c91a-5cfe-4d31-921d-e1185e3e29f7" />
+              <suppliersInternal>
+                <dependency Id="d8871290-c2a6-4b94-8f4d-1aac7248d656">
+                  <packageMoniker Id="aedfe4cc-675d-4261-8a6b-45668e434037" LastKnownName="Point Cloud Analyser" />
+                  <elementDefinition Id="d5d950ce-dbf3-47b4-a12f-fbe14d876969" />
+                </dependency>
+                <dependency Id="0c2b2ba7-3d99-408d-80d2-b304bd99192d">
+                  <packageMoniker Id="e075cb03-4928-4411-bcac-8806e4193297" LastKnownName="Skeleton Analyser" />
+                  <elementDefinition Id="0e4232bc-62cc-4616-8de4-ec4ceaced9a2" />
+                </dependency>
+              </suppliersInternal>
+              <packagedElements>
+                <packageHasNamedElement>
+                  <class Id="545f27d4-3c83-4c29-b5cf-e700a7b9f956" name="Scoring" isAbstract="false" isLeaf="false" isActiveClass="false">
+                    <elementDefinition Id="ebb6b4b9-84f5-4f2a-9e89-37dd34ddbbc4" />
+                  </class>
+                </packageHasNamedElement>
+              </packagedElements>
+            </package>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="f92fdcf6-f498-427c-8278-17a15e95ff3c" name="ONIReader" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="bc1ab00b-93e2-4831-9d00-c2be8504cbc8" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="958b49aa-e262-4652-8e7e-5b506ea4090f" name="Feature Analyser">
+        <elementDefinition Id="d7b99ed9-700c-4f3d-9091-672f611e3f51" />
+      </package>
+    </logicalClassDesignerModelHasPackages>
+  </packagedElements>
+  <package Id="3f97db41-3f84-42a9-bf42-0645f9d83c70" name="Modelling">
+    <elementDefinition Id="dad3c0b3-3874-4095-a287-d79eb100f63c" />
+    <profileInstances>
+      <packageHasProfileInstances Id="65e0a0a4-3a19-4044-bb6e-03a58cc09f4e">
+        <profileInstance Id="6d511f67-bc8a-498a-a4b3-6d4d7becd2a9" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="f9204a66-b946-415e-a384-70632c47805f">
+        <profileInstance Id="fb7beadb-6ba3-46bc-b3d3-ff7b4e3d3194" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

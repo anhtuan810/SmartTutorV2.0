@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="b82a6146-0143-4d0c-8976-096dcac1f439" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="4c71e19c-9169-462c-96c0-33d648d1ed88" name="Sensor">
+      <childLayers>
+        <layer Id="d67d89b6-98fb-49f5-84bb-7dc10692dbf7" name="Kinect Grabber">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="c1eba365-fdd3-4948-8738-a68a0729eeb8" direction="Forward">
+              <layerMoniker Id="e2bea3d8-8bb6-42a2-b2ea-48c97b186911" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+        <layer Id="c379e038-629b-4b22-a47b-263d017f2029" name="2D Camera Grabber">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="4a7d4bc3-10b0-4073-8006-6c350fd650d6" direction="Forward">
+              <layerMoniker Id="e2bea3d8-8bb6-42a2-b2ea-48c97b186911" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="14f6e340-02a5-45a5-ba33-b641611f0c77" name="Behaviour Analysis">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="7aa46115-af55-442b-91d4-c6c53123d66a" direction="Bidirectional">
+          <layerMoniker Id="f87b8fe5-505b-4704-8e9a-e321de5cbe98" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+    <layer Id="c46c0b59-9398-46e5-b7f4-464c4e60a930" name="Presentation">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="913bdad8-28a2-4b9c-b65d-2d87fca3a059" direction="Forward">
+          <layerMoniker Id="14f6e340-02a5-45a5-ba33-b641611f0c77" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+    <layer Id="f87b8fe5-505b-4704-8e9a-e321de5cbe98" name="Data Manipulation">
+      <childLayers>
+        <layer Id="1da50ca5-898d-4550-b8fa-d73ef353707b" name="Video Data Recorder">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="730f45c5-822b-4b0d-b3dc-a7004653c3c5" direction="Forward">
+              <layerMoniker Id="4c71e19c-9169-462c-96c0-33d648d1ed88" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+        <layer Id="7c4c97a0-25ed-43d3-a3f3-0fd85dc2995f" name="Data Storage (HDD)">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="1b2d79a7-0d47-47ec-9db6-b0e933bbdda1" direction="Forward">
+              <layerMoniker Id="1da50ca5-898d-4550-b8fa-d73ef353707b" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="15ba34a1-eecd-44cd-9c0c-4e3326ad246b" direction="Forward">
+              <layerMoniker Id="93b1a0e6-913d-46e2-970e-626256bea87c" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+        <layer Id="93b1a0e6-913d-46e2-970e-626256bea87c" name="Result Data Recorder" />
+      </childLayers>
+    </layer>
+    <layer Id="e2bea3d8-8bb6-42a2-b2ea-48c97b186911" name="Hardware" />
+  </layers>
+</layerModel>

@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="adae5417-76cc-4d37-8034-31a4fdbade63" name="SmartTutor" linkedPackageId="05ce6209-35f0-4b1a-b578-26de444be950" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="cdcb0f35-3650-4ffc-9e67-804ee4701b19">
+      <elementDefinition Id="d97bb54c-587a-4560-8399-0baf7641809b" />
+      <body>All the processing will read this data</body>
+      <annotatedElements>
+        <useCaseMoniker Id="6b1d9154-5c54-4529-872b-cc17a7fc5bf4" LastKnownName="Store Data to HDD" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="7d622ea8-25f9-453a-a4f2-ac48a20af75a" name="Presenter" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="826351cb-b59b-4301-afda-73c14a7f8e90" />
+        <targetEnds>
+          <association Id="a7b0bb37-e8c9-4a03-b5a3-4cdac95a4ada" isDerived="false" sourceEndRoleName="Presenter" targetEndRoleName="Practice" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="721d828a-8ce5-48fb-ae99-2d7504d83231" LastKnownName="Practice" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4fea45a8-5460-4d8f-8344-6b575b63f64f" name="Presenter" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a4ffd772-2356-4ee6-b12a-858e816a335f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d0944487-2964-4cfb-9ee8-b9ecbbf69a9d" name="Practice" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="274f5ecb-74b2-4e4c-a01f-e065e432d109" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f7eee0ff-33b7-4a92-8db7-8cb304adfd01" />
+          </association>
+          <association Id="fab804e3-ec95-42c1-80ac-47032acdf4a8" isDerived="false" sourceEndRoleName="Presenter" targetEndRoleName="Track Progress" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="59bccb8d-2c15-4766-b801-eaddaf25e76d" LastKnownName="Track Progress" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6b9f966d-fbe0-4f77-bb32-6be5850844eb" name="Presenter" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="8aaa9f16-6886-4518-9492-f36cbd1bd482" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dafd941a-dd01-4235-89fd-cbf676f4eb96" name="Track Progress" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1dd0618a-eac7-4f97-b043-ec3d484e3b18" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1c2efc57-32e4-40e2-8d94-1a14d05541d2" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="be4edab7-b41c-481b-abcf-f497622d33dd" name="Choose the Presentation to Playback " isAbstract="false" isLeaf="false">
+        <elementDefinition Id="04b1c216-3506-483c-8c9c-fa603b4e5ab7" />
+        <suppliersInternal>
+          <dependency Id="8bba98eb-b2a5-4ae3-b2dd-59cebf4dc7d7">
+            <useCaseMoniker Id="1823c3d6-fdad-4220-bc8b-a0506cbcadb8" LastKnownName="Visualise One Presentation" />
+            <elementDefinition Id="3ffea997-910a-42a2-a13b-d4ee64301ef7" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="721d828a-8ce5-48fb-ae99-2d7504d83231" name="Practice" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4997ec52-02f5-4bd2-8e7a-7f0d6536b323" />
+        <additions>
+          <include Id="758d4a74-adc4-455a-b287-fb4ecf9aaf45">
+            <useCaseMoniker Id="b6d07411-9dda-427f-8d9c-bdecd58add10" LastKnownName="Analyse Presentation" />
+            <elementDefinition Id="270dc25b-629a-47af-b7b0-c7698281433c" />
+          </include>
+          <include Id="0c50e99a-c58b-4898-83fa-18153b653bc4">
+            <useCaseMoniker Id="58ce248f-0532-4200-800e-c658be674f2f" LastKnownName="Store Result in DB" />
+            <elementDefinition Id="bebeaa58-5082-4c86-b702-101104a585de" />
+          </include>
+          <include Id="4e206a1c-3e03-495d-b7a2-629c32aca23f">
+            <useCaseMoniker Id="24191416-63e2-405c-897a-585e74ea088e" LastKnownName="Display the Mirror" />
+            <elementDefinition Id="122de520-8985-4a0e-ad50-32a4f98d1934" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b6d07411-9dda-427f-8d9c-bdecd58add10" name="Analyse Presentation" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="02a0249d-4f96-430b-bab5-e214f905e767" />
+        <suppliersInternal>
+          <dependency Id="60462105-f51a-4ab0-9eec-8003fb3eec34">
+            <useCaseMoniker Id="58ce248f-0532-4200-800e-c658be674f2f" LastKnownName="Store Result in DB" />
+            <elementDefinition Id="372a2dc1-5ee1-456e-a0ac-005d69d1a2af" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1823c3d6-fdad-4220-bc8b-a0506cbcadb8" name="Visualise One Presentation" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="987b37ce-77d9-4d26-81d2-340850d55bf3" />
+        <additions>
+          <include Id="0cc2c3c9-cc22-4af8-875a-ce9b8299c9cd">
+            <useCaseMoniker Id="9491bf75-0de8-46eb-93ed-30840bac10b9" LastKnownName="Display Video" />
+            <elementDefinition Id="a7c3d747-3087-4259-beb5-343bfa1fc068" />
+          </include>
+          <include Id="073feff9-52a6-4a27-aa31-a1ae5c0b6c6c">
+            <useCaseMoniker Id="8b3ff48b-77bb-4368-83ef-ad212ba0d8e6" LastKnownName="Display Results" />
+            <elementDefinition Id="16cb3ad3-7743-4b98-a5fe-3bb252322315" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="58ce248f-0532-4200-800e-c658be674f2f" name="Store Result in DB" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cd77537b-46cf-4597-99c4-bc471e7e6172" />
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="59bccb8d-2c15-4766-b801-eaddaf25e76d" name="Track Progress" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b559a919-c8af-4671-a625-281722be0737" />
+        <additions>
+          <include Id="fcd009c3-e442-4adf-b3e7-f2642769ccf4">
+            <useCaseMoniker Id="be4edab7-b41c-481b-abcf-f497622d33dd" LastKnownName="Choose the Presentation to Playback " />
+            <elementDefinition Id="7f4ae042-60f9-428e-a084-8f4709bffb3e" />
+          </include>
+          <include Id="3951068c-736e-418c-9eb2-af8fd5252dcb">
+            <useCaseMoniker Id="1823c3d6-fdad-4220-bc8b-a0506cbcadb8" LastKnownName="Visualise One Presentation" />
+            <elementDefinition Id="6cc858fd-b0b0-48b4-ad80-ccf84b7afad5" />
+          </include>
+          <include Id="873a4611-9b63-4a0e-b2b7-ab1fd227da77">
+            <useCaseMoniker Id="e014aa38-7643-4788-8ba0-70e92ad73013" LastKnownName="Display the list of presentations" />
+            <elementDefinition Id="ef957569-144f-46b6-a0bf-8395ae66eab0" />
+          </include>
+          <include Id="2509b06c-29c8-4cd2-9cbb-ea2c65927de4">
+            <useCaseMoniker Id="d62f1f77-29d2-40de-a205-cbb08693d962" LastKnownName="Display the Progress" />
+            <elementDefinition Id="e90742f6-ff8c-4944-9640-a0a43d9d68ea" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6b1d9154-5c54-4529-872b-cc17a7fc5bf4" name="Store Data to HDD" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e06ec523-597e-49c3-942f-aa6159f2bc20" />
+        <additions>
+          <include Id="ce785b96-daf9-4ad3-9d7d-19b74c5e7065">
+            <useCaseMoniker Id="6b88f35b-1fc2-41b5-be3b-abbd763805b6" LastKnownName="Store ONI" />
+            <elementDefinition Id="f69dfbad-89df-4532-94f2-0d7fd37ddaee" />
+          </include>
+          <include Id="35451e5b-6886-40ca-9100-7dc23b9c645b">
+            <useCaseMoniker Id="4ff65d86-a492-4780-b2b4-6d701f91b8e8" LastKnownName="Store AVI" />
+            <elementDefinition Id="fbdcfb40-605b-48bc-a27b-12ecf685afbd" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e014aa38-7643-4788-8ba0-70e92ad73013" name="Display the list of presentations" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f0d6662c-062c-46b7-9119-7fcc4fdddc3f" />
+        <suppliersInternal>
+          <dependency Id="27168f2f-6cb0-490c-b14d-fe259faba4ea">
+            <useCaseMoniker Id="be4edab7-b41c-481b-abcf-f497622d33dd" LastKnownName="Choose the Presentation to Playback " />
+            <elementDefinition Id="2319b49a-a51c-47b8-97da-dc213a907e07" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0637a0c3-5b95-4684-bab6-b4f4f0dbf63b" name="Filter the list of presentations" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b75a3bc6-40bd-4488-b7b7-c09296da51c5" />
+        <extendedCases>
+          <extend Id="319e9266-8935-42c0-a035-4b4c740155b1">
+            <useCaseMoniker Id="e014aa38-7643-4788-8ba0-70e92ad73013" LastKnownName="Display the list of presentations" />
+            <elementDefinition Id="fd183d02-8f3d-49ca-8f5d-7cd76ae84c5a" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9491bf75-0de8-46eb-93ed-30840bac10b9" name="Display Video" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ac398b52-2fc5-4520-ae11-3b253f12680b" />
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8b3ff48b-77bb-4368-83ef-ad212ba0d8e6" name="Display Results" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8dba9987-ed04-4827-8f7c-6b241c5f994d" />
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d62f1f77-29d2-40de-a205-cbb08693d962" name="Display the Progress" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ab6f155c-d5b9-42e4-bb59-f78b700e1d91" />
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9277b604-24bc-4f2e-81bf-154006b3a769" name="Filter the Progress Details " isAbstract="false" isLeaf="false">
+        <elementDefinition Id="feb8c286-0343-4346-b76d-ef12dc3acd57" />
+        <extendedCases>
+          <extend Id="da5a7997-bec4-4dc3-843b-4b510900d5c5">
+            <useCaseMoniker Id="d62f1f77-29d2-40de-a205-cbb08693d962" LastKnownName="Display the Progress" />
+            <elementDefinition Id="a4f1b8ec-985f-4e9d-a38a-55d14802cab2" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" LastKnownName="Playback" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6b88f35b-1fc2-41b5-be3b-abbd763805b6" name="Store ONI" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="74d3aff2-e20d-42e1-a7db-981d9d838c83" />
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="4ff65d86-a492-4780-b2b4-6d701f91b8e8" name="Store AVI" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="53e096fa-721b-478b-b025-8741d5bdf146" />
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" name="Analysis" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <ownedCommentsInternal>
+          <comment Id="307182bf-6862-4bb4-998c-4b121b236959">
+            <elementDefinition Id="dfd8344d-1ec1-437b-b197-0a87212f026b" />
+            <body>The most important task</body>
+            <annotatedElements>
+              <useCaseMoniker Id="b6d07411-9dda-427f-8d9c-bdecd58add10" LastKnownName="Analyse Presentation" />
+            </annotatedElements>
+          </comment>
+        </ownedCommentsInternal>
+        <elementDefinition Id="afba9dff-3a5d-4513-ba7b-6aac9b810e16" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="a41b5e3d-05fc-48d5-bb26-29c00954f0dc" name="Playback" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="460c3599-97ba-4384-80f7-e751e7966dbd" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="24191416-63e2-405c-897a-585e74ea088e" name="Display the Mirror" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c772c05d-e923-4c94-83b1-95806ff7017b" />
+        <suppliersInternal>
+          <dependency Id="11dd5cf9-2169-4f2c-92c3-c9f923831773">
+            <useCaseMoniker Id="6b1d9154-5c54-4529-872b-cc17a7fc5bf4" LastKnownName="Store Data to HDD" />
+            <elementDefinition Id="235f68e5-091e-4284-a885-2483b3a3b45c" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="0e397c70-dd46-476c-888f-bb36d686978e" name="Acknowledge Start and Stop recording" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fd5c5f78-4787-45ca-9d25-07657b619891" />
+        <extendedCases>
+          <extend Id="95d27ba3-1132-4c1b-bb36-566ccc5da7ce">
+            <useCaseMoniker Id="24191416-63e2-405c-897a-585e74ea088e" LastKnownName="Display the Mirror" />
+            <elementDefinition Id="6345f095-0a3b-4681-a701-220fb544c650" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="e4a73340-28d4-4efc-8fa6-1b776dae9358" LastKnownName="Analysis" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="05ce6209-35f0-4b1a-b578-26de444be950" name="Modelling">
+    <elementDefinition Id="dad3c0b3-3874-4095-a287-d79eb100f63c" />
+    <profileInstances>
+      <packageHasProfileInstances Id="0c75f190-61d3-419c-975e-7b5f5ac53a50">
+        <profileInstance Id="980b9140-aa9f-49ac-9e42-af8c6101ec4f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="e479e37b-261b-4939-86e5-0438f03bc962">
+        <profileInstance Id="12394285-f81b-4167-ae4a-6c389d83a2df" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

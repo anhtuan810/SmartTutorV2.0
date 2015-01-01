@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="f22e0a4d-3c5f-4470-8e9a-ef04a9abefbc"
+  name="GUI (C# WPF)" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="617167a8-01f0-4dc8-bb61-d49754d16c0f"
+        name="GUIRecorderInterface"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="404eaa93-2622-493b-a192-5a993448db9f">
+            <interfaceMoniker
+              Id="f792fc55-009f-41f7-ab06-b290106ffdce"
+              LastKnownName="RecorderInterface"
+              LastKnownLocation="Package_1431.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedOperations>
+          <operation
+            Id="8e1b2543-bd57-47aa-802a-f689c6f994f8"
+            name="GrabFrame"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ff5b822a-c897-4956-b1e2-0e133026422f"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="d415ba15-30f4-4171-95b7-fbffcabd0a7d"
+                      LastKnownName="WriteableImage"
+                      LastKnownLocation="Package_1426.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="fed7e940-7eb3-4262-a554-f23f305bdb56"
+            name="TurnOffKinectSensor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="5ce397d1-f7d0-4b97-86a5-4db3a9da8518"
+            name="StopRecordingONI"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="46fc2d5b-39a7-46f3-82e5-143c0b460a77"
+            name="StartRecordingONI"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f8223b68-0f8b-416b-bc63-f0629d89c07b"
+                  name="file_name"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="Modelling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bf9acbe6-e461-4137-ae94-9ed9fccd29be"
+            name="TurnOnKinectSensor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="d415ba15-30f4-4171-95b7-fbffcabd0a7d"
+        name="WriteableImage" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8ddff9a1-fad5-4123-954e-69a6dff706ca"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="7c899965-6438-4fbd-aedf-b919e6ef39d9"
+        name="GUIResultInterface"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="2bea1ee7-4ab9-4ad3-9537-f5c9cff27bee">
+            <interfaceMoniker
+              Id="739459c8-30a8-475a-8170-31d9e555d20a"
+              LastKnownName="ResultInterface"
+              LastKnownLocation="Package_1431.uml" />
+          </dependency>
+        </suppliersInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

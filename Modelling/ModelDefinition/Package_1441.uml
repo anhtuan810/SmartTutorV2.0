@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="74a486c6-72fc-4467-a0b3-15bfc28527f1"
+  name="Behaviour Analysis" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="82d9b885-dc3d-4b78-8bcd-6d98566d1b33"
+        name="Result"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="b03c55b9-89ee-499e-a1dc-ed3d630750f8"
+            name="overall_score_"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="9776525d-52c8-4d72-86f8-9c0b05ecfd5c"
+            name="score_contraction_"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="f7f26cae-9626-4acb-b886-63d4cbceb113"
+            name="score_stability_"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2eab99d1-f873-4443-a92c-ce11d684898e"
+        name="Analyser"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="85a2aa42-64ba-4212-b3b5-79a4cbeb427d">
+            <packageMoniker
+              Id="9c5abec3-b707-4c11-9d04-c51db6163d35"
+              LastKnownName="Point Cloud Analyser"
+              LastKnownLocation="Package_1443.uml" />
+          </dependency>
+          <dependency
+            Id="c1ca1fcf-abf9-4c63-ac9c-e4977cdf0c89">
+            <packageMoniker
+              Id="7b20c91a-5cfe-4d31-921d-e1185e3e29f7"
+              LastKnownName="Overall Assessment"
+              LastKnownLocation="Package_1446.uml" />
+          </dependency>
+          <dependency
+            Id="fc0cc773-9461-433b-8cd1-498c8ea058c4">
+            <packageMoniker
+              Id="7992a598-00de-4a02-9df4-f31bb44e74db"
+              LastKnownName="Skeleton Analyser"
+              LastKnownLocation="Package1_1443.uml" />
+          </dependency>
+          <dependency
+            Id="e01ffcef-646f-4ec2-9e75-1b684f3903dd">
+            <classMoniker
+              Id="bc1ab00b-93e2-4831-9d00-c2be8504cbc8"
+              LastKnownName="ONIReader"
+              LastKnownLocation="Package_1441.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="fb9d4459-6a20-4454-9c68-b0b463316843"
+            isDerived="false"
+            sourceEndRoleName="Analyser"
+            targetEndRoleName="Result"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="82d9b885-dc3d-4b78-8bcd-6d98566d1b33"
+              LastKnownName="Result"
+              LastKnownLocation="Package_1441.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="18119bdb-c9be-4e66-8d2a-08bf350de33f"
+                  name="Analyser"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="620edb16-17c6-40e6-810b-b342ab04a886"
+                  name="Result"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9c5abec3-b707-4c11-9d04-c51db6163d35"
+        LastKnownName="Point Cloud Analyser"
+        LastKnownLocation="Package_1443.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7992a598-00de-4a02-9df4-f31bb44e74db"
+        LastKnownName="Skeleton Analyser"
+        LastKnownLocation="Package1_1443.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7b20c91a-5cfe-4d31-921d-e1185e3e29f7"
+        LastKnownName="Overall Assessment"
+        LastKnownLocation="Package_1446.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="35253678-4725-44ea-8c0e-46712fcfdd7f"
+        LastKnownName="2D Image Analyser"
+        LastKnownLocation="Package_1448.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bc1ab00b-93e2-4831-9d00-c2be8504cbc8"
+        name="ONIReader"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

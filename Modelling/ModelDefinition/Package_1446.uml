@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="7b20c91a-5cfe-4d31-921d-e1185e3e29f7"
+  name="Overall Assessment" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <suppliersInternal>
+    <dependency
+      Id="d5d950ce-dbf3-47b4-a12f-fbe14d876969">
+      <packageMoniker
+        Id="9c5abec3-b707-4c11-9d04-c51db6163d35"
+        LastKnownName="Point Cloud Analyser"
+        LastKnownLocation="Package_1443.uml" />
+    </dependency>
+    <dependency
+      Id="0e4232bc-62cc-4616-8de4-ec4ceaced9a2">
+      <packageMoniker
+        Id="7992a598-00de-4a02-9df4-f31bb44e74db"
+        LastKnownName="Skeleton Analyser"
+        LastKnownLocation="Package1_1443.uml" />
+    </dependency>
+  </suppliersInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ebb6b4b9-84f5-4f2a-9e89-37dd34ddbbc4"
+        name="Scoring"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

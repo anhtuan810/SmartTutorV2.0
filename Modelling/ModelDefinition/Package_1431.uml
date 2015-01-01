@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="0f76a511-72c3-4330-a1ea-65f9793a9130"
+  name="Interface For GUI" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="307e1872-4f28-49de-8186-259bebe7a333"
+        name="RecorderInterface"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="5dfb234f-cf79-450d-a4c8-98597f63880e"
+            name="ITurnOnKinectSensor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="c414d683-d63a-451c-a1d4-def875cd3f74"
+            name="IStartRecordingONI"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="f792fc55-009f-41f7-ab06-b290106ffdce"
+        name="RecorderInterface"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="3309f1ab-6521-460f-85b7-b54ad55975e9">
+            <classMoniker
+              Id="672f3cc2-e662-40ae-895a-e7969e4241de"
+              LastKnownName="Sensor"
+              LastKnownLocation="Package_1022.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedOperations>
+          <operation
+            Id="47ce6396-b90f-4b23-a4bb-ba1cac499cca"
+            name="IStopRecordingONI"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="167a1a17-71c0-444f-b6f6-be83b5b37fd3"
+            name="ITurnOnKinectSensor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="c97c425b-5960-4f08-b5b4-0681a942b27f"
+            name="IStartRecordingONI"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="9c5fb802-9b00-41cd-a9c9-1ab9ecbdb766"
+            name="ITurnOffKinectSensor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="feabbee1-fdfc-47a4-afcc-fbbd3c7c398a"
+            name="IGrabFrame"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6e603e03-551d-43c9-b90e-1dde580339f6"
+                  direction="Return">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="d415ba15-30f4-4171-95b7-fbffcabd0a7d"
+                      LastKnownName="WriteableImage"
+                      LastKnownLocation="Package_1426.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="739459c8-30a8-475a-8170-31d9e555d20a"
+        name="ResultInterface"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="bace3d3a-3c92-42ab-b97e-1a7e72013385">
+            <classMoniker
+              Id="82d9b885-dc3d-4b78-8bcd-6d98566d1b33"
+              LastKnownName="Result"
+              LastKnownLocation="Package_1441.uml" />
+          </dependency>
+        </suppliersInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

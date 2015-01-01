@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="e0133141-0639-4900-8457-85493e0d2276" name="SmartTutor" linkedPackageId="6776ab2f-935f-4cb4-a18a-10d8863a725c" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="588d190a-3a20-42a2-b58f-f92c999d9a08">
+      <profileInstance Id="8268fc8b-f1c9-4f73-95cb-c308521d49e3" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="5bf59a43-8e8e-4543-ac1d-cad4f3d55292">
+      <profileInstance Id="50ad8665-a35d-4d08-82a9-f889fb82dc0a" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <componentModelHasComponents>
+      <component Id="0c458f68-9a4d-4520-a80f-3680f8d49acc" name="Behaviour Analysis" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="59c09d25-4225-438e-966f-ecc242c952c2" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="356a3b84-ff3f-419d-ac5a-2e9acc67d4a5" name="Recorder" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3e77ce7c-a1ef-4361-adcc-67dc4c8b9cdf" />
+        <ownedAttributesInternal>
+          <part Id="2e522f06-2ed0-4f7e-8412-dc651f8db432" name="AVI Recorder" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="6a64ed97-f69e-4707-b691-4b6d91af5f87" />
+            <type_NamedElement>
+              <componentMoniker Id="889e19da-ce93-4ef1-8906-71ab30fe56ec" LastKnownName="Component1" />
+            </type_NamedElement>
+          </part>
+          <part Id="7d87cfea-a891-45d0-a34a-e98efc0d9c52" name="ONI Recorder" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="c62522fc-da20-47ec-ac52-804bc7a790a1" />
+            <type_NamedElement>
+              <componentMoniker Id="b01e34a7-1317-4bec-b604-4faf136d812d" LastKnownName="Component2" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="a92e63c2-ced1-463f-9585-aa6203983fe0" name="Mirror" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d30bec38-2504-43a5-bd45-130ebbc665bc" />
+        <ownedAttributesInternal>
+          <part Id="3173ac53-85bf-4f99-91b3-c9caed4744f8" name="Record Presentation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="29b58e38-fe3c-44ae-a302-df7a4d7576d5" />
+            <type_NamedElement>
+              <componentMoniker Id="4b3ba3c8-6a80-4adf-a98e-8680ca2ddeef" LastKnownName="Component5" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="889e19da-ce93-4ef1-8906-71ab30fe56ec" name="Component1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6b0ad6fb-ff8d-4fff-8634-3b26968c63f9" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="b01e34a7-1317-4bec-b604-4faf136d812d" name="Component2" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="38e8d2e4-ea32-4dcf-ae5e-7de02a3b10f4" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="4b3ba3c8-6a80-4adf-a98e-8680ca2ddeef" name="Component5" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bce04ee1-bb11-4141-9026-b75540530b72" />
+      </component>
+    </componentModelHasComponents>
+  </packagedElements>
+  <package Id="6776ab2f-935f-4cb4-a18a-10d8863a725c" name="Modelling">
+    <elementDefinition Id="dad3c0b3-3874-4095-a287-d79eb100f63c" />
+  </package>
+</componentModel>

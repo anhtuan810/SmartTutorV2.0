@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.5, 8.5" name="SmartTutor">
+  <componentModelMoniker Id="e0133141-0639-4900-8457-85493e0d2276" />
+  <nestedChildShapes>
+    <componentShape Id="ca153243-8539-4753-9fa5-c8f560f06ce0" absoluteBounds="9.625, 5, 2.614583333333333, 2.9916666666666663" customColor="161, 199, 231" whiteBoxBoundsHeight="0" whiteBoxBoundsWidth="0" blackBoxBoundsHeight="0" blackBoxBoundsWidth="0" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0">
+      <componentMoniker Id="0c458f68-9a4d-4520-a80f-3680f8d49acc" LastKnownName="Behaviour Analysis" />
+    </componentShape>
+    <componentShape Id="987aa44a-f97b-4f47-8442-12884af892f7" absoluteBounds="0.5, 1, 4.03749992052714, 1.7270834128061923" customColor="161, 199, 231" whiteBoxBoundsHeight="0" whiteBoxBoundsWidth="0" blackBoxBoundsHeight="0" blackBoxBoundsWidth="0" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0">
+      <componentMoniker Id="356a3b84-ff3f-419d-ac5a-2e9acc67d4a5" LastKnownName="Recorder" />
+      <nestedChildShapes>
+        <componentUseShape Id="72a4d58c-81a2-4b67-8803-74650200a949" isExpanded="false" absoluteBounds="0.75, 1.625, 1.6458333333333335, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="2e522f06-2ed0-4f7e-8412-dc651f8db432" LastKnownName="AVI Recorder" />
+        </componentUseShape>
+        <componentUseShape Id="baf05d09-a7e5-4f1e-a75b-12fd18767c37" isExpanded="false" absoluteBounds="2.625, 1.625, 1.6458333333333339, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="7d87cfea-a891-45d0-a34a-e98efc0d9c52" LastKnownName="ONI Recorder" />
+        </componentUseShape>
+      </nestedChildShapes>
+    </componentShape>
+    <componentShape Id="fa94e6d6-66ab-44cc-b630-e112ead05d31" absoluteBounds="5.625, 1, 5.1041666666666661, 2.8249999999999993" customColor="161, 199, 231" whiteBoxBoundsHeight="0" whiteBoxBoundsWidth="0" blackBoxBoundsHeight="0" blackBoxBoundsWidth="0" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0">
+      <componentMoniker Id="a92e63c2-ced1-463f-9585-aa6203983fe0" LastKnownName="Mirror" />
+      <nestedChildShapes>
+        <componentUseShape Id="c230cf6a-0921-4652-8488-cd04ba2b0a7a" isExpanded="false" absoluteBounds="5.875, 1.75, 2, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="2" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="2" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+          <partMoniker Id="3173ac53-85bf-4f99-91b3-c9caed4744f8" LastKnownName="Record Presentation" />
+        </componentUseShape>
+      </nestedChildShapes>
+    </componentShape>
+  </nestedChildShapes>
+</componentDiagram>

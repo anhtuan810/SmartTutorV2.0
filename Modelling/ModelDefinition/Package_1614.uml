@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="951a1c91-3fe0-4253-8fe9-8995f77c4100"
+  name="Recorder" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="5bb73c5c-8483-4212-b622-e94a11854b5a">
+      <body>OpenNI</body>
+      <annotatedElements>
+        <classMoniker
+          Id="52353d31-a4b7-4bc7-bb60-102787916914"
+          LastKnownName="ONIRecorder"
+          LastKnownLocation="Package_1614.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="b5ab89e1-ffd8-40c8-afae-8fe5e77dcf26">
+      <body>AVIFile or OpenCV</body>
+      <annotatedElements>
+        <classMoniker
+          Id="385aca1c-e185-4a79-949e-8c2ed6ead787"
+          LastKnownName="AVIRecorder"
+          LastKnownLocation="Package_1614.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="2b54fffb-a84f-4172-9032-c3d18887eaba">
+      <body>Support ONIRecorder</body>
+      <annotatedElements>
+        <classMoniker
+          Id="fa1c283a-043e-4d1a-8a13-06d6c1dbba15"
+          LastKnownName="Kinect Grabber"
+          LastKnownLocation="Package_1614.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="892617d6-020f-484a-9dc3-aa03e284d9aa">
+      <body>Used to display the mirror, not AVIRecorder</body>
+      <annotatedElements>
+        <classMoniker
+          Id="4addcfab-2e0e-42c4-b66e-ce752c8b9914"
+          LastKnownName="Webcam Grabber"
+          LastKnownLocation="Package_1614.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="385aca1c-e185-4a79-949e-8c2ed6ead787"
+        name="AVIRecorder"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="52353d31-a4b7-4bc7-bb60-102787916914"
+        name="ONIRecorder"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="308efe84-37af-45ea-b142-a097e8e1bac7"
+        name="Recorder"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="d09e8891-e8a7-4212-ac48-c4bc0d4e75dd"
+            isSubstitutable="false">
+            <classMoniker
+              Id="52353d31-a4b7-4bc7-bb60-102787916914"
+              LastKnownName="ONIRecorder"
+              LastKnownLocation="Package_1614.uml" />
+          </generalization>
+          <generalization
+            Id="838c66c3-5e65-4a46-861e-84c460bcc620"
+            isSubstitutable="false">
+            <classMoniker
+              Id="385aca1c-e185-4a79-949e-8c2ed6ead787"
+              LastKnownName="AVIRecorder"
+              LastKnownLocation="Package_1614.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="ee83a1fc-2731-48ca-b7a3-5f427d0ffcdf"
+            name="FileName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="7c22258c-270b-4883-a7fb-0da26dc91fde"
+            name="Grabber"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="88bca3b3-df57-4113-a438-6ae01df72dab"
+            name="StartRecord"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="dddc7cfe-75d0-4ded-b44c-588598842dae"
+            name="StopRecord"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4addcfab-2e0e-42c4-b66e-ce752c8b9914"
+        name="Webcam Grabber"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="a40b06bf-f84d-4fc7-ae19-131b99acf680"
+            isDerived="false"
+            sourceEndRoleName="Webcam Grabber"
+            targetEndRoleName="ColorFrame"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="54a348fc-f243-4ac4-8c11-ae99ccb8e7e4"
+              LastKnownName="ColorFrame"
+              LastKnownLocation="Modelling.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5d55f2de-789c-464b-8ee1-a4d5b51a5746"
+                  name="Webcam Grabber"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f4f8618b-523c-46ad-ba80-ecb115e77adf"
+                  name="ColorFrame"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="8c1a33ed-379b-4ef2-93e0-6438f46c7575"
+            name="ColorFrame"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="fa1c283a-043e-4d1a-8a13-06d6c1dbba15"
+        name="Kinect Grabber"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c0ce4141-57a0-4736-be61-af3e02290e5e"
+        name="Grabber"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="a8fe82c1-12ee-47f0-8da1-9ef49abfe352"
+            isSubstitutable="false">
+            <classMoniker
+              Id="4addcfab-2e0e-42c4-b66e-ce752c8b9914"
+              LastKnownName="Webcam Grabber"
+              LastKnownLocation="Package_1614.uml" />
+          </generalization>
+          <generalization
+            Id="fb006416-50e0-4bfe-bf57-91479914d03c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="fa1c283a-043e-4d1a-8a13-06d6c1dbba15"
+              LastKnownName="Kinect Grabber"
+              LastKnownLocation="Package_1614.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="2ba31248-b673-4a05-a271-7fef931a2248"
+            name="DeviceID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="30410bdf-0ea9-479a-b779-9cd4553c17e7"
+            name="Initiate"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="7e3194f9-da6d-4567-8982-a6029681f9e1"
+            name="TurnOff"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
