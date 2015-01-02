@@ -27,7 +27,6 @@ public:
 	bool TurnOnOrDie();
 	void TurnOff();
 	Sample Querry();
-	char* GrabFrame();
 
 protected:
 private:

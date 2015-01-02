@@ -19,31 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{146AAE4B-DC1A-4411-91BC-8AFB27EBEA0E}</ProjectGuid>
-    <RootNamespace>Recorder</RootNamespace>
-    <ProjectName>SensorReader</ProjectName>
+    <ProjectGuid>{E100A492-8DD1-4BDB-B54A-5994D89EE524}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>InterfaceForGUI</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v100</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PlatformToolset>v120</PlatformToolset>
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PlatformToolset>v120</PlatformToolset>
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -56,38 +56,48 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\Bin\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetExt>.dll</TargetExt>
     <OutDir>..\Bin\$(Configuration)\</OutDir>
-    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\Bin\$(Configuration)\</OutDir>
     <TargetExt>.lib</TargetExt>
+    <OutDir>..\Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64); C:\opencv\build\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;INTERFACEFORGUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\AnhTuan\Desktop\SmartTutorV1.0\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); C:\opencv\build\x64\vc10\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui248.lib;opencv_core248.lib</AdditionalDependencies>
+      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui248.lib;opencv_core248.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;INTERFACEFORGUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -95,36 +105,35 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);F:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);F:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);F:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);F:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="sample.cpp" />
-    <ClCompile Include="kinect_sensor.cpp" />
-    <ClCompile Include="sensor_reader.cpp" />
+    <ClInclude Include="lib_for_gui.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sample.h" />
-    <ClInclude Include="kinect_sensor.h" />
-    <ClInclude Include="sensor_reader.h" />
+    <ClCompile Include="lib_for_gui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FeatureExtractor\FeatureExtractor.vcxproj">
+      <Project>{61b618fd-5b88-4140-a209-8bcdd8de73e1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Recorder\Recorder.vcxproj">
+      <Project>{146aae4b-dc1a-4411-91bc-8afb27ebea0e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

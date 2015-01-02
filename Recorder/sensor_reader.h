@@ -16,12 +16,12 @@ public:
 
 	void SetBufferSize(int buff_size);
 	void TurnOnSensor();
-	void TurnOnSensor(char* file_name);
 	void QuerrySensor();
 	void TurnOffSensor();
 
 	Sample GetLatestSample();
 	std::vector<Sample> GetSamplesBuffer();
+	cv::Mat GetLatestColorFrame();
 
 protected:
 

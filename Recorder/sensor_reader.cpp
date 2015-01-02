@@ -55,3 +55,8 @@ void SensorReader::SetBufferSize(int buff_size)
 {
 	buffer_size_ = buff_size;
 }
+
+cv::Mat SensorReader::GetLatestColorFrame()
+{
+	return latest_sample_.GetColorFrame();
+}
