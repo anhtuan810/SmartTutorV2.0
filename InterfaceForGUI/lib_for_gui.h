@@ -7,6 +7,7 @@
 //  Copyright (c) 2014 Anh Tuan Nguyen. All rights reserved.
 //
 extern "C" { __declspec(dllexport) bool ITurnOnKinectSensor(); }
+extern "C" { __declspec(dllexport) bool ITurnOnONIFile(char* file_name); }
 //extern "C" { __declspec(dllexport) bool IStartRecordingONI(char* file_name); }
 //extern "C" { __declspec(dllexport) void IStopRecordingONI(); }
 //extern "C" { __declspec(dllexport) void ITurnOffKinectSensor(); }

@@ -1,36 +1,54 @@
-#ifndef SENSOR_READER_H
-#define SENSOR_READER_H
+//
+//  Smart Tutor v2.0
+//	SensorReader
+//
+//  Created: 2015.01.05
+//
+//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
+//
 
-#include "kinect_sensor.h"
+#ifndef SENSOR_READER_H_
+#define SENSOR_READER_H_
+
+#define HEIGHT 480
+#define WIDTH 640
+#define BUFFER_SIZE 100
+
 #include "sample.h"
+#include "OpenNI.h"
+#include "NiTE.h"
 #include <vector>
 
-class SensorReader
+class Sensor_Reader
 {
 public:
 	bool IsFromFile;
 
-	SensorReader();
-	SensorReader(char* file_name);
-	~SensorReader();
+	Sensor_Reader();
+	~Sensor_Reader();
 
-	void SetBufferSize(int buff_size);
-	void TurnOnSensor();
-	void QuerrySensor();
-	void TurnOffSensor();
+	bool TurnOnOrDie();
+	bool TurnOnOrDie(char* file_name);
+	void TurnOff();
+	void QueryFrame();
 
-	Sample GetLatestSample();
-	std::vector<Sample> GetSamplesBuffer();
-	cv::Mat GetLatestColorFrame();
-
-protected:
+	Sample GetLastSample();
+	Sample GetSecondLatestSampel();
+	int GetActualBufferSize();
+	Sample GetSampleByIndex(int id);
+	std::vector<Sample> GetSampleBuffer();
 
 private:
-	KinectSensor sensor_;
-	char* file_name_;
-	int buffer_size_ = 100;
-	Sample latest_sample_;
+	openni::Status status_openni_;
+	nite::Status status_nite_;
+	nite::UserTracker user_tracker_;
+	openni::Device device_;
+	openni::VideoStream depth_stream_;
+	openni::VideoStream color_stream_;
+
 	std::vector<Sample> sample_buffer_;
+	Sample GrabSample_();
+private:
 };
 
 #endif

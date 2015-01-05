@@ -14,9 +14,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kinect_sensor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,14 +22,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kinect_sensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sensor_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Recorder.licenseheader" />
   </ItemGroup>
 </Project>

@@ -39,11 +39,11 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PlatformToolset>v120</PlatformToolset>
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PlatformToolset>v120</PlatformToolset>
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -63,11 +63,11 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.exe</TargetExt>
     <OutDir>..\Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetExt>.lib</TargetExt>
+    <TargetExt>.exe</TargetExt>
     <OutDir>..\Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -110,6 +110,7 @@
     <Link>
       <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);F:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -119,6 +120,7 @@
     <Link>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);F:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -126,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib_for_gui.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FeatureExtractor\FeatureExtractor.vcxproj">

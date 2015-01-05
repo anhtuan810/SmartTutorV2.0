@@ -1,11 +1,3 @@
-//
-//  Smart Tutor v1.0
-//	Recorder
-//
-//  Created: 
-//
-//  Copyright (c) 2014 Anh Tuan Nguyen. All rights reserved.
-//
 #include "sensor_reader.h"
 #include "iostream"
 #include "sample.h"
@@ -17,22 +9,22 @@ using namespace cv;
 void main()
 {
 	cv::namedWindow("test");
+	Sensor_Reader sensor;
+	sensor.TurnOnOrDie("F:\\Development of SmartTutor\\11.oni");
 
-	SensorReader reader("F:\\Development of SmartTutor\\11.oni");
-	reader.TurnOnSensor();
 	int i = 0;
 	while(true)
 	{
-		reader.QuerrySensor();
-		Sample sample = reader.GetLatestSample();
+		sensor.QueryFrame();
+		Sample sample = sensor.GetLastSample();
 		if (sample.IsContainUser)
-			std::cout << i++ << ": " << reader.GetLatestSample().GetJointPosition(nite::JOINT_RIGHT_HAND).x << "\n";
+			std::cout << i++ << ": " << sensor.GetLastSample().GetJointPosition(nite::JOINT_RIGHT_HAND).x << "\n";
 		
 		cv::Mat mat = sample.GetColorFrame();
 		cv::imshow("test", mat);
 		cv::waitKey(30);
 	}
-	reader.TurnOffSensor();
+	sensor.TurnOff();
 	
 
 	std::cin.get();

@@ -1,5 +1,14 @@
-#ifndef SENSOR_SAMPLE_H
-#define SENSOR_SAMPLE_H
+//
+//  Smart Tutor v2.0
+//	SensorReader
+//
+//  Created: 2015.01.05
+//
+//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
+//
+
+#ifndef SAMPLE_H_
+#define SAMPLE_H_
 
 #include <NiTE.h>
 #include "opencv2/highgui/highgui.hpp"
@@ -7,7 +16,8 @@
 class Sample
 {
 public:
-	bool IsContainUser;
+	bool IsEmpty = false;
+	bool IsContainUser = false;
 
 	Sample();
 	Sample(nite::Skeleton& skel, cv::Mat depth_frame, cv::Mat depth_user_frame, cv::Mat color_frame);

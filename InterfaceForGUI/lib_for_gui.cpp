@@ -49,6 +49,12 @@ void IQuerrySensor()
 	sensor_reader.QuerrySensor();
 }
 
+bool ITurnOnONIFile(char* file_name)
+{
+	SensorReader reader(file_name);
+	sensor_reader = reader;
+}
+
 //
 //
 //
