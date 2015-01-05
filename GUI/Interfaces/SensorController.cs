@@ -15,28 +15,39 @@ namespace GUI.Interfaces
         public static extern bool ITurnOnKinectSensor();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr IQuerrySensor();
+        public static extern bool ITurnOnONIFile(string file_name);
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr IGrabFrame();
+        public static extern IntPtr IQuerySensor();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGrabCurrentColorFrame();
+
+
+
 
         public bool TurnOnKinectSensor()
         {
             return ITurnOnKinectSensor();
         }
 
-        public void QuerrySensor()
+        public bool TurnOnONIFile(string file_name)
         {
-            IQuerrySensor();
+            return ITurnOnONIFile(file_name);
         }
 
-        public WriteableBitmap GrabFrameKinect()
+        public void QuerySensor()
+        {
+            IQuerySensor();
+        }
+
+        public WriteableBitmap GrabCurrentColorFrame()
         {
             const int kHeight = 480;
             const int kWidth = 640;
 
             // Grab data
-            IntPtr data = IGrabFrame();
+            IntPtr data = IGrabCurrentColorFrame();
             byte[] buffer = new byte[kHeight * kWidth * 3];
             Marshal.Copy(data, buffer, 0, buffer.Length);
 

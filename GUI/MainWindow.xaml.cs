@@ -26,8 +26,11 @@ namespace GUI
             InitializeComponent();
             GUI.Interfaces.SensorController controller = new SensorController();
             controller.TurnOnKinectSensor();
-            controller.QuerrySensor();
-            WriteableBitmap bmp = controller.GrabFrameKinect();
+
+            controller.QuerySensor();
+            WriteableBitmap bmp = controller.GrabCurrentColorFrame();
+            this.imgKinect.Source = bmp;
+            
         }
     }
 }

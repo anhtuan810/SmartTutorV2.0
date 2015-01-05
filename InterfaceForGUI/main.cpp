@@ -4,13 +4,12 @@
 
 void main()
 {
-	SensorReader reader("F:\\Development of SmartTutor\\11.oni");
-	reader.TurnOnSensor();
-	reader.QuerrySensor();
-
-	cv::Mat color_frame = reader.GetLatestColorFrame();
-	char* data = new char[640 * 480 * 3];
-	std::memcpy(data, color_frame.data, 640 * 480 * 3);
+	Sensor_Reader sensor_reader;
+	sensor_reader.TurnOnOrDie();
+	sensor_reader.QueryFrame();
+	cv::Mat color_frame = sensor_reader.GetLastSample().GetColorFrame();
+	char* data = new char[HEIGHT * WIDTH * 3];
+	std::memcpy(data, color_frame.data, WIDTH * HEIGHT * 3);
 
 	std::cin.get();
 }
