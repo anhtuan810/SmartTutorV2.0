@@ -22,14 +22,12 @@ Sensor_Reader::~Sensor_Reader()
 
 bool Sensor_Reader::TurnOnOrDie()
 {
-	this->IsFromFile = false;
+	this->IsFromFile = true;
 
 	// Initiate environment
 	//
-	status_openni_ = OpenNI::initialize();
-	status_nite_ = NiTE::initialize();
-	if (status_openni_ != openni::STATUS_OK || status_nite_ != nite::STATUS_OK)
-		return false;
+	OpenNI::initialize();
+	NiTE::initialize();
 
 	// Open devices and streams
 	//
@@ -52,10 +50,6 @@ bool Sensor_Reader::TurnOnOrDie()
 	// Start the streams
 	//
 	status_openni_ = color_stream_.start();
-	if (status_openni_ != openni::STATUS_OK)
-		return false;
-
-	status_openni_ = depth_stream_.start();
 	if (status_openni_ != openni::STATUS_OK)
 		return false;
 
@@ -136,12 +130,7 @@ Sample Sensor_Reader::GrabSample_()
 
 	// Draw color image
 	const char* color_data = (const char*)color_frame.getData();
-	for (size_t i = 0; i < 640 * 480 * 3 - 3; i += 3)
-	{
-		color_cvmat.data[i] = color_data[i + 2];
-		color_cvmat.data[i + 1] = color_data[i + 1];
-		color_cvmat.data[i + 2] = color_data[i];
-	}
+	std::memcpy(color_cvmat.data, color_data, WIDTH * HEIGHT * 3);
 
 	// Check if contain at least one user
 	bool contain_user = false;
