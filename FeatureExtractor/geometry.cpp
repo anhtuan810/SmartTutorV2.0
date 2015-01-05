@@ -1,14 +1,17 @@
+//
+//  Smart Tutor v2.0
+//	FeatureExtractor: Extract features from skeletons
+//
+//  Created: 2015.01.02
+//
+//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
+//
+
 #include "geometry.h"
 
-Geometry::Geometry()
-{
+Geometry::Geometry(){}
 
-}
-
-Geometry::~Geometry()
-{
-
-}
+Geometry::~Geometry(){}
 
 float Geometry::EuclideanDistance(nite::Point3f& p1, nite::Point3f& p2)
 {

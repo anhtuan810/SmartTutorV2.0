@@ -1,3 +1,12 @@
+//
+//  Smart Tutor v2.0
+//	Interface for GUI, create dynamic library to link from C++ to C#
+//
+//  Created: 2015.01.05
+//
+//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
+//
+
 #define HEIGHT 480
 #define WIDTH 640
 
@@ -14,6 +23,11 @@ bool ITurnOnKinectSensor()
 bool ITurnOnONIFile(char* file_name)
 {
 	return sensor_reader.TurnOnOrDie(file_name);
+}
+
+void ITurnOff()
+{
+	sensor_reader.TurnOff();
 }
 
 void IQuerySensor()

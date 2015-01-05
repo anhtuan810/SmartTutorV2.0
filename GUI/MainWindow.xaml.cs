@@ -21,16 +21,23 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GUI.Interfaces.SensorController controller;
+
         public MainWindow()
         {
             InitializeComponent();
-            GUI.Interfaces.SensorController controller = new SensorController();
-            controller.TurnOnKinectSensor();
+            controller = new SensorController();
+            controller.TurnOnONIFile("F:\\Development of SmartTutor\\11.oni");
 
             controller.QuerySensor();
             WriteableBitmap bmp = controller.GrabCurrentColorFrame();
             this.imgKinect.Source = bmp;
             
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            controller.TurnOff();
         }
     }
 }

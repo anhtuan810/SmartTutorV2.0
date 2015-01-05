@@ -18,6 +18,9 @@ namespace GUI.Interfaces
         public static extern bool ITurnOnONIFile(string file_name);
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool ITurnOff();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IQuerySensor();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -34,6 +37,11 @@ namespace GUI.Interfaces
         public bool TurnOnONIFile(string file_name)
         {
             return ITurnOnONIFile(file_name);
+        }
+
+        public void TurnOff()
+        {
+            ITurnOff();
         }
 
         public void QuerySensor()

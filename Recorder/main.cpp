@@ -16,9 +16,9 @@ void main()
 	while(true)
 	{
 		sensor.QueryFrame();
-		Sample sample = sensor.GetLastSample();
+		Sample sample = sensor.GetLatestSample();
 		if (sample.IsContainUser)
-			std::cout << i++ << ": " << sensor.GetLastSample().GetJointPosition(nite::JOINT_RIGHT_HAND).x << "\n";
+			std::cout << i++ << ": " << sensor.GetLatestSample().GetJointPosition(nite::JOINT_RIGHT_HAND).x << "\n";
 		
 		cv::Mat mat = sample.GetColorFrame();
 		cv::imshow("test", mat);

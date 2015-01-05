@@ -194,7 +194,7 @@ std::vector<Sample> Sensor_Reader::GetSampleBuffer()
 	return sample_buffer_;
 }
 
-Sample Sensor_Reader::GetLastSample()
+Sample Sensor_Reader::GetLatestSample()
 {
 	if (sample_buffer_.size() >= 1)
 		return sample_buffer_.at(sample_buffer_.size() - 1);
@@ -207,7 +207,7 @@ Sample Sensor_Reader::GetLastSample()
 	}
 }
 
-Sample Sensor_Reader::GetSecondLatestSampel()
+Sample Sensor_Reader::GetSecondLatestSample()
 {
 	if (sample_buffer_.size() >= 2)
 		return sample_buffer_.at(sample_buffer_.size() - 2);

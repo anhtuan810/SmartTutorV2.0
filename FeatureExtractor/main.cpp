@@ -5,12 +5,12 @@
 
 void main()
 {
-	SensorReader sensor_reader("F:\\Development of SmartTutor\\11.oni");
-	sensor_reader.TurnOnSensor();
+	Sensor_Reader sensor_reader;
+	sensor_reader.TurnOnOrDie("F:\\Development of SmartTutor\\11.oni");
 	FeatureExtractor feature_extractor;
 	for (size_t i = 0; i < 100; i++)
 	{
-		sensor_reader.QuerrySensor();
+		sensor_reader.QueryFrame();
 		feature_extractor.ProcessNewSample(sensor_reader);
 	}
 

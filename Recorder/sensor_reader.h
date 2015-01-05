@@ -32,8 +32,8 @@ public:
 	void TurnOff();
 	void QueryFrame();
 
-	Sample GetLastSample();
-	Sample GetSecondLatestSampel();
+	Sample GetLatestSample();
+	Sample GetSecondLatestSample();
 	int GetActualBufferSize();
 	Sample GetSampleByIndex(int id);
 	std::vector<Sample> GetSampleBuffer();
