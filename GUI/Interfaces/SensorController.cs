@@ -27,8 +27,6 @@ namespace GUI.Interfaces
         public static extern IntPtr IGrabCurrentColorFrame();
 
 
-
-
         public bool TurnOnKinectSensor()
         {
             return ITurnOnKinectSensor();
@@ -66,5 +64,6 @@ namespace GUI.Interfaces
 
             return bitmap;
         }
+
     }
 }

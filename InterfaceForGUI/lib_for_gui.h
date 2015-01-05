@@ -12,3 +12,7 @@ extern "C" { __declspec(dllexport) bool ITurnOnONIFile(char* file_name); }
 extern "C" { __declspec(dllexport) void IQuerySensor(); }
 extern "C" { __declspec(dllexport) void ITurnOff(); }
 extern "C" { __declspec(dllexport) char* IGrabCurrentColorFrame(); }
+
+extern "C" { __declspec(dllexport) void IExtractFeatureNewFrame(); }
+extern "C" { __declspec(dllexport) int IGetActualFeatureBufferSize(); }
+extern "C" { __declspec(dllexport) float* IGetFeature_VelocityLeftHand(); }

@@ -236,3 +236,8 @@ void FeatureExtractor::GetF_BalanceLeftRight_(Sample& sample_latest)
 	CheckBufferSize_(f_balance_left_right_, BUFFER_SIZE);
 }
 
+int FeatureExtractor::GetActualBufferSize()
+{
+	return f_balance_left_right_.size();
+}
+

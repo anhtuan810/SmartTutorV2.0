@@ -22,6 +22,7 @@ public:
 	FeatureExtractor();
 	~FeatureExtractor();
 	void ProcessNewSample(Sensor_Reader& sensor_reader);
+	int GetActualBufferSize();
 	std::vector<float> GetVelocity_LeftHand();
 	std::vector<float> GetVelocity_RightHand();
 	std::vector<float> GetVelocity_Foot();

@@ -12,6 +12,7 @@
 
 #include "lib_for_gui.h"
 #include "sensor_reader.h"
+#include "feature_extractor.h"
 
 Sensor_Reader sensor_reader;
 
@@ -37,8 +38,33 @@ void IQuerySensor()
 
 char* IGrabCurrentColorFrame()
 {
-	cv::Mat color_frame = sensor_reader.GetLastSample().GetColorFrame();
+	cv::Mat color_frame = sensor_reader.GetLatestSample().GetColorFrame();
 	char* data = new char[HEIGHT * WIDTH * 3];
 	std::memcpy(data, color_frame.data, WIDTH * HEIGHT * 3);
+	return data;
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+FeatureExtractor feature_extractor;
+void IExtractFeatureNewFrame()
+{
+	feature_extractor.ProcessNewSample(sensor_reader);
+}
+
+int IGetActualFeatureBufferSize()
+{
+	return feature_extractor.GetActualBufferSize();
+}
+
+float* IGetFeature_VelocityLeftHand()
+{
+	std::vector<float> velocity = feature_extractor.GetVelocity_LeftHand();
+	const int size = velocity.size();
+	float* data = new float[size];
+	for (size_t i = 0; i < size; i++)
+	{
+		data[i] = velocity[i];
+	}
 	return data;
 }
