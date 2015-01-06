@@ -32,8 +32,8 @@ namespace GUI
             timer.Tick += timer_Tick;
 
             controller = new SensorController();
-            controller.TurnOnKinectSensor();
-            //controller.TurnOnONIFile("F:\\Development of SmartTutor\\11.oni");
+            //controller.TurnOnKinectSensor();
+            controller.TurnOnONIFile("F:\\Development of SmartTutor\\11.oni");
 
             timer.Start();
         }
@@ -47,7 +47,7 @@ namespace GUI
             feature_extractor = new FeatureExtractor();
             feature_extractor.ExtractFeatureNewFrame();
             int buffer_size = feature_extractor.GetActualFeatureBufferSize();
-            float[] f_velocity_left_hand = feature_extractor.GetFeature_VelocityLeftHand();
+            float[] f_velocity_left_hand = feature_extractor.GetFeature_Energy();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

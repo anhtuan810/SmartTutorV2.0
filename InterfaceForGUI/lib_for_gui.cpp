@@ -57,14 +57,61 @@ int IGetActualFeatureBufferSize()
 	return feature_extractor.GetActualBufferSize();
 }
 
+float* copy_vector(std::vector<float> input)
+{
+	const int sz = input.size();
+	float* data = new float[sz];
+	for (size_t i = 0; i < sz; i++)
+	{
+		data[i] = input[i];
+	}
+	return data;
+}
+
 float* IGetFeature_VelocityLeftHand()
 {
 	std::vector<float> velocity = feature_extractor.GetVelocity_LeftHand();
-	const int size = velocity.size();
-	float* data = new float[size];
-	for (size_t i = 0; i < size; i++)
-	{
-		data[i] = velocity[i];
-	}
-	return data;
+	return copy_vector(velocity);
+}
+
+float* IGetFeature_VelocityRightHand()
+{
+	std::vector<float> velocity = feature_extractor.GetVelocity_RightHand();
+	return copy_vector(velocity);
+}
+
+float* IGetFeature_VelocityGlobal()
+{
+	std::vector<float> velocity = feature_extractor.GetVelocity_Global();
+	return copy_vector(velocity);
+}
+
+float* IGetFeature_VelocityFoot()
+{
+	std::vector<float> velocity = feature_extractor.GetVelocity_Foot();
+	return copy_vector(velocity);
+}
+
+float* IGetFeature_Energy()
+{
+	std::vector<float> energy = feature_extractor.GetEnergy();
+	return copy_vector(energy);
+}
+
+float* IGetFeature_FootStretch()
+{
+	std::vector<float> stretch = feature_extractor.GetFootStretch();
+	return copy_vector(stretch);
+}
+
+float* IGetFeature_BalanceBackForth()
+{
+	std::vector<float> balance = feature_extractor.GetBalanceBackForth();
+	return copy_vector(balance);
+}
+
+float* IGetFeature_BalanceLeftRight()
+{
+	std::vector<float> balance = feature_extractor.GetBalanceLeftRight();
+	return copy_vector(balance);
 }

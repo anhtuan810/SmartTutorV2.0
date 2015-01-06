@@ -241,3 +241,8 @@ int FeatureExtractor::GetActualBufferSize()
 	return f_balance_left_right_.size();
 }
 
+std::vector<float> FeatureExtractor::GetVelocity_Global()
+{
+	return f_velocity_global_;
+}
+

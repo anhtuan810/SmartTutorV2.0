@@ -25,6 +25,7 @@ public:
 	int GetActualBufferSize();
 	std::vector<float> GetVelocity_LeftHand();
 	std::vector<float> GetVelocity_RightHand();
+	std::vector<float> GetVelocity_Global();
 	std::vector<float> GetVelocity_Foot();
 	std::vector<float> GetEnergy();
 	std::vector<float> GetFootStretch();
