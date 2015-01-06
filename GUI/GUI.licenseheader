@@ -1,0 +1,21 @@
+extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+//
+//  Smart Tutor v2.0
+//	Interface for GUI, create dynamic library to link from C++ to C#
+//
+//  Created: 2015.01.06
+//
+//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
+//
+
+extensions: .aspx .ascx
+<%-- 
+Sample license text.
+--%>
+extensions: .vb
+'Sample license text.
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->

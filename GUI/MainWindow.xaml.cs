@@ -36,6 +36,15 @@ namespace GUI
             controller.TurnOnONIFile("F:\\Development of SmartTutor\\11.oni");
 
             timer.Start();
+
+            this.grpVelocity_LeftHand.TitleReal = "Velocity Left Hand";
+            this.grpVelocity_RightHand.TitleReal = "Velocity Right Hand";
+            this.grpVelocity_Global.TitleReal = "Velocity Global";
+            this.grpVelocity_Foot.TitleReal = "Velocity Foot";
+            this.grpEnergy.TitleReal = "Energy";
+            this.grpFootStretch.TitleReal = "Foot Stretch";
+            this.grpBalanceBackForth.TitleReal = "Balance Back Forth";
+            this.grpBalanceLeftRight.TitleReal = "Balance Left Right";
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -47,7 +56,32 @@ namespace GUI
             feature_extractor = new FeatureExtractor();
             feature_extractor.ExtractFeatureNewFrame();
             int buffer_size = feature_extractor.GetActualFeatureBufferSize();
-            float[] f_velocity_left_hand = feature_extractor.GetFeature_Energy();
+            if (buffer_size >= 5)   
+            {
+                this.grpVelocity_LeftHand.SetDataReal(feature_extractor.GetFeature_VelocityLeftHand());
+                this.grpVelocity_LeftHand.DrawGraph();
+
+                this.grpVelocity_RightHand.SetDataReal(feature_extractor.GetFeature_VelocityRightHand());
+                this.grpVelocity_RightHand.DrawGraph();
+
+                this.grpVelocity_Global.SetDataReal(feature_extractor.GetFeature_VelocityGlobal());
+                this.grpVelocity_Global.DrawGraph();
+
+                this.grpVelocity_Foot.SetDataReal(feature_extractor.GetFeature_VelocityFoot());
+                this.grpVelocity_Foot.DrawGraph();
+
+                this.grpEnergy.SetDataReal(feature_extractor.GetFeature_Energy());
+                this.grpEnergy.DrawGraph();
+
+                this.grpFootStretch.SetDataReal(feature_extractor.GetFeature_FootStretch());
+                this.grpFootStretch.DrawGraph();
+
+                this.grpBalanceBackForth.SetDataReal(feature_extractor.GetFeature_BalanceBackForth());
+                this.grpBalanceBackForth.DrawGraph();
+
+                this.grpBalanceLeftRight.SetDataReal(feature_extractor.GetFeature_BalanceLeftRight());
+                this.grpBalanceLeftRight.DrawGraph();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
