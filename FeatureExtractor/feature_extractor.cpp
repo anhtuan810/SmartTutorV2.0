@@ -1,3 +1,12 @@
+//
+//  Smart Tutor v2.0
+//	FeatureExtractor: Extract features from skeletons
+//
+//  Created: 2015.01.02
+//
+//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
+//
+
 #include "feature_extractor.h"
 
 using namespace openni;
@@ -7,24 +16,37 @@ FeatureExtractor::FeatureExtractor(){}
 
 FeatureExtractor::~FeatureExtractor(){}
 
+
+
+//////////////////////////////////////////////////////////////////////////
 std::vector<float> FeatureExtractor::GetVelocity_LeftHand()
 {
-	return f_velocity_left_hand_;
+	return post_processing_.SmoothByAveraging(f_velocity_left_hand_);
 }
 
 std::vector<float> FeatureExtractor::GetVelocity_RightHand()
 {
-	return f_velocity_right_hand_;
+	return post_processing_.SmoothByAveraging(f_velocity_right_hand_);
 }
 
 std::vector<float> FeatureExtractor::GetVelocity_Foot()
 {
-	return f_velocity_foot_;
+	return post_processing_.SmoothByAveraging(f_velocity_foot_);
+}
+
+std::vector<float> FeatureExtractor::GetVelocity_Global()
+{
+	return post_processing_.SmoothByAveraging(f_velocity_global_);
+}
+
+std::vector<float> FeatureExtractor::GetDirection_BackForth()
+{
+	return post_processing_.SmoothByAveraging(f_direction_back_forth_);
 }
 
 std::vector<float> FeatureExtractor::GetEnergy()
 {
-	return f_energy_;
+	return post_processing_.SmoothByAveraging(f_energy_);
 }
 
 std::vector<float> FeatureExtractor::GetFootStretch()
@@ -42,6 +64,10 @@ std::vector<float> FeatureExtractor::GetBalanceLeftRight()
 	return f_balance_left_right_;
 }
 
+
+
+
+//////////////////////////////////////////////////////////////////////////
 //Directly send the whole Sensor_Reader object, with all buffer to the processor
 void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 {
@@ -54,6 +80,7 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 	GetF_HandVelocity_(sample_latest, sample_second);
 	GetF_FeetVelocity_(sample_latest, sample_second);
 	GetF_Energy_(sample_latest, sample_second);
+	GetF_Direction_BackForth_(sample_latest, sample_second);
 	GetF_GlobalVelocity_(sample_latest, sample_second);
 	GetF_FeetStretch_(sample_latest);
 	GetF_BalanceBackForth_(sample_latest);
@@ -67,6 +94,7 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 		f_velocity_right_hand_.at(f_velocity_right_hand_.size() - 1) = 0;
 		f_velocity_foot_.at(f_velocity_foot_.size() - 1) = 0;
 		f_energy_.at(f_energy_.size() - 1) = 0;
+		f_direction_back_forth_.at(f_direction_back_forth_.size() - 1) = 0;
 		f_foot_stretch_.at(f_foot_stretch_.size() - 1) = 0;
 		f_balance_back_forth_.at(f_balance_back_forth_.size() - 1) = 0;
 		f_balance_left_right_.at(f_balance_left_right_.size() - 1) = 0;
@@ -189,6 +217,20 @@ void FeatureExtractor::GetF_Energy_(Sample& sample_latest, Sample& sample_second
 	CheckBufferSize_(f_energy_, BUFFER_SIZE);
 }
 
+void FeatureExtractor::GetF_Direction_BackForth_(Sample& sample_latest, Sample& sample_second)
+{
+	// Compute amount of back-forth movement between 2 most recent frames
+	// The accurate amount of back-forth displacement will be computed later on in the smoothing step
+	//
+	// Compute distance on the Oy axis
+	//
+	nite::Point3f p1 = sample_latest.GetJointPosition(JOINT_TORSO);
+	nite::Point3f p2 = sample_second.GetJointPosition(JOINT_TORSO);
+	float distance = p2.z - p1.z;
+	f_direction_back_forth_.push_back(distance);
+	CheckBufferSize_(f_direction_back_forth_, BUFFER_SIZE);
+}
+
 void FeatureExtractor::GetF_FeetStretch_(Sample& sample_latest)
 {
 	float distance_shoulders = geometry_.EuclideanDistance(
@@ -241,8 +283,7 @@ int FeatureExtractor::GetActualBufferSize()
 	return f_balance_left_right_.size();
 }
 
-std::vector<float> FeatureExtractor::GetVelocity_Global()
-{
-	return f_velocity_global_;
-}
+
+
+
 

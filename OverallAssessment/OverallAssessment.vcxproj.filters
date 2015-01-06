@@ -11,31 +11,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="overall_assessment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="overall_assessment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="geometry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="feature_extractor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="post_processing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="geometry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="feature_extractor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="post_processing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FeatureExtractor.licenseheader" />
+    <None Include="OverallAssessment.licenseheader" />
   </ItemGroup>
 </Project>

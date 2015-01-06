@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{61B618FD-5B88-4140-A209-8BCDD8DE73E1}</ProjectGuid>
-    <RootNamespace>FeatureExtractor</RootNamespace>
+    <ProjectGuid>{FA6280F9-20C2-4948-AC1C-E8E16DC0396B}</ProjectGuid>
+    <RootNamespace>OverallAssessment</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -38,11 +38,9 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PlatformToolset>v120</PlatformToolset>
-    <ConfigurationType>StaticLibrary</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PlatformToolset>v120</PlatformToolset>
-    <ConfigurationType>StaticLibrary</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -56,11 +54,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\Bin\$(Configuration)\</OutDir>
-    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\Bin\$(Configuration)\</OutDir>
-    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,43 +84,33 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;..\Recorder;$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);F:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);F:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;..\Recorder;$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);F:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);F:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Recorder\Recorder.vcxproj">
-      <Project>{146aae4b-dc1a-4411-91bc-8afb27ebea0e}</Project>
-    </ProjectReference>
+    <ClInclude Include="overall_assessment.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="feature_extractor.h" />
-    <ClInclude Include="geometry.h" />
-    <ClInclude Include="post_processing.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="feature_extractor.cpp" />
-    <ClCompile Include="geometry.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="post_processing.cpp" />
+    <ClCompile Include="overall_assessment.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FeatureExtractor.licenseheader" />
+    <None Include="OverallAssessment.licenseheader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

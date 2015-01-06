@@ -33,6 +33,9 @@ namespace GUI.Interfaces
         public static extern IntPtr IGetFeature_Energy();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetFeature_DirectionBackForth();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IGetFeature_FootStretch();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -89,6 +92,12 @@ namespace GUI.Interfaces
         public List<float> GetFeature_Energy()
         {
             IntPtr data = IGetFeature_Energy();
+            return Copy_IntPtr(data);
+        }
+
+        public List<float> GetDirection_BackForth()
+        {
+            IntPtr data = IGetFeature_DirectionBackForth();
             return Copy_IntPtr(data);
         }
 

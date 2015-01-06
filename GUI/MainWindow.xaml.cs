@@ -42,6 +42,7 @@ namespace GUI
             this.grpVelocity_Global.TitleReal = "Velocity Global";
             this.grpVelocity_Foot.TitleReal = "Velocity Foot";
             this.grpEnergy.TitleReal = "Energy";
+            this.grpDirection_BackForth.TitleReal = "Direction";
             this.grpFootStretch.TitleReal = "Foot Stretch";
             this.grpBalanceBackForth.TitleReal = "Balance Back Forth";
             this.grpBalanceLeftRight.TitleReal = "Balance Left Right";
@@ -72,6 +73,9 @@ namespace GUI
 
                 this.grpEnergy.SetDataReal(feature_extractor.GetFeature_Energy());
                 this.grpEnergy.DrawGraph();
+
+                this.grpDirection_BackForth.SetDataReal(feature_extractor.GetDirection_BackForth());
+                this.grpDirection_BackForth.DrawGraph();
 
                 this.grpFootStretch.SetDataReal(feature_extractor.GetFeature_FootStretch());
                 this.grpFootStretch.DrawGraph();

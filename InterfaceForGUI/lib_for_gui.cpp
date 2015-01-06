@@ -98,6 +98,12 @@ float* IGetFeature_Energy()
 	return copy_vector(energy);
 }
 
+float* IGetFeature_DirectionBackForth()
+{
+	std::vector<float> direction = feature_extractor.GetDirection_BackForth();
+	return copy_vector(direction);
+}
+
 float* IGetFeature_FootStretch()
 {
 	std::vector<float> stretch = feature_extractor.GetFootStretch();

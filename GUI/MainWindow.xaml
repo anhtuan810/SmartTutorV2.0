@@ -13,7 +13,7 @@
         <Visualisation:Graph x:Name="grpFootStretch" HorizontalAlignment="Left" Height="124" Margin="829,139,0,0" VerticalAlignment="Top" Width="236"/>
         <Visualisation:Graph x:Name="grpBalanceBackForth" HorizontalAlignment="Left" Height="124" Margin="347,268,0,0" VerticalAlignment="Top" Width="236"/>
         <Visualisation:Graph x:Name="grpBalanceLeftRight" HorizontalAlignment="Left" Height="124" Margin="588,268,0,0" VerticalAlignment="Top" Width="236"/>
-        <Visualisation:Graph x:Name="grpMain_Copy7" HorizontalAlignment="Left" Height="124" Margin="829,268,0,0" VerticalAlignment="Top" Width="236"/>
+        <Visualisation:Graph x:Name="grpDirection_BackForth" HorizontalAlignment="Left" Height="124" Margin="829,268,0,0" VerticalAlignment="Top" Width="236"/>
 
     </Grid>
 </Window>
