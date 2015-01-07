@@ -14,12 +14,18 @@
     <ClInclude Include="overall_assessment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="thresholds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="overall_assessment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thresholds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

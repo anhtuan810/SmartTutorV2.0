@@ -104,13 +104,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="overall_assessment.h" />
+    <ClInclude Include="thresholds.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="overall_assessment.cpp" />
+    <ClCompile Include="thresholds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OverallAssessment.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FeatureExtractor\FeatureExtractor.vcxproj">
+      <Project>{61b618fd-5b88-4140-a209-8bcdd8de73e1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfaceForGUI\InterfaceForGUI.vcxproj">
+      <Project>{e100a492-8dd1-4bdb-b54a-5994d89ee524}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Recorder\Recorder.vcxproj">
+      <Project>{146aae4b-dc1a-4411-91bc-8afb27ebea0e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

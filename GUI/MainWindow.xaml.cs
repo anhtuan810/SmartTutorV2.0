@@ -32,8 +32,8 @@ namespace GUI
             timer.Tick += timer_Tick;
 
             controller = new SensorController();
-            //controller.TurnOnKinectSensor();
-            controller.TurnOnONIFile("F:\\Development of SmartTutor\\11.oni");
+            controller.TurnOnKinectSensor();
+            //controller.TurnOnONIFile("F:\\Development of SmartTutor\\11.oni");
 
             timer.Start();
 
