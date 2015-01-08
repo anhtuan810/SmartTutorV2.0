@@ -99,7 +99,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
@@ -110,7 +110,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64); $(NITE2_LIB64); G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClInclude Include="sample.h" />
     <ClInclude Include="sensor_reader.h" />
+    <ClInclude Include="system_configuration.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Recorder.licenseheader" />

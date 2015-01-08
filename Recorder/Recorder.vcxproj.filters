@@ -28,6 +28,9 @@
     <ClInclude Include="sensor_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="system_configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Recorder.licenseheader" />

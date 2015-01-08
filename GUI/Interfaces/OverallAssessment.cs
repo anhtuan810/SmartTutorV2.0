@@ -54,43 +54,38 @@ namespace GUI.Interfaces
             float[] buffer = new float[size];
             Marshal.Copy(input, buffer, 0, buffer.Length);
             List<float> result = new List<float>(buffer);
+            Marshal.FreeHGlobal(input);
             return result;
         }
 
         public List<float> GetScore_HandGesture()
         {
-            IntPtr data = IGetScore_HandGesture();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetScore_HandGesture());
         }
 
         public List<float> GetScore_GlobalMovement()
         {
-            IntPtr data = IGetScore_GlobalMovement();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetScore_GlobalMovement());
         }
 
         public List<float> GetScore_Energy()
         {
-            IntPtr data = IGetScore_Energy();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetScore_Energy());
         }
 
         public List<float> GetScore_Direction()
         {
-            IntPtr data = IGetScore_Direction();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetScore_Direction());
         }
 
         public List<float> GetScore_Posture()
         {
-            IntPtr data = IGetScore_Posture();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetScore_Posture());
         }
 
         public List<float> GetScore_Overall()
         {
-            IntPtr data = IGetScore_Overall();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetScore_Overall());
         }
 
         #endregion
@@ -166,6 +161,7 @@ namespace GUI.Interfaces
                 else
                     result.Add(true);
             }
+            Marshal.FreeHGlobal(input);
             return result;
         }
 

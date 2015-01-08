@@ -17,6 +17,7 @@
 #include "sample.h"
 #include "OpenNI.h"
 #include "NiTE.h"
+#include "system_configuration.h"
 #include <vector>
 
 class Sensor_Reader

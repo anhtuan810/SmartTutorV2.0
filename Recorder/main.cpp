@@ -10,8 +10,8 @@ void main()
 {
 	cv::namedWindow("test");
 	Sensor_Reader sensor;
-	//sensor.TurnOnOrDie("F:\\Development of SmartTutor\\11.oni");
-	sensor.TurnOnOrDie();
+	sensor.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");
+	//sensor.TurnOnOrDie();
 
 	int i = 0;
 	while(true)

@@ -21,7 +21,7 @@ namespace GUI.Interfaces
         public static extern bool ITurnOff();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr IQuerySensor();
+        public static extern void IQuerySensor();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IGrabCurrentColorFrame();
@@ -62,8 +62,14 @@ namespace GUI.Interfaces
             WriteableBitmap bitmap = new WriteableBitmap(kWidth, kHeight, 96.0, 96.0, PixelFormats.Rgb24, null);
             bitmap.WritePixels(new Int32Rect(0, 0, kWidth, kHeight), buffer, kWidth * 3, 0);
 
+            Marshal.FreeHGlobal(data);
             return bitmap;
         }
 
+        public void testMemoryLeak()
+        {
+            IntPtr data = IGrabCurrentColorFrame();
+            Marshal.FreeHGlobal(data);
+        }
     }
 }

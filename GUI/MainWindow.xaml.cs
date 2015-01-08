@@ -81,12 +81,13 @@ namespace GUI
         void timer_Tick(object sender, EventArgs e)
         {
             controller.QuerySensor();
+
             WriteableBitmap bmp = controller.GrabCurrentColorFrame();
             this.imgKinect.Source = bmp;
 
             feature_extractor.ExtractFeatureNewFrame();
             int buffer_feature_size = feature_extractor.GetActualFeatureBufferSize();
-            if (buffer_feature_size >= 5)   
+            if (buffer_feature_size >= 5)
             {
                 this.grpVelocity_LeftHand.SetDataReal(feature_extractor.GetFeature_VelocityLeftHand());
                 this.grpVelocity_RightHand.SetDataReal(feature_extractor.GetFeature_VelocityRightHand());
@@ -98,14 +99,14 @@ namespace GUI
                 this.grpBalanceBackForth.SetDataReal(feature_extractor.GetFeature_BalanceBackForth());
                 this.grpBalanceLeftRight.SetDataReal(feature_extractor.GetFeature_BalanceLeftRight());
 
-                this.grpVelocity_LeftHand.DrawGraph();                
-                this.grpVelocity_RightHand.DrawGraph();                
-                this.grpVelocity_Global.DrawGraph();                
-                this.grpVelocity_Foot.DrawGraph();                
-                this.grpEnergy.DrawGraph();                
-                this.grpDirection_BackForth.DrawGraph();                
-                this.grpFootStretch.DrawGraph();                
-                this.grpBalanceBackForth.DrawGraph();                
+                this.grpVelocity_LeftHand.DrawGraph();
+                this.grpVelocity_RightHand.DrawGraph();
+                this.grpVelocity_Global.DrawGraph();
+                this.grpVelocity_Foot.DrawGraph();
+                this.grpEnergy.DrawGraph();
+                this.grpDirection_BackForth.DrawGraph();
+                this.grpFootStretch.DrawGraph();
+                this.grpBalanceBackForth.DrawGraph();
                 this.grpBalanceLeftRight.DrawGraph();
 
                 this.grpBin_VelocityLeftHand_Low.DataBinary = overall_assessment.GetBinary_VelocityLeftHand_Low();

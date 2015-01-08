@@ -62,61 +62,53 @@ namespace GUI.Interfaces
             float[] buffer = new float[size];
             Marshal.Copy(input, buffer, 0, buffer.Length);
             List<float> result = new List<float>(buffer);
+            Marshal.FreeHGlobal(input);
             return result;
         }
 
         public List<float> GetFeature_VelocityLeftHand()
         {
-            IntPtr data = IGetFeature_VelocityLeftHand();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_VelocityLeftHand());
         }
 
         public List<float> GetFeature_VelocityRightHand()
         {
-            IntPtr data = IGetFeature_VelocityRightHand();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_VelocityRightHand());
         }
 
         public List<float> GetFeature_VelocityGlobal()
         {
-            IntPtr data = IGetFeature_VelocityGlobal();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_VelocityGlobal());
         }
 
         public List<float> GetFeature_VelocityFoot()
         {
-            IntPtr data = IGetFeature_VelocityFoot();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_VelocityFoot());
         }
 
         public List<float> GetFeature_Energy()
         {
-            IntPtr data = IGetFeature_Energy();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_Energy());
         }
 
         public List<float> GetDirection_BackForth()
         {
-            IntPtr data = IGetFeature_DirectionBackForth();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_DirectionBackForth());
         }
 
         public List<float> GetFeature_FootStretch()
         {
-            IntPtr data = IGetFeature_FootStretch();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_FootStretch());
         }
 
         public List<float> GetFeature_BalanceBackForth()
         {
-            IntPtr data = IGetFeature_BalanceBackForth();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_BalanceBackForth());
         }
 
         public List<float> GetFeature_BalanceLeftRight()
         {
-            IntPtr data = IGetFeature_BalanceLeftRight();
-            return Copy_IntPtr(data);
+            return Copy_IntPtr(IGetFeature_BalanceLeftRight());
         }
     }
 }

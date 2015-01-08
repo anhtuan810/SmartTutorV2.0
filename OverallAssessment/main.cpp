@@ -11,12 +11,13 @@ void main()
 	FeatureExtractor feature_extractor;
 	OverallAssessment overall_assessment;
 
-	for (size_t i = 0; i < 100; i++)
+	int i = 0;
+	while (true)
 	{
 		sensor_reader.QueryFrame();
 		feature_extractor.ProcessNewSample(sensor_reader);
 		overall_assessment.AssessOneFeatureSet(feature_extractor);
-		std::cout << i << " - " << overall_assessment.GetScoreSeries_Direction().size() << "\n";
+		std::cout << i++ << " - " << overall_assessment.GetScoreSeries_Direction().size() << "\n";
 	}
 	std::cin.get();
 }

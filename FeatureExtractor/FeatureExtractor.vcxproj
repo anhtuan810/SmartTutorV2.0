@@ -56,11 +56,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\Bin\$(Configuration)\</OutDir>
-    <TargetExt>.lib</TargetExt>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\Bin\$(Configuration)\</OutDir>
-    <TargetExt>.lib</TargetExt>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -93,7 +93,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64); G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -104,7 +104,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64); $(OPENCV_LIB64)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64); G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
