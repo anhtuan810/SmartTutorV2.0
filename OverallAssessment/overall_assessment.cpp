@@ -14,34 +14,34 @@ OverallAssessment::OverallAssessment(){}
 OverallAssessment::~OverallAssessment(){}
 
 //////////////////////////////////////////////////////////////////////////
-float OverallAssessment::GetScoreHandGesture()
+std::vector<float> OverallAssessment::GetScoreSeries_HandGesture()
 {
-	return score_hand_gesture_;
+	return score_series_hand_gesture_;
 }
-float OverallAssessment::GetScoreGlobalMovement()
+std::vector<float> OverallAssessment::GetScoreSeries_GlobalMovement()
 {
-	return score_global_movement_;
+	return score_series_global_movement_;
 }
-float OverallAssessment::GetScoreEnergy()
+std::vector<float> OverallAssessment::GetScoreSeries_Energy()
 {
-	return score_energy_;
+	return score_series_energy_;
 }
-float OverallAssessment::GetScoreDirection()
+std::vector<float> OverallAssessment::GetScoreSeries_Direction()
 {
-	return score_direction_;
+	return score_series_direction_;
 }
-float OverallAssessment::GetScorePosture()
+std::vector<float> OverallAssessment::GetScoreSeries_Posture()
 {
-	return score_posture_;
+	return score_series_posture_;
 }
-float OverallAssessment::GetScoreOverall()
+std::vector<float> OverallAssessment::GetScoreSeries_Overall()
 {
-	return score_overall_;
+	return score_series_overall_;
 }
 
 
 //////////////////////////////////////////////////////////////////////////
-void OverallAssessment::PerformAssessment(FeatureExtractor& feature_extractor)
+void OverallAssessment::AssessOneFeatureSet(FeatureExtractor& feature_extractor)
 {
 	ThresholdAllFeatures_(feature_extractor);
 	ComputeAllScores_();
@@ -94,13 +94,18 @@ void OverallAssessment::ThresholdAllFeatures_(FeatureExtractor& feature_extracto
 }
 void OverallAssessment::ComputeAllScores_()
 {
-	score_hand_gesture_ = 10;
-	score_global_movement_ = 10;
-	score_energy_ = 10;
-	score_direction_ = 7;
-	score_posture_ = 0;
-	score_overall_ = 5;
-
+	//
+	//	Single scores on each category
+	//
+	float score_hand_gesture = 10;
+	float score_global_movement = 10;
+	float score_energy = 10;
+	float score_direction = 7;
+	float score_posture = 0;
+	float score_overall = 5;
+	//
+	//	Ratio of appearance of codewords
+	//
 	float ratio_velocity_left_hand_low = CountBinaryPositive_(bi_velocity_left_hand_low);
 	float ratio_velocity_left_hand_high = CountBinaryPositive_(bi_velocity_left_hand_high);
 	float ratio_velocity_right_hand_low = CountBinaryPositive_(bi_velocity_right_hand_low);
@@ -119,22 +124,41 @@ void OverallAssessment::ComputeAllScores_()
 	float ratio_balance_forward = CountBinaryPositive_(bi_balance_forward);
 	float ratio_balance_left = CountBinaryPositive_(bi_balance_left);
 	float ratio_balance_right = CountBinaryPositive_(bi_balance_right);
-
-	score_hand_gesture_ = score_hand_gesture_
+	//
+	//	Score simply based on ratio of codewords (positive and negative)
+	//
+	score_hand_gesture = score_hand_gesture
 		- ratio_velocity_left_hand_low - ratio_velocity_right_hand_low
 		- ratio_velocity_right_hand_low - ratio_velocity_right_hand_high;
-	score_global_movement_ = score_global_movement_
+	score_global_movement = score_global_movement
 		- 2 * ratio_velocity_global_low - 2 * ratio_velocity_global_high;
-	score_energy_ = score_energy_
+	score_energy = score_energy
 		- 2 * ratio_energy_low - 2 * ratio_energy_high;
-	score_direction_ = score_direction_
+	score_direction = score_direction
 		+ ratio_direction_forward - ratio_direction_backward;
-	score_posture_ = score_posture_
+	score_posture = score_posture
 		- ratio_foot_stretched - ratio_foot_closed
 		- ratio_balance_backward + ratio_balance_forward
 		- ratio_balance_left - ratio_balance_right;
-
-	score_overall_ = (score_hand_gesture_ + score_global_movement_ + score_energy_ + score_direction_ + score_posture_) / 5;
+	score_overall = (score_hand_gesture + score_global_movement + score_energy + score_direction + score_posture) / 5;
+	//
+	//	Push single scores to the score buffers
+	//
+	score_series_hand_gesture_.push_back(score_hand_gesture);
+	score_series_global_movement_.push_back(score_global_movement);
+	score_series_energy_.push_back(score_energy);
+	score_series_direction_.push_back(score_direction);
+	score_series_posture_.push_back(score_posture);
+	score_series_overall_.push_back(score_overall);
+	//
+	// Check buffer size
+	// 
+	CheckBufferSize_(score_series_hand_gesture_, SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_global_movement_, SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_energy_, SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_direction_, SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_posture_, SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_overall_, SCORE_BUFFER_SIZE);
 }
 
 
@@ -196,7 +220,7 @@ float OverallAssessment::CountBinaryPositive_(std::vector<bool> binary)
 	}
 	return (float)count / binary.size();
 }
-std::vector<bool> OverallAssessment::GetBinaryByCodeword(Codeword codeword)
+std::vector<bool> OverallAssessment::GetBinarySeries_ByCodeword(Codeword codeword)
 {
 	switch (codeword)
 	{
@@ -258,6 +282,11 @@ std::vector<bool> OverallAssessment::GetBinaryByCodeword(Codeword codeword)
 		return bi_balance_right;
 		break;
 	}
+}
+void OverallAssessment::CheckBufferSize_(std::vector<float>& buffer, int size)
+{
+	if (buffer.size() > size)
+		buffer.erase(buffer.begin());
 }
 
 

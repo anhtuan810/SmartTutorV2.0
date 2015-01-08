@@ -13,8 +13,14 @@
 #include "lib_for_gui.h"
 #include "sensor_reader.h"
 #include "feature_extractor.h"
+#include "overall_assessment.h"
 
 Sensor_Reader sensor_reader;
+FeatureExtractor feature_extractor;
+OverallAssessment overall_assessment;
+
+//////////////////////////////////////////////////////////////////////////
+#pragma region Sensor Control
 
 bool ITurnOnKinectSensor()
 {
@@ -44,9 +50,12 @@ char* IGrabCurrentColorFrame()
 	return data;
 }
 
+#pragma endregion
+
 
 //////////////////////////////////////////////////////////////////////////
-FeatureExtractor feature_extractor;
+#pragma region Feature Exctractor
+
 void IExtractFeatureNewFrame()
 {
 	feature_extractor.ProcessNewSample(sensor_reader);
@@ -121,3 +130,159 @@ float* IGetFeature_BalanceLeftRight()
 	std::vector<float> balance = feature_extractor.GetBalanceLeftRight();
 	return copy_vector(balance);
 }
+
+#pragma endregion
+
+
+//////////////////////////////////////////////////////////////////////////
+#pragma region Overall Assessment, based on extracted features
+
+void IAssessOneFeatureSet()
+{
+	overall_assessment.AssessOneFeatureSet(feature_extractor);
+}
+
+int IGetActualScoreBufferSize()
+{
+	return overall_assessment.GetScoreSeries_Overall().size();
+}
+
+float* IGetScore_HandGesture()
+{
+	return copy_vector(overall_assessment.GetScoreSeries_HandGesture());
+}
+
+float* IGetScore_GlobalMovement()
+{
+	return copy_vector(overall_assessment.GetScoreSeries_GlobalMovement());
+}
+
+float* IGetScore_Energy()
+{
+	return copy_vector(overall_assessment.GetScoreSeries_Energy());
+}
+
+float* IGetScore_Direction()
+{
+	return copy_vector(overall_assessment.GetScoreSeries_Direction());
+}
+
+float* IGetScore_Posture()
+{
+	return copy_vector(overall_assessment.GetScoreSeries_Posture());
+}
+
+float* IGetScore_Overall()
+{
+	return copy_vector(overall_assessment.GetScoreSeries_Overall());
+}
+
+#pragma endregion
+
+
+//////////////////////////////////////////////////////////////////////////
+#pragma region Retrieve Binary of Codewords
+
+bool* copy_vector(std::vector<bool> input)
+{
+	const int sz = input.size();
+	bool* data = new bool[sz];
+	for (size_t i = 0; i < sz; i++)
+	{
+		data[i] = input[i];
+	}
+	return data;
+}
+
+bool* IGetBinary_VelocityLeftHand_Low()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_LeftHand_Low));
+}
+
+bool* IGetBinary_VelocityLeftHand_High()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_LeftHand_High));
+}
+
+bool* IGetBinary_VelocityRightHand_Low()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_RightHand_Low));
+}
+
+bool* IGetBinary_VelocityRightHand_High()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_RightHand_High));
+}
+
+bool* IGetBinary_VelocityGlobal_Low()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_Global_Low));
+}
+
+bool* IGetBinary_VelocityGlobal_High()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_Global_High));
+}
+
+bool* IGetBinary_VelocityFoot_Low()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_Foot_Low));
+}
+
+bool* IGetBinary_VelocityFoot_High()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Velocity_Foot_High));
+}
+
+bool* IGetBinary_Energy_Low()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Energy_Low));
+}
+
+bool* IGetBinary_Energy_High()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Energy_High));
+}
+
+bool* IGetBinary_Direction_Backward()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Direction_Backward));
+}
+
+bool* IGetBinary_Direction_Forward()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Direction_Forward));
+}
+
+bool* IGetBinary_Foot_Stretched()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Foot_Stretched));
+}
+
+bool* IGetBinary_Foot_Closed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Foot_Closed));
+}
+
+bool* IGetBinary_Balance_Backward()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Balance_Backward));
+}
+
+bool* IGetBinary_Balance_Forward()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Balance_Forward));
+}
+
+bool* IGetBinary_Balance_Left()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Balance_LeaningLeft));
+}
+
+bool* IGetBinary_Balance_Right()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Balance_LeaningRight));
+}
+
+#pragma endregion
+

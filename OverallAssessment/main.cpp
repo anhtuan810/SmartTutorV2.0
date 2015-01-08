@@ -7,7 +7,7 @@
 void main()
 {
 	Sensor_Reader sensor_reader;
-	sensor_reader.TurnOnOrDie("F:\\Development of SmartTutor\\11.oni");
+	sensor_reader.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");
 	FeatureExtractor feature_extractor;
 	OverallAssessment overall_assessment;
 
@@ -15,8 +15,8 @@ void main()
 	{
 		sensor_reader.QueryFrame();
 		feature_extractor.ProcessNewSample(sensor_reader);
-		overall_assessment.PerformAssessment(feature_extractor);
-		std::cout << i << " - " << overall_assessment.GetScoreDirection() << "\n";
+		overall_assessment.AssessOneFeatureSet(feature_extractor);
+		std::cout << i << " - " << overall_assessment.GetScoreSeries_Direction().size() << "\n";
 	}
 	std::cin.get();
 }

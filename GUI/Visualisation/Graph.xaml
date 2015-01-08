@@ -11,7 +11,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Canvas Margin="0" Grid.Row="1" Name="cvsLine" Background="White"/>
-            <Label Content="Line Title" Margin="0" Name="lblTitle" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Left"/>
+            <Label Content="Line Title" Margin="0" Name="lblTitle" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Left" FontSize="13"/>
             <Canvas x:Name="cvsBar1" Margin="0" Grid.Row="3" Background="White"/>
             <Canvas x:Name="cvsBar2" Margin="0" Grid.Row="5" Background="White"/>
             <Label Content="AAAA" Margin="0" x:Name="lblMaxValue" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Right"/>

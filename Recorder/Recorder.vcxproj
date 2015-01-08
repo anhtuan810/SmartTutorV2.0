@@ -95,7 +95,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Program Files\opencv\build\include;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -106,7 +106,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Program Files\opencv\build\include;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>

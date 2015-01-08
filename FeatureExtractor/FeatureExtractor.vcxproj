@@ -89,7 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;..\Recorder;$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Program Files\opencv\build\include;..\Recorder;$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -100,7 +100,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>F:\Program Files\opencv\build\include;..\Recorder;$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Program Files\opencv\build\include;..\Recorder;$(OPENNI2_INCLUDE64); $(NITE2_INCLUDE64)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_highgui2410.lib;opencv_core2410.lib</AdditionalDependencies>
