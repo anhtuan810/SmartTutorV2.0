@@ -1,14 +1,4 @@
-﻿//
-//  Smart Tutor v2.0
-//	Interface for GUI, create dynamic library to link from C++ to C#
-//  Graph to present one series of feature
-//
-//  Created: 2015.01.06
-//
-//  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
-//
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +16,9 @@ using System.Windows.Shapes;
 namespace GUI.Visualisation
 {
     /// <summary>
-    /// Interaction logic for Graph.xaml
+    /// Interaction logic for Graph_2sides.xaml
     /// </summary>
-    public partial class Graph : UserControl
+    public partial class Graph_2sides : UserControl
     {
         private SolidColorBrush BRUSH_LINE_GRAPH = Brushes.DarkCyan;
         private List<float> data_real_ = null;
@@ -38,23 +28,17 @@ namespace GUI.Visualisation
             get { return this.lblTitle.Content; }
             set { this.lblTitle.Content = value; }
         }
-        
 
-        public Graph()
+        public Graph_2sides()
         {
             InitializeComponent();
         }
-
 
         public void SetDataReal(List<float> data)
         {
             data_real_ = data;
         }
-        
 
-        /// <summary>
-        /// Actually draw graphs
-        /// </summary>
         public void DrawGraph()
         {
             this.cvsLine.Visibility = System.Windows.Visibility.Hidden;
@@ -70,10 +54,6 @@ namespace GUI.Visualisation
             this.lblMaxValue.Content = data_real_.Max();
         }
 
-
-        /// <summary>
-        /// Draw line graph, if necessary
-        /// </summary>
         private void drawLineGraph()
         {
             this.cvsLine.Children.Clear();
@@ -92,8 +72,12 @@ namespace GUI.Visualisation
             path.StrokeThickness = 2;
             path.Fill = BRUSH_LINE_GRAPH;
 
+            float larger = Math.Abs(data_real_.Max());
+            if (Math.Abs(data_real_.Min()) > larger)
+                larger = Math.Abs(data_real_.Min());
+
             float kx = (float)dWidth / (data_real_.Count() - 1);
-            float ky = (float)dHeight / data_real_.Max();
+            float ky = (float)dHeight / (larger * 2);
             Point ptStart = new Point(0, dHeight);
             Point ptEnd = new Point((data_real_.Count - 1) * kx, dHeight);
 
@@ -114,12 +98,6 @@ namespace GUI.Visualisation
             this.cvsLine.Children.Add(path);
         }
 
-
-        /// <summary>
-        /// Draw two axes for line graph
-        /// Based only on size of canvas
-        /// </summary>
-        /// <param name="cvs"></param>
         private void drawAxis(ref Canvas cvs)
         {
             float iHeight = (float)cvs.ActualHeight;
@@ -127,28 +105,12 @@ namespace GUI.Visualisation
 
             Line lineX = new Line();
             lineX.StrokeThickness = 1;
-            lineX.Stroke = Brushes.Gray;
+            lineX.Stroke = Brushes.DarkGray;
             lineX.X1 = 0;
-            lineX.Y1 = iHeight;
+            lineX.Y1 = iHeight / 2;
             lineX.X2 = iWidth;
-            lineX.Y2 = iHeight;
+            lineX.Y2 = iHeight / 2;
             this.cvsLine.Children.Add(lineX);
-
-            Line lineY = new Line();
-            lineY.StrokeThickness = 1;
-            lineY.Stroke = Brushes.Gray;
-            lineY.X1 = 0;
-            lineY.Y1 = iHeight;
-            lineY.X2 = 0;
-            lineY.Y2 = 0;
-            this.cvsLine.Children.Add(lineY);
         }
-
-
-        public void ChangeTitle(string title)
-        {
-            this.lblTitle.Content = title;
-        }
-
     }
 }

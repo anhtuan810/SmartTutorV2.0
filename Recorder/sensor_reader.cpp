@@ -119,18 +119,18 @@ Sample Sensor_Reader::GrabSample_()
 	depth_stream_.readFrame(&depth_frame);
 	user_tracker_.readFrame(&user_frame);
 
-	cv::Mat depth_cvmat(HEIGHT, WIDTH, CV_16U);
-	cv::Mat depth_user_cvmat(HEIGHT, WIDTH, CV_16U);
-	cv::Mat color_cvmat(HEIGHT, WIDTH, CV_8UC3);
+	cv::Mat depth_cvmat(SENSOR_FRAME_HEIGHT, SENSOR_FRAME_WIDTH, CV_16U);
+	cv::Mat depth_user_cvmat(SENSOR_FRAME_HEIGHT, SENSOR_FRAME_WIDTH, CV_16U);
+	cv::Mat color_cvmat(SENSOR_FRAME_HEIGHT, SENSOR_FRAME_WIDTH, CV_8UC3);
 	nite::Skeleton skeleton;
 
 	// Draw depth map
 	const DepthPixel* pt = (const DepthPixel*)depth_frame.getData();
-	std::memcpy(depth_cvmat.data, pt, HEIGHT * WIDTH * 2);
+	std::memcpy(depth_cvmat.data, pt, SENSOR_FRAME_HEIGHT * SENSOR_FRAME_WIDTH * 2);
 
 	// Draw color image
 	const char* color_data = (const char*)color_frame.getData();
-	std::memcpy(color_cvmat.data, color_data, WIDTH * HEIGHT * 3);
+	std::memcpy(color_cvmat.data, color_data, SENSOR_FRAME_HEIGHT * SENSOR_FRAME_WIDTH * 3);
 
 	// Check if contain at least one user
 	bool contain_user = false;
@@ -147,7 +147,7 @@ Sample Sensor_Reader::GrabSample_()
 			//std::memcpy(depth_user_cvmat.data, depth_cvmat.data, kHeight * kWidth * 2);
 			const UserMap& user_map = user_frame.getUserMap();
 			const UserId* label = user_map.getPixels();
-			for (int j = 0; j < HEIGHT * WIDTH * 2; j++)
+			for (int j = 0; j < SENSOR_FRAME_HEIGHT * SENSOR_FRAME_WIDTH * 2; j++)
 			{
 				if (label[j / 2] != 0)
 					depth_user_cvmat.data[j] = depth_cvmat.data[j];
@@ -155,6 +155,9 @@ Sample Sensor_Reader::GrabSample_()
 			contain_user = true;
 		}
 	}
+	cv::flip(color_cvmat, color_cvmat, 1);
+	cv::flip(depth_cvmat, depth_cvmat, 1);
+	cv::flip(depth_user_cvmat, depth_user_cvmat, 1);
 
 	Sample sample(skeleton, depth_cvmat, depth_user_cvmat, color_cvmat);
 	return sample;
@@ -164,7 +167,7 @@ void Sensor_Reader::QueryFrame()
 {
 	Sample sample = GrabSample_();
 	sample_buffer_.push_back(sample);
-	if (sample_buffer_.size() > BUFFER_SIZE)
+	if (sample_buffer_.size() > SENSOR_BUFFER_SIZE)
 		sample_buffer_.erase(sample_buffer_.begin());
 }
 

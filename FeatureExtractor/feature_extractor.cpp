@@ -17,7 +17,6 @@ FeatureExtractor::FeatureExtractor(){}
 FeatureExtractor::~FeatureExtractor(){}
 
 
-
 //////////////////////////////////////////////////////////////////////////
 std::vector<float> FeatureExtractor::GetVelocity_LeftHand()
 {
@@ -51,17 +50,17 @@ std::vector<float> FeatureExtractor::GetEnergy()
 
 std::vector<float> FeatureExtractor::GetFootStretch()
 {
-	return f_foot_stretch_;
+	return post_processing_.SmoothByAveraging(f_foot_stretch_);
 }
 
 std::vector<float> FeatureExtractor::GetBalanceBackForth()
 {
-	return f_balance_back_forth_;
+	return post_processing_.SmoothByAveraging(f_balance_back_forth_);
 }
 
 std::vector<float> FeatureExtractor::GetBalanceLeftRight()
 {
-	return f_balance_left_right_;
+	return post_processing_.SmoothByAveraging(f_balance_left_right_);
 }
 
 
@@ -85,7 +84,7 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 	GetF_FeetStretch_(sample_latest);
 	GetF_BalanceBackForth_(sample_latest);
 	GetF_BalanceLeftRight_(sample_latest);
-
+	//
 	// Final check
 	//
 	if (!sample_latest.IsContainUser || !sample_second.IsContainUser)
@@ -121,8 +120,8 @@ void FeatureExtractor::GetF_HandVelocity_(Sample& sample_latest, Sample& sample_
 	float velocity_right_hand = GetJointDisplacement_(sample_latest, sample_second, JOINT_RIGHT_HAND);
 	f_velocity_left_hand_.push_back(velocity_left_hand);
 	f_velocity_right_hand_.push_back(velocity_right_hand);
-	CheckBufferSize_(f_velocity_left_hand_, BUFFER_SIZE);
-	CheckBufferSize_(f_velocity_right_hand_, BUFFER_SIZE);
+	CheckBufferSize_(f_velocity_left_hand_, FEATURE_BUFF_SZ_VELOCITY_LEFT_HAND);
+	CheckBufferSize_(f_velocity_right_hand_, FEATURE_BUFF_SZ_VELOCITY_RIGHT_HAND);
 }
 
 void FeatureExtractor::GetF_GlobalVelocity_(Sample& sample_latest, Sample& sample_second)
@@ -139,7 +138,7 @@ void FeatureExtractor::GetF_GlobalVelocity_(Sample& sample_latest, Sample& sampl
 	nite::Point3f centroid_second = geometry_.CentroidOfJoints(sample_second.GetSkeleton(), centroid_joints);
 	float velocity_global = geometry_.EuclideanDistance(centroid_latest, centroid_second);
 	f_velocity_global_.push_back(velocity_global);
-	CheckBufferSize_(f_velocity_global_, BUFFER_SIZE);
+	CheckBufferSize_(f_velocity_global_, FEATURE_BUFF_SZ_VELOCITY_GLOBAL);
 }
 
 void FeatureExtractor::GetF_FeetVelocity_(Sample& sample_latest, Sample& sample_second)
@@ -151,7 +150,7 @@ void FeatureExtractor::GetF_FeetVelocity_(Sample& sample_latest, Sample& sample_
 	nite::Point3f pos_feet_2 = geometry_.CentroidOfJoints(sample_second.GetSkeleton(), feet_joints);
 	float displacement_foot = geometry_.EuclideanDistance(pos_feet_1, pos_feet_2);
 	f_velocity_foot_.push_back(displacement_foot);
-	CheckBufferSize_(f_velocity_foot_, BUFFER_SIZE);
+	CheckBufferSize_(f_velocity_foot_, FEATURE_BUFF_SZ_VELOCITY_FOOT);
 }
 
 void FeatureExtractor::GetF_Energy_(Sample& sample_latest, Sample& sample_second)
@@ -214,7 +213,7 @@ void FeatureExtractor::GetF_Energy_(Sample& sample_latest, Sample& sample_second
 		velocity_left_foot * velocity_left_foot * 6 +
 		velocity_right_foot * velocity_right_foot * 6;
 	f_energy_.push_back(energy);
-	CheckBufferSize_(f_energy_, BUFFER_SIZE);
+	CheckBufferSize_(f_energy_, FEATURE_BUFF_SZ_ENERGY);
 }
 
 void FeatureExtractor::GetF_Direction_BackForth_(Sample& sample_latest, Sample& sample_second)
@@ -228,7 +227,7 @@ void FeatureExtractor::GetF_Direction_BackForth_(Sample& sample_latest, Sample& 
 	nite::Point3f p2 = sample_second.GetJointPosition(JOINT_TORSO);
 	float distance = p2.z - p1.z;
 	f_direction_back_forth_.push_back(distance);
-	CheckBufferSize_(f_direction_back_forth_, BUFFER_SIZE);
+	CheckBufferSize_(f_direction_back_forth_, FEATURE_BUFF_SZ_DIRECTION);
 }
 
 void FeatureExtractor::GetF_FeetStretch_(Sample& sample_latest)
@@ -241,7 +240,7 @@ void FeatureExtractor::GetF_FeetStretch_(Sample& sample_latest)
 		sample_latest.GetJointPosition(nite::JOINT_RIGHT_FOOT));
 	float foot_stretch = distance_foot / distance_shoulders;
 	f_foot_stretch_.push_back(foot_stretch);
-	CheckBufferSize_(f_foot_stretch_, BUFFER_SIZE);
+	CheckBufferSize_(f_foot_stretch_, FEATURE_BUFF_SZ_FOOT_STRETCH);
 }
 
 void FeatureExtractor::GetF_BalanceBackForth_(Sample& sample_latest)
@@ -258,7 +257,7 @@ void FeatureExtractor::GetF_BalanceBackForth_(Sample& sample_latest)
 
 	float leaning_back_forth = geometry_.EuclideanDistance(foot_center, shoulders_center);
 	f_balance_back_forth_.push_back(leaning_back_forth);
-	CheckBufferSize_(f_balance_back_forth_, BUFFER_SIZE);
+	CheckBufferSize_(f_balance_back_forth_, FEATURE_BUFF_SZ_BALANCE_BACK_FORTH);
 }
 
 void FeatureExtractor::GetF_BalanceLeftRight_(Sample& sample_latest)
@@ -275,7 +274,7 @@ void FeatureExtractor::GetF_BalanceLeftRight_(Sample& sample_latest)
 	float leaning_left_right = distance_left - distance_right;
 
 	f_balance_left_right_.push_back(leaning_left_right);
-	CheckBufferSize_(f_balance_left_right_, BUFFER_SIZE);
+	CheckBufferSize_(f_balance_left_right_, FEATURE_BUFF_SZ_BALANCE_LEFT_RIGHT);
 }
 
 int FeatureExtractor::GetActualBufferSize()

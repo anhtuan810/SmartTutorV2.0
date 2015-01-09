@@ -11,8 +11,6 @@
 #include "thresholds.h"
 #include "feature_extractor.h"
 
-#define  SCORE_BUFFER_SIZE 100
-
 class OverallAssessment
 {
 public:
@@ -65,7 +63,7 @@ private:
 	//
 	void ThresholdAllFeatures_(FeatureExtractor& feature_extractor);
 	void ComputeAllScores_();
-	std::vector<bool> ThresholdOneFeature_(std::vector<float> feature, Codeword codeword);
+	std::vector<bool> ThresholdOneFeature_(std::vector<float>& feature, Codeword codeword);
 	void SmoothOneBinary_(std::vector<bool>& binary_cw);
 	float CountBinaryPositive_(std::vector<bool> binary);	
 	void CheckBufferSize_(std::vector<float>& buffer, int size);

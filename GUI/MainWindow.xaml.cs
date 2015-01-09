@@ -169,6 +169,32 @@ namespace GUI
             }
         }
 
+        List<float> Fill_The_Buffer(List<float> data, int buffer_size)
+        {
+            List<float> result = new List<float>(data);
+            if (result.Count < buffer_size)
+            {
+                for (int i = 0; i < buffer_size - result.Count; i++)
+                {
+                    result.Insert(0, 0);
+                }
+            }
+            return result;
+        }
+
+        List<bool> Fill_The_Buffer(List<bool> data, int buffer_size)
+        {
+            List<bool> result = new List<bool>(data);
+            if (result.Count < buffer_size)
+            {
+                for (int i = 0; i < buffer_size - result.Count; i++)
+                {
+                    result.Insert(0, false);
+                }
+            }
+            return result;
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             controller.TurnOff();

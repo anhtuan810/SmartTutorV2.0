@@ -20,7 +20,7 @@ namespace GUI.Visualisation
     /// </summary>
     public partial class BinaryGraph : UserControl
     {
-        private SolidColorBrush BRUSH_BINARY_GRAPH = Brushes.DarkGray;
+        private SolidColorBrush BRUSH_BINARY_GRAPH = Brushes.DarkGreen;
 
         public object Title
         {

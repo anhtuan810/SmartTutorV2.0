@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="GUI.Visualisation.Graph_2sides"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Border BorderBrush="#FFE4D4D4" BorderThickness="1">
+        <Grid Name="grdMain" Margin="0" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Canvas Margin="0" Grid.Row="1" Name="cvsLine" Background="White"/>
+            <Label Content="Line Title" Margin="0" Name="lblTitle" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Left" FontSize="13"/>
+            <Canvas x:Name="cvsBar1" Margin="0" Grid.Row="3" Background="White"/>
+            <Canvas x:Name="cvsBar2" Margin="0" Grid.Row="5" Background="White"/>
+            <Label Content="AAAA" Margin="0" x:Name="lblMaxValue" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Right"/>
+        </Grid>
+    </Border>
+</UserControl>

@@ -7,7 +7,7 @@
     <Border BorderBrush="#FFE4D4D4" BorderThickness="1">
         <Grid Name="grdMain" Margin="0" Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="27"/>
                 <RowDefinition Height="36"/>
             </Grid.RowDefinitions>
             <Label Content="Binary Title 1" Margin="0" x:Name="lblBinary" Background="White" Foreground="#FF020000" Grid.RowSpan="1"/>

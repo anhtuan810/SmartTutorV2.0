@@ -5,131 +5,131 @@
         Title="MainWindow" Height="1174" Width="1783" Closing="Window_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid Margin="5">
-        	<Grid.ColumnDefinitions>
-        		<ColumnDefinition Width="640"/>
-        		<ColumnDefinition/>
-        	</Grid.ColumnDefinitions>
-        	<Grid>
-        		<Grid.RowDefinitions>
-        			<RowDefinition Height="480"/>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        		</Grid.RowDefinitions>
-        		<Image x:Name="imgKinect" Margin="0"/>
-                <Visualisation:Graph x:Name="grpScore_HandGesture" Grid.Row="1" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_GlobalMovement" Grid.Row="2" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_Energy" Grid.Row="3" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_Direction" Margin="0,1,0,0" Grid.Row="4" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_Posture" Margin="0" Grid.Row="5" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_Overall" Margin="0" Grid.Row="6" Width="Auto" Height="Auto"/>
-        	</Grid>
-        	<Grid Grid.Column="1" Margin="0">
-        		<Grid.ColumnDefinitions>
-        			<ColumnDefinition/>
-        			<ColumnDefinition/>
-        			<ColumnDefinition/>
-        		</Grid.ColumnDefinitions>
-        		<Grid.RowDefinitions>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        			<RowDefinition/>
-        		</Grid.RowDefinitions>
-        		<Grid Margin="5">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="640"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="10,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="470"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image x:Name="imgKinect" Margin="0"/>
+                <Visualisation:Graph x:Name="grpScore_HandGesture" Grid.Row="1" Width="Auto" Height="Auto" Margin="0,5"/>
+                <Visualisation:Graph x:Name="grpScore_GlobalMovement" Grid.Row="2" Width="Auto" Height="Auto" Margin="0,1,0,5"/>
+                <Visualisation:Graph x:Name="grpScore_Energy" Grid.Row="3" Width="Auto" Height="Auto" Margin="0,5"/>
+                <Visualisation:Graph x:Name="grpScore_Direction" Margin="0,5" Grid.Row="4" Width="Auto" Height="Auto"/>
+                <Visualisation:Graph x:Name="grpScore_Posture" Margin="0,5" Grid.Row="5" Width="Auto" Height="Auto"/>
+                <Visualisation:Graph x:Name="grpScore_Overall" Margin="0,5" Grid.Row="6" Width="Auto" Height="Auto"/>
+            </Grid>
+            <Grid Grid.Column="1" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Margin="10" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpVelocity_LeftHand" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityLeftHand_Low" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityLeftHand_High" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Column="1">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityLeftHand_High" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityLeftHand_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpVelocity_RightHand" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityRightHand_Low" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityRightHand_High" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Column="2">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityRightHand_High" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityRightHand_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpVelocity_Global" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityGlobal_Low" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityGlobal_High" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Row="1">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityGlobal_High" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityGlobal_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpVelocity_Foot" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityFoot_Low" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_VelocityFoot_High" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Row="1" Grid.Column="1">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityFoot_High" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_VelocityFoot_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpEnergy" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Energy_Low" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Energy_High" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Row="1" Grid.Column="2">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
-                    <Visualisation:Graph x:Name="grpDirection_BackForth" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Direction_Backward" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Direction_Forward" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Row="2">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Energy_High" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Energy_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Visualisation:Graph_2sides x:Name="grpDirection_BackForth" Margin="0" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Direction_Forward" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Direction_Backward" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpFootStretch" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Foot_Stretched" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Foot_Closed" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Row="2" Grid.Column="2">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
-                    <Visualisation:Graph x:Name="grpBalanceBackForth" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward" Grid.Row="2"/>
-        		</Grid>
-        		<Grid Margin="5" Grid.Row="2" Grid.Column="1">
-        			<Grid.RowDefinitions>
-        				<RowDefinition/>
-        				<RowDefinition Height="80"/>
-        				<RowDefinition Height="80"/>
-        			</Grid.RowDefinitions>
-                    <Visualisation:Graph x:Name="grpBalanceLeftRight" Margin="0" Width="Auto" Height="Auto"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningLeft" Grid.Row="1"/>
-        			<Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningRight" Grid.Row="2"/>
-        		</Grid>
-        	</Grid>
-        </Grid>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Foot_Stretched" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Foot_Closed" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="2" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Visualisation:Graph_2sides x:Name="grpBalanceBackForth" Margin="0" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Visualisation:Graph_2sides x:Name="grpBalanceLeftRight" Margin="0" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningRight" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningLeft" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+            </Grid>
+        </Grid> 
 
     </Grid>
 </Window>

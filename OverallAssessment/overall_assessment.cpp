@@ -8,12 +8,15 @@
 //
 
 #include "overall_assessment.h"
+#include "system_configuration.h"
 
 OverallAssessment::OverallAssessment(){}
 
 OverallAssessment::~OverallAssessment(){}
 
 //////////////////////////////////////////////////////////////////////////
+#pragma region Getters for series of scores
+
 std::vector<float> OverallAssessment::GetScoreSeries_HandGesture()
 {
 	return score_series_hand_gesture_;
@@ -39,8 +42,14 @@ std::vector<float> OverallAssessment::GetScoreSeries_Overall()
 	return score_series_overall_;
 }
 
+#pragma endregion
+
+
+
 
 //////////////////////////////////////////////////////////////////////////
+#pragma region Perform thresholding and assessment for scores
+
 void OverallAssessment::AssessOneFeatureSet(FeatureExtractor& feature_extractor)
 {
 	ThresholdAllFeatures_(feature_extractor);
@@ -73,24 +82,24 @@ void OverallAssessment::ThresholdAllFeatures_(FeatureExtractor& feature_extracto
 	//
 	//	Smooth the appearance of codewords
 	//
-	SmoothOneBinary_(bi_velocity_left_hand_low);
-	SmoothOneBinary_(bi_velocity_left_hand_high);
-	SmoothOneBinary_(bi_velocity_right_hand_low);
-	SmoothOneBinary_(bi_velocity_right_hand_high);
-	SmoothOneBinary_(bi_velocity_global_low);
-	SmoothOneBinary_(bi_velocity_global_high);
-	SmoothOneBinary_(bi_velocity_foot_low);
-	SmoothOneBinary_(bi_velocity_foot_high);
-	SmoothOneBinary_(bi_energy_low);
-	SmoothOneBinary_(bi_energy_high);
-	SmoothOneBinary_(bi_direction_backward);
-	SmoothOneBinary_(bi_direction_forward);
-	SmoothOneBinary_(bi_foot_stretched);
-	SmoothOneBinary_(bi_foot_closed);
-	SmoothOneBinary_(bi_balance_backward);
-	SmoothOneBinary_(bi_balance_forward);
-	SmoothOneBinary_(bi_balance_left);
-	SmoothOneBinary_(bi_balance_right);
+	//SmoothOneBinary_(bi_velocity_left_hand_low);
+	//SmoothOneBinary_(bi_velocity_left_hand_high);
+	//SmoothOneBinary_(bi_velocity_right_hand_low);
+	//SmoothOneBinary_(bi_velocity_right_hand_high);
+	//SmoothOneBinary_(bi_velocity_global_low);
+	//SmoothOneBinary_(bi_velocity_global_high);
+	//SmoothOneBinary_(bi_velocity_foot_low);
+	//SmoothOneBinary_(bi_velocity_foot_high);
+	//SmoothOneBinary_(bi_energy_low);
+	//SmoothOneBinary_(bi_energy_high);
+	//SmoothOneBinary_(bi_direction_backward);
+	//SmoothOneBinary_(bi_direction_forward);
+	//SmoothOneBinary_(bi_foot_stretched);
+	//SmoothOneBinary_(bi_foot_closed);
+	//SmoothOneBinary_(bi_balance_backward);
+	//SmoothOneBinary_(bi_balance_forward);
+	//SmoothOneBinary_(bi_balance_left);
+	//SmoothOneBinary_(bi_balance_right);
 }
 void OverallAssessment::ComputeAllScores_()
 {
@@ -153,17 +162,22 @@ void OverallAssessment::ComputeAllScores_()
 	//
 	// Check buffer size
 	// 
-	CheckBufferSize_(score_series_hand_gesture_, SCORE_BUFFER_SIZE);
-	CheckBufferSize_(score_series_global_movement_, SCORE_BUFFER_SIZE);
-	CheckBufferSize_(score_series_energy_, SCORE_BUFFER_SIZE);
-	CheckBufferSize_(score_series_direction_, SCORE_BUFFER_SIZE);
-	CheckBufferSize_(score_series_posture_, SCORE_BUFFER_SIZE);
-	CheckBufferSize_(score_series_overall_, SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_hand_gesture_, ASSESSMENT_SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_global_movement_, ASSESSMENT_SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_energy_, ASSESSMENT_SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_direction_, ASSESSMENT_SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_posture_, ASSESSMENT_SCORE_BUFFER_SIZE);
+	CheckBufferSize_(score_series_overall_, ASSESSMENT_SCORE_BUFFER_SIZE);
 }
+#pragma endregion
+
+
 
 
 //////////////////////////////////////////////////////////////////////////
-std::vector<bool> OverallAssessment::ThresholdOneFeature_(std::vector<float> feature, Codeword codeword)
+#pragma region Private functions
+
+std::vector<bool> OverallAssessment::ThresholdOneFeature_(std::vector<float>& feature, Codeword codeword)
 {
 	std::pair<float, float> thresholds = Thresholds::GetThresholds(codeword);
 
@@ -177,16 +191,11 @@ std::vector<bool> OverallAssessment::ThresholdOneFeature_(std::vector<float> fea
 	}
 	return result;
 }
+
 void OverallAssessment::SmoothOneBinary_(std::vector<bool>& binary_cw)
 {
 	const int NEIGHBOR_RANGE = 15;
 	const float RATIO = 0.6;
-
-	std::vector<bool> result;
-	for (size_t i = 0; i < binary_cw.size(); i++)
-	{
-		result.push_back(false);
-	}
 
 	for (size_t i = 0; i < binary_cw.size(); i++)
 	{
@@ -194,6 +203,19 @@ void OverallAssessment::SmoothOneBinary_(std::vector<bool>& binary_cw)
 		int id_stop = i + NEIGHBOR_RANGE;
 		if (id_start < 0) id_start = 0;
 		if (id_stop > binary_cw.size() - 1) id_stop = binary_cw.size() - 1;
+
+		while (binary_cw[id_start] && id_start <= id_stop)
+		{
+			id_start++;
+		}
+		while (binary_cw[id_stop] && id_start <= id_stop)
+		{
+			id_stop--;
+		}
+		if (id_start == id_stop)
+		{
+			return;
+		}
 
 		int count_positive = 0;
 		for (size_t i = id_start; i <= id_stop; i++)
@@ -204,13 +226,48 @@ void OverallAssessment::SmoothOneBinary_(std::vector<bool>& binary_cw)
 		{
 			for (size_t i = id_start; i <= id_stop; i++)
 			{
-				result[i] = true;
+				binary_cw[i] = true;
 			}
 		}
 	}
-
-	binary_cw = result;
 }
+
+
+//void OverallAssessment::SmoothOneBinary_(std::vector<bool>& binary_cw)
+//{
+//	const int NEIGHBOR_RANGE = 15;
+//	const float RATIO = 0.6;
+//
+//	std::vector<bool> result;
+//	for (size_t i = 0; i < binary_cw.size(); i++)
+//	{
+//		result.push_back(false);
+//	}
+//
+//	for (size_t i = 0; i < binary_cw.size(); i++)
+//	{
+//		int id_start = i - NEIGHBOR_RANGE;
+//		int id_stop = i + NEIGHBOR_RANGE;
+//		if (id_start < 0) id_start = 0;
+//		if (id_stop > binary_cw.size() - 1) id_stop = binary_cw.size() - 1;
+//
+//		int count_positive = 0;
+//		for (size_t i = id_start; i <= id_stop; i++)
+//		{
+//			if (binary_cw[i]) count_positive++;
+//		}
+//		if ((float)count_positive / (id_stop - id_start + 1) >= RATIO)
+//		{
+//			for (size_t i = id_start; i <= id_stop; i++)
+//			{
+//				result[i] = true;
+//			}
+//		}
+//	}
+//
+//	binary_cw = result;
+//}
+
 float OverallAssessment::CountBinaryPositive_(std::vector<bool> binary)
 {
 	int count = 0;
@@ -289,7 +346,7 @@ void OverallAssessment::CheckBufferSize_(std::vector<float>& buffer, int size)
 		buffer.erase(buffer.begin());
 }
 
-
+#pragma endregion
 
 
 

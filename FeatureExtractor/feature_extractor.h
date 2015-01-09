@@ -10,8 +10,6 @@
 #ifndef FEATURE_EXTRACTOR_H_
 #define FEATURE_EXTRACTOR_H_
 
-#define BUFFER_SIZE 100
-
 #include "sensor_reader.h"
 #include "geometry.h"
 #include "post_processing.h"

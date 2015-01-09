@@ -10,10 +10,6 @@
 #ifndef SENSOR_READER_H_
 #define SENSOR_READER_H_
 
-#define HEIGHT 480
-#define WIDTH 640
-#define BUFFER_SIZE 100
-
 #include "sample.h"
 #include "OpenNI.h"
 #include "NiTE.h"
