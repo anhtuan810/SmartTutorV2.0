@@ -67,6 +67,7 @@ private:
 
 	void CheckBufferSize_(std::vector<float>& buffer, int size);
 	float GetJointDisplacement_(Sample& sample_latest, Sample& sample_second, nite::JointType joint);
+	float GetJointDisplacement_Shifted_(Sample& sample_latest, Sample& sample_second, nite::JointType joint, nite::JointType ref_joint);
 };
 
 #endif

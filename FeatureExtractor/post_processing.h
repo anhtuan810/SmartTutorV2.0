@@ -22,6 +22,6 @@ public:
 
 private:
 	// Average of one subset of list
-	float Average_SubList_(std::vector<float> data, int id_from, int id_to);
+	float Average_SubList_(std::vector<float>& data, int id_from, int id_to);
 };
 

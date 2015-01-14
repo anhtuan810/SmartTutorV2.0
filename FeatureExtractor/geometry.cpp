@@ -36,6 +36,17 @@ nite::Point3f Geometry::CentroidOfJoints(nite::Skeleton skel, std::vector<nite::
 	return point_result;
 }
 
+float Geometry::Position_Point_Line(float Ax, float Ay, float Bx, float By, float X, float Y)
+{	
+	float position = (Bx - Ax)*(Y - Ay) - (By - Ay)*(X - Ax);
+	if (position == 0)
+		return 0;
+	else if (position > 0)
+		return 1;
+	else
+		return -1;
+}
+
 
 
 

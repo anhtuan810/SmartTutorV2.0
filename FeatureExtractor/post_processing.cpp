@@ -39,15 +39,15 @@ std::vector<float> Post_Processing::RemoveOurlier(std::vector<float>& input)
 std::vector<float> Post_Processing::SmoothByAveraging(std::vector<float>& input)
 {
 	const int RANGE_NEIGHBOR = 10;	
-	std::vector<float> output(input.size());
+	std::vector<float> output;
 	for (size_t i = 0; i < input.size(); i++)
 	{
-		output[i] = Average_SubList_(input, i - RANGE_NEIGHBOR, i + RANGE_NEIGHBOR);
+		output.push_back(Average_SubList_(input, i - RANGE_NEIGHBOR, i + RANGE_NEIGHBOR));
 	}
 	return output;
 }
 
-float Post_Processing::Average_SubList_(std::vector<float> data, int id_from, int id_to)
+float Post_Processing::Average_SubList_(std::vector<float>& data, int id_from, int id_to)
 {
 	if (id_from < 0)
 		id_from = 0;
@@ -55,7 +55,7 @@ float Post_Processing::Average_SubList_(std::vector<float> data, int id_from, in
 		id_to = data.size() - 1;
 
 	float sum = 0;
-	for (size_t i = id_from; i < id_to; i++)
+	for (size_t i = id_from; i <= id_to; i++)
 	{
 		sum += data[i];
 	}

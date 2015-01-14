@@ -9,23 +9,26 @@
                 <ColumnDefinition Width="640"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Margin="10,10,0,10">
+            <Grid Margin="10,10,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="470"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Image x:Name="imgKinect" Margin="0"/>
-                <Visualisation:Graph x:Name="grpScore_HandGesture" Grid.Row="1" Width="Auto" Height="Auto" Margin="0,5"/>
-                <Visualisation:Graph x:Name="grpScore_GlobalMovement" Grid.Row="2" Width="Auto" Height="Auto" Margin="0,1,0,5"/>
-                <Visualisation:Graph x:Name="grpScore_Energy" Grid.Row="3" Width="Auto" Height="Auto" Margin="0,5"/>
-                <Visualisation:Graph x:Name="grpScore_Direction" Margin="0,5" Grid.Row="4" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_Posture" Margin="0,5" Grid.Row="5" Width="Auto" Height="Auto"/>
-                <Visualisation:Graph x:Name="grpScore_Overall" Margin="0,5" Grid.Row="6" Width="Auto" Height="Auto"/>
+                <Image x:Name="imgKinect" Margin="0" Grid.ColumnSpan="2"/>
+                <Visualisation:Graph x:Name="grpScore_HandGesture" Grid.Row="1" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
+                <Visualisation:Graph x:Name="grpScore_GlobalMovement" Grid.Row="2" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
+                <Visualisation:Graph x:Name="grpScore_Energy" Grid.Row="3" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
+                <Visualisation:Graph x:Name="grpScore_Direction" Margin="5,5,0,5" Grid.Row="1" Width="Auto" Height="Auto" Grid.Column="1"/>
+                <Visualisation:Graph x:Name="grpScore_Posture" Margin="5,5,0,5" Grid.Row="2" Width="Auto" Height="Auto" Grid.Column="1"/>
+                <Visualisation:Graph x:Name="grpScore_Overall" Margin="5,5,0,5" Grid.Row="3" Width="Auto" Height="Auto" Grid.Column="1"/>
+                <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" Margin="596,438,0,0" VerticalAlignment="Top" Width="24" Click="btnOpenFile_Click"/>
+                <Button x:Name="btnTurnOnSensor" Content="K" HorizontalAlignment="Left" Margin="596,411,0,0" VerticalAlignment="Top" Width="24" Click="btnTurnOnSensor_Click"/>
             </Grid>
             <Grid Grid.Column="1" Margin="0">
                 <Grid.ColumnDefinitions>
@@ -129,7 +132,7 @@
                     <Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningLeft" Grid.Row="2" Width="Auto" Height="Auto"/>
                 </Grid>
             </Grid>
-        </Grid> 
+        </Grid>
 
     </Grid>
 </Window>

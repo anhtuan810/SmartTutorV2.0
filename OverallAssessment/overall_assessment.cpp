@@ -73,11 +73,15 @@ void OverallAssessment::ThresholdAllFeatures_(FeatureExtractor& feature_extracto
 	bi_direction_backward = ThresholdOneFeature_(feature_extractor.GetDirection_BackForth(), Codeword::Direction_Backward);
 	bi_direction_forward = ThresholdOneFeature_(feature_extractor.GetDirection_BackForth(), Codeword::Direction_Forward);
 	bi_foot_stretched = ThresholdOneFeature_(feature_extractor.GetFootStretch(), Codeword::Foot_Stretched);
-	bi_foot_closed = ThresholdOneFeature_(feature_extractor.GetFootStretch(), Codeword::Foot_Stretched);
+	bi_foot_closed = ThresholdOneFeature_(feature_extractor.GetFootStretch(), Codeword::Foot_Closed);
 	bi_balance_backward = ThresholdOneFeature_(feature_extractor.GetBalanceBackForth(), Codeword::Balance_Backward);
 	bi_balance_forward = ThresholdOneFeature_(feature_extractor.GetBalanceBackForth(), Codeword::Balance_Forward);
 	bi_balance_left = ThresholdOneFeature_(feature_extractor.GetBalanceLeftRight(), Codeword::Balance_LeaningLeft);
 	bi_balance_right = ThresholdOneFeature_(feature_extractor.GetBalanceLeftRight(), Codeword::Balance_LeaningRight);
+
+	std::vector<float> test_direction = feature_extractor.GetDirection_BackForth();
+	std::vector<bool> test_bi_backward = ThresholdOneFeature_(test_direction, Codeword::Direction_Backward);
+	std::vector<bool> test_bi_forward = ThresholdOneFeature_(test_direction, Codeword::Direction_Forward);
 
 	//
 	//	Smooth the appearance of codewords

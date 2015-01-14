@@ -3,6 +3,7 @@
 //	FeatureExtractor: Extract features from skeletons
 //
 //  Created: 2015.01.02
+//	2015.01.10: Update, improve accuracy
 //
 //  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
 //
@@ -18,56 +19,69 @@ FeatureExtractor::~FeatureExtractor(){}
 
 
 //////////////////////////////////////////////////////////////////////////
+#pragma region Getters
+
 std::vector<float> FeatureExtractor::GetVelocity_LeftHand()
 {
+	//return post_processing_.SmoothByAveraging(f_velocity_left_hand_);
 	return post_processing_.SmoothByAveraging(f_velocity_left_hand_);
 }
 
 std::vector<float> FeatureExtractor::GetVelocity_RightHand()
 {
 	return post_processing_.SmoothByAveraging(f_velocity_right_hand_);
+	//return f_velocity_right_hand_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetVelocity_Foot()
 {
 	return post_processing_.SmoothByAveraging(f_velocity_foot_);
+	//return f_velocity_foot_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetVelocity_Global()
 {
 	return post_processing_.SmoothByAveraging(f_velocity_global_);
+	//return f_velocity_global_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetDirection_BackForth()
 {
 	return post_processing_.SmoothByAveraging(f_direction_back_forth_);
+	//return f_direction_back_forth_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetEnergy()
 {
 	return post_processing_.SmoothByAveraging(f_energy_);
+	//return f_energy_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetFootStretch()
 {
 	return post_processing_.SmoothByAveraging(f_foot_stretch_);
+	//return f_foot_stretch_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetBalanceBackForth()
 {
 	return post_processing_.SmoothByAveraging(f_balance_back_forth_);
+	//return f_balance_back_forth_smooth_;
 }
 
 std::vector<float> FeatureExtractor::GetBalanceLeftRight()
 {
 	return post_processing_.SmoothByAveraging(f_balance_left_right_);
+	//return f_balance_left_right_smooth_;
 }
 
-
+#pragma endregion
 
 
 //////////////////////////////////////////////////////////////////////////
 //Directly send the whole Sensor_Reader object, with all buffer to the processor
+#pragma region Extract Features
+
 void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 {
 	if (sensor_reader.GetActualBufferSize() < 2)
@@ -99,6 +113,18 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 		f_balance_left_right_.at(f_balance_left_right_.size() - 1) = 0;
 		f_velocity_global_.at(f_velocity_global_.size() - 1) = 0;
 	}
+	//
+	//	Smoothing
+	//
+	//f_velocity_left_hand_smooth_ = post_processing_.SmoothByAveraging(f_velocity_left_hand_);
+	//f_velocity_right_hand_smooth_ = post_processing_.SmoothByAveraging(f_velocity_right_hand_);
+	//f_velocity_foot_smooth_ = post_processing_.SmoothByAveraging(f_velocity_foot_);
+	//f_energy_smooth_ = post_processing_.SmoothByAveraging(f_energy_);
+	//f_direction_back_forth_smooth_ = post_processing_.SmoothByAveraging(f_direction_back_forth_);
+	//f_foot_stretch_smooth_ = post_processing_.SmoothByAveraging(f_foot_stretch_);
+	//f_balance_back_forth_smooth_ = post_processing_.SmoothByAveraging(f_balance_back_forth_);
+	//f_balance_left_right_smooth_ = post_processing_.SmoothByAveraging(f_balance_left_right_);
+	//f_velocity_global_smooth_ = post_processing_.SmoothByAveraging(f_velocity_global_);
 }
 
 void FeatureExtractor::CheckBufferSize_(std::vector<float>& buffer, int size)
@@ -114,10 +140,30 @@ float FeatureExtractor::GetJointDisplacement_(Sample& sample_latest, Sample& sam
 	return geometry_.EuclideanDistance(point_latest, point_second);
 }
 
+//	Shift the whole skeleton based on a reference point 
+float FeatureExtractor::GetJointDisplacement_Shifted_(Sample& sample_latest, Sample& sample_second, JointType joint, JointType ref_joint)
+{
+	//
+	// Displacement of reference point
+	//
+	Point3f ref_latest = sample_latest.GetJointPosition(ref_joint);
+	Point3f ref_second = sample_second.GetJointPosition(ref_joint);
+	Point3f ref_disp = Point3f(ref_second.x - ref_latest.x, ref_second.y - ref_latest.y, ref_second.z - ref_latest.z);
+	//
+	//	Shift the second point
+	//
+	Point3f point_latest = sample_latest.GetJointPosition(joint);
+	Point3f point_second = sample_second.GetJointPosition(joint);
+	point_second.x -= ref_disp.x;
+	point_second.y -= ref_disp.y;
+	point_second.z -= ref_disp.z;
+	return geometry_.EuclideanDistance(point_latest, point_second);
+}
+
 void FeatureExtractor::GetF_HandVelocity_(Sample& sample_latest, Sample& sample_second)
 {
-	float velocity_left_hand = GetJointDisplacement_(sample_latest, sample_second, JOINT_LEFT_HAND);
-	float velocity_right_hand = GetJointDisplacement_(sample_latest, sample_second, JOINT_RIGHT_HAND);
+	float velocity_left_hand = GetJointDisplacement_Shifted_(sample_latest, sample_second, JOINT_LEFT_HAND, JOINT_LEFT_SHOULDER);
+	float velocity_right_hand = GetJointDisplacement_Shifted_(sample_latest, sample_second, JOINT_RIGHT_HAND, JOINT_RIGHT_SHOULDER);
 	f_velocity_left_hand_.push_back(velocity_left_hand);
 	f_velocity_right_hand_.push_back(velocity_right_hand);
 	CheckBufferSize_(f_velocity_left_hand_, FEATURE_BUFF_SZ_VELOCITY_LEFT_HAND);
@@ -255,7 +301,17 @@ void FeatureExtractor::GetF_BalanceBackForth_(Sample& sample_latest)
 	shoulder_joints.push_back(nite::JOINT_RIGHT_SHOULDER);
 	nite::Point3f shoulders_center = geometry_.CentroidOfJoints(sample_latest.GetSkeleton(), shoulder_joints);
 
+	// Project to the ground plane
+	foot_center.y = 0;
+	shoulders_center.y = 0;
 	float leaning_back_forth = geometry_.EuclideanDistance(foot_center, shoulders_center);
+
+	// The sign depend on which side Shoulders_Center compare to the line created by Foot positions
+	nite::Point3f foot_left = sample_latest.GetJointPosition(JOINT_LEFT_FOOT);
+	nite::Point3f foot_right = sample_latest.GetJointPosition(JOINT_RIGHT_FOOT);
+	
+	float sign = geometry_.Position_Point_Line(foot_left.x, foot_left.z, foot_right.x, foot_right.z, shoulders_center.x, shoulders_center.z);
+	leaning_back_forth *= sign;
 	f_balance_back_forth_.push_back(leaning_back_forth);
 	CheckBufferSize_(f_balance_back_forth_, FEATURE_BUFF_SZ_BALANCE_BACK_FORTH);
 }
@@ -282,7 +338,7 @@ int FeatureExtractor::GetActualBufferSize()
 	return f_balance_left_right_.size();
 }
 
-
+#pragma endregion
 
 
 

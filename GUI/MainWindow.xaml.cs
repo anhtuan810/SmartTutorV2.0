@@ -25,14 +25,15 @@ namespace GUI
         private GUI.Interfaces.SensorController controller = new SensorController();
         private GUI.Interfaces.FeatureExtractor feature_extractor = new FeatureExtractor();
         private GUI.Interfaces.OverallAssessment overall_assessment = new OverallAssessment();
+        private string oni_file_ = "G:\\Development of SmartTutor\\11.oni";
 
         public MainWindow()
         {
             InitializeComponent();
             SetGraphTitles();
 
-            //controller.TurnOnKinectSensor();
-            controller.TurnOnONIFile("G:\\Development of SmartTutor\\11.oni");
+            ResetONIFile(oni_file_);
+            //ResetKinectSensor();
 
             timer.Interval = new TimeSpan(0, 0, 0, 0, 30);
             timer.Tick += timer_Tick;
@@ -76,6 +77,29 @@ namespace GUI
             this.grpBin_Balance_Backward.Title = "Balance Backward";
             this.grpBin_Balance_LeaningLeft.Title = "Leaning Left";
             this.grpBin_Balance_LeaningRight.Title = "Leaning Right";
+        }
+
+        void ResetGraphData()
+        {
+            
+        }
+
+        void ResetONIFile(string file_name)
+        {
+            oni_file_ = file_name;
+            timer.Stop();
+            controller.TurnOff();
+            controller.TurnOnONIFile(oni_file_);
+            timer.Start();
+        }
+
+        void ResetKinectSensor()
+        {
+            oni_file_ = "";
+            timer.Stop();
+            controller.TurnOff();
+            controller.TurnOnKinectSensor();
+            timer.Start();
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -198,6 +222,21 @@ namespace GUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             controller.TurnOff();
+        }
+
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.DefaultExt = ".oni";
+            if (dialog.ShowDialog() == true)
+            {
+                ResetONIFile(dialog.FileName);
+            }
+        }
+
+        private void btnTurnOnSensor_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
