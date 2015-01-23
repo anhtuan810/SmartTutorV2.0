@@ -68,3 +68,8 @@ extern "C" { __declspec(dllexport) float* IGetScore_Energy(); }
 extern "C" { __declspec(dllexport) float* IGetScore_Direction(); }
 extern "C" { __declspec(dllexport) float* IGetScore_Posture(); }
 extern "C" { __declspec(dllexport) float* IGetScore_Overall(); }
+
+//
+//	Receive visualization for real-time feedback
+//
+extern "C" { __declspec(dllexport) char* IGetRealtimeFeedbackFrame(); }

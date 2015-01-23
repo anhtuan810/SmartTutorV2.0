@@ -25,6 +25,7 @@ namespace GUI
         private GUI.Interfaces.SensorController controller = new SensorController();
         private GUI.Interfaces.FeatureExtractor feature_extractor = new FeatureExtractor();
         private GUI.Interfaces.OverallAssessment overall_assessment = new OverallAssessment();
+        private GUI.Interfaces.RealtimeFeedback realtime_feedback = new RealtimeFeedback();
         private string oni_file_ = "G:\\Development of SmartTutor\\11.oni";
 
         public MainWindow()
@@ -106,8 +107,11 @@ namespace GUI
         {
             controller.QuerySensor();
 
-            WriteableBitmap bmp = controller.GrabCurrentColorFrame();
-            this.imgKinect.Source = bmp;
+            //WriteableBitmap bmp = controller.GrabCurrentColorFrame();
+            //this.imgKinect.Source = bmp;
+
+            WriteableBitmap bmpMirror = realtime_feedback.GetRealtimeFeedbackFrame();
+            this.imgKinect.Source = bmpMirror;
 
             feature_extractor.ExtractFeatureNewFrame();
             int buffer_feature_size = feature_extractor.GetActualFeatureBufferSize();

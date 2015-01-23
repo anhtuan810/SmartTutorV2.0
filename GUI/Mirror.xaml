@@ -1,0 +1,9 @@
+﻿<Window x:Class="GUI.Mirror"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mirror" Height="550" Width="876">
+    <Grid>
+        <Image x:Name="imgMain" Margin="0"/>
+
+    </Grid>
+</Window>

@@ -7,6 +7,9 @@
 //  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
 //
 
+#ifndef OVERALL_ASSESSMENET_H_
+#define OVERALL_ASSESSMENET_H_
+
 #include <vector>
 #include "thresholds.h"
 #include "feature_extractor.h"
@@ -69,3 +72,4 @@ private:
 	void CheckBufferSize_(std::vector<float>& buffer, int size);
 };
 
+#endif

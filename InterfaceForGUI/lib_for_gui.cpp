@@ -3,6 +3,7 @@
 //	Interface for GUI, create dynamic library to link from C++ to C#
 //
 //  Created: 2015.01.05
+//	2015.01.21: Added the Feedback module
 //
 //  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
 //
@@ -14,10 +15,12 @@
 #include "sensor_reader.h"
 #include "feature_extractor.h"
 #include "overall_assessment.h"
+#include "realtime_feedback.h"
 
 Sensor_Reader sensor_reader;
 FeatureExtractor feature_extractor;
 OverallAssessment overall_assessment;
+Realtime_Feedback realtime_feedback;
 
 //////////////////////////////////////////////////////////////////////////
 #pragma region Sensor Control
@@ -286,3 +289,16 @@ bool* IGetBinary_Balance_Right()
 
 #pragma endregion
 
+
+//////////////////////////////////////////////////////////////////////////
+#pragma region The Feedback module
+
+char* IGetRealtimeFeedbackFrame()
+{
+	cv::Mat result = realtime_feedback.GetVisualisedFrame(sensor_reader, overall_assessment);
+	char* data = new char[HEIGHT * WIDTH * 3];
+	std::memcpy(data, result.data, WIDTH * HEIGHT * 3);
+	return data;
+}
+
+#pragma endregion
