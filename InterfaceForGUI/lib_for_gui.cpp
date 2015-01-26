@@ -20,7 +20,7 @@
 Sensor_Reader sensor_reader;
 FeatureExtractor feature_extractor;
 OverallAssessment overall_assessment;
-Realtime_Feedback realtime_feedback;
+Realtime_Feedback realtime_feedback(sensor_reader, overall_assessment);
 
 //////////////////////////////////////////////////////////////////////////
 #pragma region Sensor Control
@@ -293,12 +293,33 @@ bool* IGetBinary_Balance_Right()
 //////////////////////////////////////////////////////////////////////////
 #pragma region The Feedback module
 
+void IInitiateRealtimeFeedback()
+{
+	realtime_feedback.SetSensorReader(sensor_reader);
+	realtime_feedback.SetOverallAssessment(overall_assessment);
+}
+
 char* IGetRealtimeFeedbackFrame()
 {
-	cv::Mat result = realtime_feedback.GetVisualisedFrame(sensor_reader, overall_assessment);
+	cv::Mat result = realtime_feedback.GetVisualisedFrame();
 	char* data = new char[HEIGHT * WIDTH * 3];
 	std::memcpy(data, result.data, WIDTH * HEIGHT * 3);
 	return data;
+}
+
+int IGetNumberOfErrorPoints()
+{
+	return realtime_feedback.GetPoints_to_Annotate().size();
+}
+
+float* IGetErrorPoints(int index)
+{
+	nite::Point3f point = realtime_feedback.GetPoints_to_Annotate()[index];
+	float x, y;
+	Sample sample = sensor_reader.GetLatestSample();
+	sensor_reader.ConvertJointCoordinateToDepth(sample.GetSkeleton(), nite::JOINT_HEAD, &x, &y);
+	float result[2] = { x, y };
+	return result;
 }
 
 #pragma endregion

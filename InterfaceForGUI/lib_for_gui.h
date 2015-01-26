@@ -72,4 +72,7 @@ extern "C" { __declspec(dllexport) float* IGetScore_Overall(); }
 //
 //	Receive visualization for real-time feedback
 //
+extern "C" { __declspec(dllexport) void IInitiateRealtimeFeedback(); }
 extern "C" { __declspec(dllexport) char* IGetRealtimeFeedbackFrame(); }
+extern "C" { __declspec(dllexport) int IGetNumberOfErrorPoints(); }
+extern "C" { __declspec(dllexport) float* IGetErrorPoints(int index); }

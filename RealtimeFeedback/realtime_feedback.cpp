@@ -1,5 +1,6 @@
 #include "realtime_feedback.h"
 #include "opencv2/imgproc/imgproc.hpp"
+#include <iostream>
 
 using namespace cv;
 
@@ -7,13 +8,19 @@ Realtime_Feedback::Realtime_Feedback()
 {
 }
 
+Realtime_Feedback::Realtime_Feedback(Sensor_Reader &sensor_reader, OverallAssessment &overall_assessment)
+{
+	sensor_reader_ = &sensor_reader;
+	overall_assessment_ = &overall_assessment;
+}
+
 Realtime_Feedback::~Realtime_Feedback()
 {
 }
 
-cv::Mat Realtime_Feedback::GetVisualisedFrame(Sensor_Reader& sensor_reader, OverallAssessment& overall_assessment)
+cv::Mat Realtime_Feedback::GetVisualisedFrame()
 {
-	Sample sample = sensor_reader.GetLatestSample();
+	Sample sample = sensor_reader_->GetLatestSample();
 	cv::Mat color_frame = sample.GetColorFrame();
 	cv::Mat edge_frame = EdgeDetection_Color(color_frame);
 
@@ -29,6 +36,18 @@ cv::Mat Realtime_Feedback::GetVisualisedFrame(Sensor_Reader& sensor_reader, Over
 	{
 		return color_frame;
 	}
+}
+
+std::vector<nite::Point3f> Realtime_Feedback::GetPoints_to_Annotate()
+{
+	std::vector<nite::Point3f> result;
+	Sample sample = sensor_reader_->GetLatestSample();
+	if (sample.IsContainUser)
+	{
+		result.push_back(sample.GetJointPosition(nite::JOINT_LEFT_HAND));
+	}
+	
+	return result;
 }
 
 cv::Mat Realtime_Feedback::EdgeDetection_Color(cv::Mat& color_frame)
@@ -82,6 +101,7 @@ cv::Mat Realtime_Feedback::Align_Depth(cv::Mat& user_frame)
 	return user_frame_2;
 }
 
+
 cv::Mat Realtime_Feedback::Combine_Edge_n_UserMaps(cv::Mat& edge_frame, cv::Mat& user_frame)
 {
 	cv::Mat combined_frame(edge_frame.size(), CV_8UC3);
@@ -123,4 +143,14 @@ cv::Mat Realtime_Feedback::Combine_Edge_n_UserMaps(cv::Mat& edge_frame, cv::Mat&
 	}
 
 	return combined_frame;
+}
+
+void Realtime_Feedback::SetSensorReader(Sensor_Reader& sensor_reader)
+{
+	sensor_reader_ = &sensor_reader;
+}
+
+void Realtime_Feedback::SetOverallAssessment(OverallAssessment& overall_assessment)
+{
+	overall_assessment_ = &overall_assessment;
 }

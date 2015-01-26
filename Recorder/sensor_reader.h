@@ -29,11 +29,13 @@ public:
 	void TurnOff();
 	void QueryFrame();
 
+	void ConvertJointCoordinateToDepth(nite::Skeleton& skel, nite::JointType joint, float* pOutX, float* pOutY);
+	openni::Status ConvertDepthToColor(int depthX, int depthY, uint16_t depthZ, int *pColorX, int *pColorY);
 	Sample GetLatestSample();
 	Sample GetSecondLatestSample();
 	int GetActualBufferSize();
 	Sample GetSampleByIndex(int id);
-	std::vector<Sample> GetSampleBuffer();
+	std::vector<Sample> GetSampleBuffer();	
 
 private:
 	openni::Status status_openni_;

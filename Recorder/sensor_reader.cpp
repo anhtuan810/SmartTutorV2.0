@@ -8,6 +8,7 @@
 //
 
 #include "sensor_reader.h"
+#include <iostream>
 
 using namespace nite;
 using namespace openni;
@@ -210,6 +211,18 @@ Sample Sensor_Reader::GetSecondLatestSample()
 		sample.IsEmpty = true;
 		return sample;
 	}
+}
+
+void Sensor_Reader::ConvertJointCoordinateToDepth(nite::Skeleton& skel, nite::JointType joint, float* pOutX, float* pOutY)
+{
+	nite::Point3f point = skel.getJoint(joint).getPosition();
+	user_tracker_.convertJointCoordinatesToDepth(point.x, point.y, point.z, pOutX, pOutY);
+}
+
+openni::Status Sensor_Reader::ConvertDepthToColor(int depthX, int depthY, uint16_t depthZ, int *pColorX, int *pColorY)
+{
+	std::cout << device_.isImageRegistrationModeSupported(IMAGE_REGISTRATION_DEPTH_TO_COLOR);
+	return openni::CoordinateConverter::convertDepthToColor(depth_stream_, color_stream_, depthX, depthY, depthZ, pColorX, pColorY);
 }
 
 
