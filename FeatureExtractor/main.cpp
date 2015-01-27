@@ -13,7 +13,7 @@ void main()
 	{
 		sensor_reader.QueryFrame();
 		feature_extractor.ProcessNewSample(sensor_reader);
-		std::cout << i++ << "\n";
+		std::cout << feature_extractor.GetStability().size() << "\n";
 	}
 
 	std::cin.get();

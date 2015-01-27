@@ -40,6 +40,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Margin="10" Background="White">
                     <Grid.RowDefinitions>
@@ -77,7 +78,7 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
-                    <Visualisation:Graph x:Name="grpVelocity_Foot" Margin="0" Width="Auto" Height="Auto"/>
+                    <Visualisation:Graph x:Name="grpVelocity_Hands" Margin="0" Width="Auto" Height="Auto"/>
                     <Visualisation:BinaryGraph x:Name="grpBin_VelocityFoot_High" Grid.Row="1" Width="Auto" Height="Auto"/>
                     <Visualisation:BinaryGraph x:Name="grpBin_VelocityFoot_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
                 </Grid>
@@ -130,6 +131,36 @@
                     <Visualisation:Graph_2sides x:Name="grpBalanceLeftRight" Margin="0" Width="Auto" Height="Auto"/>
                     <Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningRight" Grid.Row="1" Width="Auto" Height="Auto"/>
                     <Visualisation:BinaryGraph x:Name="grpBin_Balance_LeaningLeft" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="3">
+                	<Grid.RowDefinitions>
+                		<RowDefinition/>
+                		<RowDefinition Height="50"/>
+                		<RowDefinition Height="50"/>
+                	</Grid.RowDefinitions>
+                	<Visualisation:Graph_2sides x:Name="grpOpenness" Margin="0" Width="Auto" Height="Auto"/>
+                	<Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward1" Grid.Row="1" Width="Auto" Height="Auto"/>
+                	<Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward1" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="3" Grid.Column="1">
+                	<Grid.RowDefinitions>
+                		<RowDefinition/>
+                		<RowDefinition Height="50"/>
+                		<RowDefinition Height="50"/>
+                	</Grid.RowDefinitions>
+                	<Visualisation:Graph_2sides x:Name="grpImpulsiveness" Margin="0" Width="Auto" Height="Auto"/>
+                	<Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward2" Grid.Row="1" Width="Auto" Height="Auto"/>
+                	<Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward2" Grid.Row="2" Width="Auto" Height="Auto"/>
+                </Grid>
+                <Grid Margin="10" Grid.Row="3" Grid.Column="2">
+                	<Grid.RowDefinitions>
+                		<RowDefinition/>
+                		<RowDefinition Height="50"/>
+                		<RowDefinition Height="50"/>
+                	</Grid.RowDefinitions>
+                	<Visualisation:Graph_2sides x:Name="grpStability" Margin="0" Width="Auto" Height="Auto"/>
+                	<Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward3" Grid.Row="1" Width="Auto" Height="Auto"/>
+                	<Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward3" Grid.Row="2" Width="Auto" Height="Auto"/>
                 </Grid>
             </Grid>
         </Grid>

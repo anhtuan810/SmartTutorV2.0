@@ -92,6 +92,12 @@ float* IGetFeature_VelocityRightHand()
 	return copy_vector(velocity);
 }
 
+float* IGetFeature_VelocityHands()
+{
+	std::vector<float> velocity = feature_extractor.GetVelocity_Hands();
+	return copy_vector(velocity);
+}
+
 float* IGetFeature_VelocityGlobal()
 {
 	std::vector<float> velocity = feature_extractor.GetVelocity_Global();
@@ -108,6 +114,12 @@ float* IGetFeature_Energy()
 {
 	std::vector<float> energy = feature_extractor.GetEnergy();
 	return copy_vector(energy);
+}
+
+float* IGetFeature_Impulsiveness()
+{
+	std::vector<float> impulsiveness = feature_extractor.GetImpulsiveness();
+	return copy_vector(impulsiveness);
 }
 
 float* IGetFeature_DirectionBackForth()
@@ -132,6 +144,18 @@ float* IGetFeature_BalanceLeftRight()
 {
 	std::vector<float> balance = feature_extractor.GetBalanceLeftRight();
 	return copy_vector(balance);
+}
+
+float* IGetFeature_Stability()
+{
+	std::vector<float> stability = feature_extractor.GetStability();
+	return copy_vector(stability);
+}
+
+float* IGetFeature_Openness()
+{
+	std::vector<float> openness = feature_extractor.GetOpenness();
+	return copy_vector(openness);
 }
 
 #pragma endregion

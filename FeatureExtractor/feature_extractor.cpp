@@ -9,6 +9,7 @@
 //
 
 #include "feature_extractor.h"
+#include <algorithm>
 
 using namespace openni;
 using namespace nite;
@@ -75,6 +76,26 @@ std::vector<float> FeatureExtractor::GetBalanceLeftRight()
 	//return f_balance_left_right_smooth_;
 }
 
+std::vector<float> FeatureExtractor::GetStability()
+{
+	return post_processing_.SmoothByAveraging(f_stability_);
+}
+
+std::vector<float> FeatureExtractor::GetOpenness()
+{
+	return post_processing_.SmoothByAveraging(f_openness_);
+}
+
+std::vector<float> FeatureExtractor::GetImpulsiveness()
+{
+	return f_impulsiveness_;
+}
+
+std::vector<float> FeatureExtractor::GetVelocity_Hands()
+{
+	return post_processing_.SmoothByAveraging(f_velocity_hands_);
+}
+
 #pragma endregion
 
 
@@ -93,11 +114,14 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 	GetF_HandVelocity_(sample_latest, sample_second);
 	GetF_FeetVelocity_(sample_latest, sample_second);
 	GetF_Energy_(sample_latest, sample_second);
+	GetF_Impulsiveness_(); // Only after Get Energy
 	GetF_Direction_BackForth_(sample_latest, sample_second);
 	GetF_GlobalVelocity_(sample_latest, sample_second);
 	GetF_FeetStretch_(sample_latest);
 	GetF_BalanceBackForth_(sample_latest);
 	GetF_BalanceLeftRight_(sample_latest);
+	GetF_Stability_(); // Only after Get Balance
+	GetF_Openness_(sample_latest);
 	//
 	// Final check
 	//
@@ -105,6 +129,7 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 	{
 		f_velocity_left_hand_.at(f_velocity_left_hand_.size() - 1) = 0;
 		f_velocity_right_hand_.at(f_velocity_right_hand_.size() - 1) = 0;
+		f_velocity_hands_.at(f_velocity_hands_.size() - 1) = 0;
 		f_velocity_foot_.at(f_velocity_foot_.size() - 1) = 0;
 		f_energy_.at(f_energy_.size() - 1) = 0;
 		f_direction_back_forth_.at(f_direction_back_forth_.size() - 1) = 0;
@@ -112,6 +137,8 @@ void FeatureExtractor::ProcessNewSample(Sensor_Reader& sensor_reader)
 		f_balance_back_forth_.at(f_balance_back_forth_.size() - 1) = 0;
 		f_balance_left_right_.at(f_balance_left_right_.size() - 1) = 0;
 		f_velocity_global_.at(f_velocity_global_.size() - 1) = 0;
+		f_openness_.at(f_openness_.size() - 1) = 0;
+		f_stability_.at(f_stability_.size() - 1) = 0;
 	}
 	//
 	//	Smoothing
@@ -166,8 +193,10 @@ void FeatureExtractor::GetF_HandVelocity_(Sample& sample_latest, Sample& sample_
 	float velocity_right_hand = GetJointDisplacement_Shifted_(sample_latest, sample_second, JOINT_RIGHT_HAND, JOINT_RIGHT_SHOULDER);
 	f_velocity_left_hand_.push_back(velocity_left_hand);
 	f_velocity_right_hand_.push_back(velocity_right_hand);
+	f_velocity_hands_.push_back(velocity_left_hand + velocity_right_hand);
 	CheckBufferSize_(f_velocity_left_hand_, FEATURE_BUFF_SZ_VELOCITY_LEFT_HAND);
 	CheckBufferSize_(f_velocity_right_hand_, FEATURE_BUFF_SZ_VELOCITY_RIGHT_HAND);
+	CheckBufferSize_(f_velocity_hands_, FEATURE_BUFF_SZ_VELOCITY_HANDS);	
 }
 
 void FeatureExtractor::GetF_GlobalVelocity_(Sample& sample_latest, Sample& sample_second)
@@ -336,6 +365,122 @@ void FeatureExtractor::GetF_BalanceLeftRight_(Sample& sample_latest)
 int FeatureExtractor::GetActualBufferSize()
 {
 	return f_balance_left_right_.size();
+}
+
+
+
+void FeatureExtractor::GetF_Openness_(Sample& sample_latest)
+{
+	//
+	// Get size of bounding cube of several points, by getting min and max on 3 axes
+	//
+    std::pair<float, float> minmax_X = std::minmax({ sample_latest.GetJointPosition(JOINT_HEAD).x,
+		sample_latest.GetJointPosition(JOINT_LEFT_HAND).x,
+		sample_latest.GetJointPosition(JOINT_RIGHT_HAND).x,
+		sample_latest.GetJointPosition(JOINT_TORSO).x,
+		sample_latest.GetJointPosition(JOINT_LEFT_FOOT).x,
+		sample_latest.GetJointPosition(JOINT_RIGHT_FOOT).x });
+
+	std::pair<float, float> minmax_Y = std::minmax({ sample_latest.GetJointPosition(JOINT_HEAD).y,
+		sample_latest.GetJointPosition(JOINT_LEFT_HAND).y,
+		sample_latest.GetJointPosition(JOINT_RIGHT_HAND).y,
+		sample_latest.GetJointPosition(JOINT_TORSO).y,
+		sample_latest.GetJointPosition(JOINT_LEFT_FOOT).y,
+		sample_latest.GetJointPosition(JOINT_RIGHT_FOOT).y });
+
+	std::pair<float, float> minmax_Z = std::minmax({ sample_latest.GetJointPosition(JOINT_HEAD).z,
+		sample_latest.GetJointPosition(JOINT_LEFT_HAND).z,
+		sample_latest.GetJointPosition(JOINT_RIGHT_HAND).z,
+		sample_latest.GetJointPosition(JOINT_TORSO).z,
+		sample_latest.GetJointPosition(JOINT_LEFT_FOOT).z,
+		sample_latest.GetJointPosition(JOINT_RIGHT_FOOT).z });
+
+	float sz_X = minmax_X.second - minmax_X.first;
+	float sz_Y = minmax_Y.second - minmax_Y.first;
+	float sz_Z = minmax_Z.second - minmax_Z.first;
+
+	//
+	//	Normalize by the height of user
+	//
+	float height = sample_latest.GetJointPosition(JOINT_HEAD).y;
+	float openness = (sz_X * sz_Y * sz_Z) / height;
+
+	f_openness_.push_back(openness);
+	CheckBufferSize_(f_openness_, FEATURE_BUFF_SZ_OPENNESS);
+}
+
+
+
+void FeatureExtractor::GetF_Impulsiveness_()
+{
+	f_impulsiveness_.clear();
+	for (size_t i = 0; i < f_energy_.size(); i++)
+	{
+		f_impulsiveness_.push_back(0);
+	}
+
+	// The constants
+	const int kThresQoM = 7000;
+	const int kPeriodMin = 3;
+	const int kPeriodMax = 25;
+
+	int i = 0;
+	while (i < f_energy_.size() - 1)
+	{
+		float energy = f_energy_[i];
+		if (energy > kThresQoM)
+		{
+			int id_start = i;
+			while (f_energy_[i] > kThresQoM)
+				i++;
+			int id_end = i;
+
+			if (id_end > f_impulsiveness_.size() - 1)
+				id_end = f_impulsiveness_.size() - 1; 
+
+			if (id_end - id_start + 1 > kPeriodMin && id_end - id_start + 1 < kPeriodMax)
+			{
+				// If contain impulse between id_min and id_max ==> Change values
+				float sum = 0;
+				for (size_t k = id_start; k <= id_end; k++)
+				{
+					sum += f_energy_[k];
+				}
+				float impulse = sum / (id_end - id_start + 1);
+
+				// Assign new value
+				for (size_t k = id_start; k <= id_end; k++)
+				{
+					f_impulsiveness_[k] = impulse;
+				}
+			}
+		}
+		i++;
+	}
+	//f_impulsiveness_ = std::vector<float>(impulse_list, impulse_list + f_energy_.size());
+}
+
+
+
+void FeatureExtractor::GetF_Stability_()
+{
+	if (f_balance_left_right_.size() == 0)
+		return;
+
+	if (f_balance_left_right_.size() == 1)
+	{
+		f_stability_.push_back(0);
+		return;
+	}
+
+	// Only process the last sample of balance features
+	int sz = f_balance_left_right_.size();
+	float stability_leftright = std::abs(f_balance_left_right_[sz - 1] - f_balance_left_right_[sz - 2]);
+	float stability_backforth = std::abs(f_balance_back_forth_[sz - 1] - f_balance_back_forth_[sz - 2]);
+
+	// Normally, balance back forth is less than balance left right
+	f_stability_.push_back(stability_leftright + stability_backforth * 2);
+	CheckBufferSize_(f_stability_, FEATURE_BUFF_SZ_OPENNESS);
 }
 
 #pragma endregion

@@ -25,13 +25,17 @@ extern "C" { __declspec(dllexport) int IGetActualFeatureBufferSize(); }
 //
 extern "C" { __declspec(dllexport) float* IGetFeature_VelocityLeftHand(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_VelocityRightHand(); }
+extern "C" { __declspec(dllexport) float* IGetFeature_VelocityHands(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_VelocityFoot(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_VelocityGlobal(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_Energy(); }
+extern "C" { __declspec(dllexport) float* IGetFeature_Impulsiveness(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_DirectionBackForth(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_FootStretch(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_BalanceBackForth(); }
 extern "C" { __declspec(dllexport) float* IGetFeature_BalanceLeftRight(); }
+extern "C" { __declspec(dllexport) float* IGetFeature_Stability(); }
+extern "C" { __declspec(dllexport) float* IGetFeature_Openness(); }
 //
 //	Retrieve binary series
 //

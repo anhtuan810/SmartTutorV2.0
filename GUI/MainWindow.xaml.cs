@@ -26,7 +26,7 @@ namespace GUI
         private GUI.Interfaces.FeatureExtractor feature_extractor = new FeatureExtractor();
         private GUI.Interfaces.OverallAssessment overall_assessment = new OverallAssessment();
         private GUI.Interfaces.RealtimeFeedback realtime_feedback = new RealtimeFeedback();
-        private string oni_file_ = "G:\\Development of SmartTutor\\11.oni";
+        private string oni_file_ = @"G:\Research materials\[+++++] Database collected in QMUL\ONI\12.oni";
 
         public MainWindow()
         {
@@ -46,12 +46,15 @@ namespace GUI
             this.grpVelocity_LeftHand.TitleReal = "Velocity Left Hand";
             this.grpVelocity_RightHand.TitleReal = "Velocity Right Hand";
             this.grpVelocity_Global.TitleReal = "Velocity Global";
-            this.grpVelocity_Foot.TitleReal = "Velocity Foot";
+            this.grpVelocity_Hands.TitleReal = "Velocity Hands";
+            this.grpImpulsiveness.TitleReal = "Impulsiveness";
             this.grpEnergy.TitleReal = "Energy";
             this.grpDirection_BackForth.TitleReal = "Direction";
             this.grpFootStretch.TitleReal = "Foot Stretch";
             this.grpBalanceBackForth.TitleReal = "Balance Back Forth";
             this.grpBalanceLeftRight.TitleReal = "Balance Left Right";
+            this.grpOpenness.TitleReal = "Openness";
+            this.grpStability.TitleReal = "Stability";
 
             this.grpScore_HandGesture.TitleReal = "Score Hand Gesture";
             this.grpScore_GlobalMovement.TitleReal = "Score Global Movement";
@@ -107,11 +110,8 @@ namespace GUI
         {
             controller.QuerySensor();
 
-            //WriteableBitmap bmp = controller.GrabCurrentColorFrame();
-            //this.imgKinect.Source = bmp;
-
-            WriteableBitmap bmpMirror = realtime_feedback.GetRealtimeFeedbackFrame();
-            this.imgKinect.Source = bmpMirror;
+            WriteableBitmap bmp = controller.GrabCurrentColorFrame();
+            this.imgKinect.Source = bmp;
 
             feature_extractor.ExtractFeatureNewFrame();
             int buffer_feature_size = feature_extractor.GetActualFeatureBufferSize();
@@ -120,22 +120,28 @@ namespace GUI
                 this.grpVelocity_LeftHand.SetDataReal(feature_extractor.GetFeature_VelocityLeftHand());
                 this.grpVelocity_RightHand.SetDataReal(feature_extractor.GetFeature_VelocityRightHand());
                 this.grpVelocity_Global.SetDataReal(feature_extractor.GetFeature_VelocityGlobal());
-                this.grpVelocity_Foot.SetDataReal(feature_extractor.GetFeature_VelocityFoot());
+                this.grpVelocity_Hands.SetDataReal(feature_extractor.GetFeature_VelocityHands());
                 this.grpEnergy.SetDataReal(feature_extractor.GetFeature_Energy());
                 this.grpDirection_BackForth.SetDataReal(feature_extractor.GetDirection_BackForth());
                 this.grpFootStretch.SetDataReal(feature_extractor.GetFeature_FootStretch());
                 this.grpBalanceBackForth.SetDataReal(feature_extractor.GetFeature_BalanceBackForth());
                 this.grpBalanceLeftRight.SetDataReal(feature_extractor.GetFeature_BalanceLeftRight());
+                this.grpOpenness.SetDataReal(feature_extractor.GetFeature_Openness());
+                this.grpImpulsiveness.SetDataReal(feature_extractor.GetFeature_Impulsiveness());
+                this.grpStability.SetDataReal(feature_extractor.GetFeature_Stability());
 
                 this.grpVelocity_LeftHand.DrawGraph();
                 this.grpVelocity_RightHand.DrawGraph();
                 this.grpVelocity_Global.DrawGraph();
-                this.grpVelocity_Foot.DrawGraph();
+                this.grpVelocity_Hands.DrawGraph();
                 this.grpEnergy.DrawGraph();
+                this.grpImpulsiveness.DrawGraph();
                 this.grpDirection_BackForth.DrawGraph();
                 this.grpFootStretch.DrawGraph();
-                this.grpBalanceBackForth.DrawGraph();
+                this.grpBalanceBackForth.DrawGraph();                
                 this.grpBalanceLeftRight.DrawGraph();
+                this.grpOpenness.DrawGraph();
+                this.grpStability.DrawGraph();
 
                 this.grpBin_VelocityLeftHand_Low.DataBinary = overall_assessment.GetBinary_VelocityLeftHand_Low();
                 this.grpBin_VelocityLeftHand_High.DataBinary = overall_assessment.GetBinary_VelocityLeftHand_High();
