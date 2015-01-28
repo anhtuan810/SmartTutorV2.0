@@ -18,6 +18,7 @@ class OverallAssessment
 {
 public:
 	OverallAssessment();
+	OverallAssessment(FeatureExtractor &feature_extractor);
 	~OverallAssessment();
 
 	std::vector<float> GetScoreSeries_HandGesture();
@@ -28,30 +29,32 @@ public:
 	std::vector<float> GetScoreSeries_Overall();
 	std::vector<bool> GetBinarySeries_ByCodeword(Codeword codeword);
 
-	void AssessOneFeatureSet(FeatureExtractor& feature_extractor);
+	void Reset();
+	void AssessOneFeatureSet();
 	
 private:
+	FeatureExtractor *feature_extractor_;
 	//
 	// List of thresholded features as binary array = appearance of codewords
 	//
-	std::vector<bool> bi_velocity_left_hand_low;
-	std::vector<bool> bi_velocity_left_hand_high;
-	std::vector<bool> bi_velocity_right_hand_low;
-	std::vector<bool> bi_velocity_right_hand_high;
-	std::vector<bool> bi_velocity_global_low;
-	std::vector<bool> bi_velocity_global_high;
-	std::vector<bool> bi_velocity_foot_low;
-	std::vector<bool> bi_velocity_foot_high;
-	std::vector<bool> bi_energy_low;
-	std::vector<bool> bi_energy_high;
-	std::vector<bool> bi_direction_backward;
-	std::vector<bool> bi_direction_forward;
-	std::vector<bool> bi_foot_stretched;
-	std::vector<bool> bi_foot_closed;
-	std::vector<bool> bi_balance_backward;
-	std::vector<bool> bi_balance_forward;
-	std::vector<bool> bi_balance_left;
-	std::vector<bool> bi_balance_right;
+	std::vector<bool> bi_velocity_left_hand_low_;
+	std::vector<bool> bi_velocity_left_hand_high_;
+	std::vector<bool> bi_velocity_right_hand_low_;
+	std::vector<bool> bi_velocity_right_hand_high_;
+	std::vector<bool> bi_velocity_global_low_;
+	std::vector<bool> bi_velocity_global_high_;
+	std::vector<bool> bi_velocity_foot_low_;
+	std::vector<bool> bi_velocity_foot_high_;
+	std::vector<bool> bi_energy_low_;
+	std::vector<bool> bi_energy_high_;
+	std::vector<bool> bi_direction_backward_;
+	std::vector<bool> bi_direction_forward_;
+	std::vector<bool> bi_foot_stretched_;
+	std::vector<bool> bi_foot_closed_;
+	std::vector<bool> bi_balance_backward_;
+	std::vector<bool> bi_balance_forward_;
+	std::vector<bool> bi_balance_left_;
+	std::vector<bool> bi_balance_right_;
 	//
 	//	Score based on percentage of codeword appearance
 	//
@@ -64,7 +67,7 @@ private:
 	//
 	//	Private functions
 	//
-	void ThresholdAllFeatures_(FeatureExtractor& feature_extractor);
+	void ThresholdAllFeatures_();
 	void ComputeAllScores_();
 	std::vector<bool> ThresholdOneFeature_(std::vector<float>& feature, Codeword codeword);
 	void SmoothOneBinary_(std::vector<bool>& binary_cw);

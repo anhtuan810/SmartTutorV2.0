@@ -25,6 +25,10 @@ bool Sensor_Reader::TurnOnOrDie()
 {
 	this->IsFromFile = true;
 
+	// Reset the buffer
+	//
+	sample_buffer_.clear();
+
 	// Initiate environment
 	//
 	OpenNI::initialize();
@@ -64,6 +68,10 @@ bool Sensor_Reader::TurnOnOrDie()
 bool Sensor_Reader::TurnOnOrDie(char* file_name)
 {
 	this->IsFromFile = true;
+
+	// Reset the buffer
+	//
+	sample_buffer_.clear();
 
 	// Initiate environment
 	//
@@ -109,6 +117,7 @@ void Sensor_Reader::TurnOff()
 	color_stream_.destroy();
 	user_tracker_.destroy();
 	device_.close();
+	sample_buffer_.clear();
 }
 
 Sample Sensor_Reader::GrabSample_()

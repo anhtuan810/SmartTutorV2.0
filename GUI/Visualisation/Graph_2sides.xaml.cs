@@ -34,9 +34,10 @@ namespace GUI.Visualisation
             InitializeComponent();
         }
 
-        public void SetDataReal(List<float> data)
+        public void DrawRealData(List<float> data)
         {
             data_real_ = data;
+            DrawGraph();
         }
 
         public void DrawGraph()

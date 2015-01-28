@@ -21,24 +21,57 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        private GUI.Interfaces.SensorController controller = new SensorController();
-        private GUI.Interfaces.FeatureExtractor feature_extractor = new FeatureExtractor();
-        private GUI.Interfaces.OverallAssessment overall_assessment = new OverallAssessment();
-        private GUI.Interfaces.RealtimeFeedback realtime_feedback = new RealtimeFeedback();
-        private string oni_file_ = @"G:\Research materials\[+++++] Database collected in QMUL\ONI\12.oni";
+        System.Windows.Threading.DispatcherTimer timer_ = new System.Windows.Threading.DispatcherTimer();
+        private GUI.Interfaces.SensorController controller_ = new SensorController();
+        private GUI.Interfaces.FeatureExtractor feature_extractor_ = new FeatureExtractor();
+        private GUI.Interfaces.OverallAssessment overall_assessment_ = new OverallAssessment();
+        private GUI.Interfaces.RealtimeFeedback realtime_feedback_ = new RealtimeFeedback();
+        private string oni_file_ = @"G:\Research materials\[+++++] Database collected in QMUL\ONI\11.oni";
 
         public MainWindow()
         {
             InitializeComponent();
             SetGraphTitles();
 
-            ResetONIFile(oni_file_);
+            ResetONIReader();
             //ResetKinectSensor();
 
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 30);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            timer_.Interval = new TimeSpan(0, 0, 0, 0, 30);
+            timer_.Tick += timer_Tick;
+            timer_.Start();
+        }
+
+
+        
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        #region Internal Processings
+
+        List<float> Fill_The_Buffer_(List<float> data, int buffer_size)
+        {
+            List<float> result = new List<float>(data);
+            if (result.Count < buffer_size)
+            {
+                for (int i = 0; i < buffer_size - result.Count; i++)
+                {
+                    result.Insert(0, 0);
+                }
+            }
+            return result;
+        }
+
+        List<bool> Fill_The_Buffer_(List<bool> data, int buffer_size)
+        {
+            List<bool> result = new List<bool>(data);
+            if (result.Count < buffer_size)
+            {
+                for (int i = 0; i < buffer_size - result.Count; i++)
+                {
+                    result.Insert(0, false);
+                }
+            }
+            return result;
         }
 
         void SetGraphTitles()
@@ -83,170 +116,127 @@ namespace GUI
             this.grpBin_Balance_LeaningRight.Title = "Leaning Right";
         }
 
-        void ResetGraphData()
+        void SetGraphData()
         {
-            
+            this.grpVelocity_LeftHand.DrawRealData(feature_extractor_.GetFeature_VelocityLeftHand());
+            this.grpVelocity_RightHand.DrawRealData(feature_extractor_.GetFeature_VelocityRightHand());
+            this.grpVelocity_Global.DrawRealData(feature_extractor_.GetFeature_VelocityGlobal());
+            this.grpVelocity_Hands.DrawRealData(feature_extractor_.GetFeature_VelocityHands());
+            this.grpEnergy.DrawRealData(feature_extractor_.GetFeature_Energy());
+            this.grpDirection_BackForth.DrawRealData(feature_extractor_.GetDirection_BackForth());
+            this.grpFootStretch.DrawRealData(feature_extractor_.GetFeature_FootStretch());
+            this.grpBalanceBackForth.DrawRealData(feature_extractor_.GetFeature_BalanceBackForth());
+            this.grpBalanceLeftRight.DrawRealData(feature_extractor_.GetFeature_BalanceLeftRight());
+            this.grpOpenness.DrawRealData(feature_extractor_.GetFeature_Openness());
+            this.grpImpulsiveness.DrawRealData(feature_extractor_.GetFeature_Impulsiveness());
+            this.grpStability.DrawRealData(feature_extractor_.GetFeature_Stability());
+
+            this.grpBin_VelocityLeftHand_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityLeftHand_Low());
+            this.grpBin_VelocityLeftHand_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityLeftHand_High());
+            this.grpBin_VelocityRightHand_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityRightHand_Low());
+            this.grpBin_VelocityRightHand_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityRightHand_High());
+            this.grpBin_VelocityGlobal_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityGlobal_Low());
+            this.grpBin_VelocityGlobal_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityGlobal_High());
+            this.grpBin_VelocityFoot_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityFoot_Low());
+            this.grpBin_VelocityFoot_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityFoot_High());
+            this.grpBin_Energy_Low.DrawBinaryData(overall_assessment_.GetBinary_Energy_Low());
+            this.grpBin_Energy_High.DrawBinaryData(overall_assessment_.GetBinary_Energy_High());
+            this.grpBin_Direction_Forward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Forward());
+            this.grpBin_Direction_Backward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Backward());
+            this.grpBin_Foot_Stretched.DrawBinaryData(overall_assessment_.GetBinary_Foot_Stretched());
+            this.grpBin_Foot_Closed.DrawBinaryData(overall_assessment_.GetBinary_Foot_Closed());
+            this.grpBin_Balance_Forward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Forward());
+            this.grpBin_Balance_Backward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Backward());
+            this.grpBin_Balance_LeaningLeft.DrawBinaryData(overall_assessment_.GetBinary_Balance_Left());
+            this.grpBin_Balance_LeaningRight.DrawBinaryData(overall_assessment_.GetBinary_Balance_Right());
+
         }
 
-        void ResetONIFile(string file_name)
+        void ResetONIReader()
         {
-            oni_file_ = file_name;
-            timer.Stop();
-            controller.TurnOff();
-            controller.TurnOnONIFile(oni_file_);
-            timer.Start();
+            this.txtONIfile.Text = oni_file_;
+            this.radONI.IsChecked = true;
+            this.radSensor.IsChecked = false;
+
+            timer_.Stop();
+            controller_.TurnOff();
+            controller_.TurnOnONIFile(oni_file_);
+            timer_.Start();
         }
 
         void ResetKinectSensor()
         {
             oni_file_ = "";
-            timer.Stop();
-            controller.TurnOff();
-            controller.TurnOnKinectSensor();
-            timer.Start();
+            this.radONI.IsChecked = false;
+            this.radSensor.IsChecked = true;
+
+            this.txtONIfile.Text = oni_file_;
+            timer_.Stop();
+            controller_.TurnOff();
+            controller_.TurnOnKinectSensor();
+            timer_.Start();
         }
 
+        #endregion
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        #region User intraction with form
+        
         void timer_Tick(object sender, EventArgs e)
         {
-            controller.QuerySensor();
-
-            WriteableBitmap bmp = controller.GrabCurrentColorFrame();
+            //
+            // Display image from sensor
+            //
+            controller_.QuerySensor();
+            WriteableBitmap bmp = controller_.GrabCurrentColorFrame();
             this.imgKinect.Source = bmp;
 
-            feature_extractor.ExtractFeatureNewFrame();
-            int buffer_feature_size = feature_extractor.GetActualFeatureBufferSize();
+            //
+            //  Perform feature extraction and then display on the form as graphs
+            //
+            feature_extractor_.ExtractFeatureNewFrame();
+            int buffer_feature_size = feature_extractor_.GetActualFeatureBufferSize();
             if (buffer_feature_size >= 5)
             {
-                this.grpVelocity_LeftHand.SetDataReal(feature_extractor.GetFeature_VelocityLeftHand());
-                this.grpVelocity_RightHand.SetDataReal(feature_extractor.GetFeature_VelocityRightHand());
-                this.grpVelocity_Global.SetDataReal(feature_extractor.GetFeature_VelocityGlobal());
-                this.grpVelocity_Hands.SetDataReal(feature_extractor.GetFeature_VelocityHands());
-                this.grpEnergy.SetDataReal(feature_extractor.GetFeature_Energy());
-                this.grpDirection_BackForth.SetDataReal(feature_extractor.GetDirection_BackForth());
-                this.grpFootStretch.SetDataReal(feature_extractor.GetFeature_FootStretch());
-                this.grpBalanceBackForth.SetDataReal(feature_extractor.GetFeature_BalanceBackForth());
-                this.grpBalanceLeftRight.SetDataReal(feature_extractor.GetFeature_BalanceLeftRight());
-                this.grpOpenness.SetDataReal(feature_extractor.GetFeature_Openness());
-                this.grpImpulsiveness.SetDataReal(feature_extractor.GetFeature_Impulsiveness());
-                this.grpStability.SetDataReal(feature_extractor.GetFeature_Stability());
-
-                this.grpVelocity_LeftHand.DrawGraph();
-                this.grpVelocity_RightHand.DrawGraph();
-                this.grpVelocity_Global.DrawGraph();
-                this.grpVelocity_Hands.DrawGraph();
-                this.grpEnergy.DrawGraph();
-                this.grpImpulsiveness.DrawGraph();
-                this.grpDirection_BackForth.DrawGraph();
-                this.grpFootStretch.DrawGraph();
-                this.grpBalanceBackForth.DrawGraph();                
-                this.grpBalanceLeftRight.DrawGraph();
-                this.grpOpenness.DrawGraph();
-                this.grpStability.DrawGraph();
-
-                this.grpBin_VelocityLeftHand_Low.DataBinary = overall_assessment.GetBinary_VelocityLeftHand_Low();
-                this.grpBin_VelocityLeftHand_High.DataBinary = overall_assessment.GetBinary_VelocityLeftHand_High();
-                this.grpBin_VelocityRightHand_Low.DataBinary = overall_assessment.GetBinary_VelocityRightHand_Low();
-                this.grpBin_VelocityRightHand_High.DataBinary = overall_assessment.GetBinary_VelocityRightHand_High();
-                this.grpBin_VelocityGlobal_Low.DataBinary = overall_assessment.GetBinary_VelocityGlobal_Low();
-                this.grpBin_VelocityGlobal_High.DataBinary = overall_assessment.GetBinary_VelocityGlobal_High();
-                this.grpBin_VelocityFoot_Low.DataBinary = overall_assessment.GetBinary_VelocityFoot_Low();
-                this.grpBin_VelocityFoot_High.DataBinary = overall_assessment.GetBinary_VelocityFoot_High();
-                this.grpBin_Energy_Low.DataBinary = overall_assessment.GetBinary_Energy_Low();
-                this.grpBin_Energy_High.DataBinary = overall_assessment.GetBinary_Energy_High();
-                this.grpBin_Direction_Forward.DataBinary = overall_assessment.GetBinary_Direction_Forward();
-                this.grpBin_Direction_Backward.DataBinary = overall_assessment.GetBinary_Direction_Backward();
-                this.grpBin_Foot_Stretched.DataBinary = overall_assessment.GetBinary_Foot_Stretched();
-                this.grpBin_Foot_Closed.DataBinary = overall_assessment.GetBinary_Foot_Closed();
-                this.grpBin_Balance_Forward.DataBinary = overall_assessment.GetBinary_Balance_Forward();
-                this.grpBin_Balance_Backward.DataBinary = overall_assessment.GetBinary_Balance_Backward();
-                this.grpBin_Balance_LeaningLeft.DataBinary = overall_assessment.GetBinary_Balance_Left();
-                this.grpBin_Balance_LeaningRight.DataBinary = overall_assessment.GetBinary_Balance_Right();
-
-                this.grpBin_VelocityLeftHand_Low.DrawGraph();
-                this.grpBin_VelocityLeftHand_High.DrawGraph();
-                this.grpBin_VelocityRightHand_Low.DrawGraph();
-                this.grpBin_VelocityRightHand_High.DrawGraph();
-                this.grpBin_VelocityGlobal_Low.DrawGraph();
-                this.grpBin_VelocityGlobal_High.DrawGraph();
-                this.grpBin_VelocityFoot_Low.DrawGraph();
-                this.grpBin_VelocityFoot_High.DrawGraph();
-                this.grpBin_Energy_Low.DrawGraph();
-                this.grpBin_Energy_High.DrawGraph();
-                this.grpBin_Direction_Forward.DrawGraph();
-                this.grpBin_Direction_Backward.DrawGraph();
-                this.grpBin_Foot_Stretched.DrawGraph();
-                this.grpBin_Foot_Closed.DrawGraph();
-                this.grpBin_Balance_Forward.DrawGraph();
-                this.grpBin_Balance_Backward.DrawGraph();
-                this.grpBin_Balance_LeaningLeft.DrawGraph();
-                this.grpBin_Balance_LeaningRight.DrawGraph();
+                SetGraphData();
             }
 
-            overall_assessment.AssessOneFeatureSet();
-            int buffer_score_size = overall_assessment.GetActualScoreBufferSize();
+            //
+            //  Perform overall assessment and then display on the form as graphs  
+            //
+            overall_assessment_.AssessOneFeatureSet();
+            int buffer_score_size = overall_assessment_.GetActualScoreBufferSize();
             if (buffer_score_size >= 5)
             {
-                this.grpScore_HandGesture.SetDataReal(overall_assessment.GetScore_HandGesture());
-                this.grpScore_GlobalMovement.SetDataReal(overall_assessment.GetScore_GlobalMovement());
-                this.grpScore_Energy.SetDataReal(overall_assessment.GetScore_Energy());
-                this.grpScore_Direction.SetDataReal(overall_assessment.GetScore_Direction());
-                this.grpScore_Posture.SetDataReal(overall_assessment.GetScore_Posture());
-                this.grpScore_Overall.SetDataReal(overall_assessment.GetScore_Overall());
-
-                this.grpScore_HandGesture.DrawGraph();
-                this.grpScore_GlobalMovement.DrawGraph();
-                this.grpScore_Energy.DrawGraph();
-                this.grpScore_Direction.DrawGraph();
-                this.grpScore_Posture.DrawGraph();
-                this.grpScore_Overall.DrawGraph();
+                this.grpScore_HandGesture.DrawRealData(overall_assessment_.GetScore_HandGesture());
+                this.grpScore_GlobalMovement.DrawRealData(overall_assessment_.GetScore_GlobalMovement());
+                this.grpScore_Energy.DrawRealData(overall_assessment_.GetScore_Energy());
+                this.grpScore_Direction.DrawRealData(overall_assessment_.GetScore_Direction());
+                this.grpScore_Posture.DrawRealData(overall_assessment_.GetScore_Posture());
+                this.grpScore_Overall.DrawRealData(overall_assessment_.GetScore_Overall());
 
             }
-        }
-
-        List<float> Fill_The_Buffer(List<float> data, int buffer_size)
-        {
-            List<float> result = new List<float>(data);
-            if (result.Count < buffer_size)
-            {
-                for (int i = 0; i < buffer_size - result.Count; i++)
-                {
-                    result.Insert(0, 0);
-                }
-            }
-            return result;
-        }
-
-        List<bool> Fill_The_Buffer(List<bool> data, int buffer_size)
-        {
-            List<bool> result = new List<bool>(data);
-            if (result.Count < buffer_size)
-            {
-                for (int i = 0; i < buffer_size - result.Count; i++)
-                {
-                    result.Insert(0, false);
-                }
-            }
-            return result;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            controller.TurnOff();
+            controller_.TurnOff();
         }
 
-        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        private void btnOpenONI_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.DefaultExt = ".oni";
             if (dialog.ShowDialog() == true)
             {
-                ResetONIFile(dialog.FileName);
+                oni_file_ = dialog.FileName;
+                ResetONIReader();
             }
         }
-
-        private void btnTurnOnSensor_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

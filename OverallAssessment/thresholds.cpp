@@ -45,7 +45,7 @@ std::pair<float, float> Thresholds::GetThresholds(Codeword codeword)
 		return std::pair<float, float>(MIN_FLOAT, (float)3000.0);
 		break;
 	case Codeword::Energy_High:
-		return std::pair<float, float>((float)7000.0, MAX_FLOAT);
+		return std::pair<float, float>((float)500000.0, MAX_FLOAT);
 		break;
 	case Codeword::Foot_Closed:
 		return std::pair<float, float>(MIN_FLOAT, (float)0.5);

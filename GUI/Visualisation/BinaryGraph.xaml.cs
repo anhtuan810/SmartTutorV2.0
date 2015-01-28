@@ -28,21 +28,21 @@ namespace GUI.Visualisation
             set { this.lblBinary.Content = value; }
         }
 
-        public List<bool> DataBinary = null;
+        private List<bool> binary_data_ = null;
 
         public BinaryGraph()
         {
             InitializeComponent();
         }
 
-        public void DrawGraph()
+        public void DrawBinaryData(List<bool> binary_data)
         {
+            binary_data_ = binary_data;
             this.cvsBar.Visibility = System.Windows.Visibility.Hidden;
             this.lblBinary.Visibility = System.Windows.Visibility.Hidden;
-
-            if (DataBinary != null)
+            if (binary_data_ != null)
             {
-                this.drawBinaryGraph(ref cvsBar, DataBinary);
+                this.drawBinaryGraph(ref cvsBar, binary_data_);
                 this.lblBinary.Visibility = System.Windows.Visibility.Visible;
                 this.cvsBar.Visibility = System.Windows.Visibility.Visible;
             }

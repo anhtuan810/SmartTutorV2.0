@@ -46,16 +46,17 @@ namespace GUI.Visualisation
         }
 
 
-        public void SetDataReal(List<float> data)
+        public void DrawRealData(List<float> data)
         {
             data_real_ = data;
+            this.Draw_Graph_();
         }
         
 
         /// <summary>
         /// Actually draw graphs
         /// </summary>
-        public void DrawGraph()
+        private void Draw_Graph_()
         {
             this.cvsLine.Visibility = System.Windows.Visibility.Hidden;
             this.cvsBar1.Visibility = System.Windows.Visibility.Hidden;
@@ -63,7 +64,7 @@ namespace GUI.Visualisation
 
             if (data_real_ != null)
             {
-                this.drawLineGraph();
+                this.Draw_LineGraph_();
                 this.cvsLine.Visibility = System.Windows.Visibility.Visible;
             }
 
@@ -74,7 +75,7 @@ namespace GUI.Visualisation
         /// <summary>
         /// Draw line graph, if necessary
         /// </summary>
-        private void drawLineGraph()
+        private void Draw_LineGraph_()
         {
             this.cvsLine.Children.Clear();
 
@@ -120,7 +121,7 @@ namespace GUI.Visualisation
         /// Based only on size of canvas
         /// </summary>
         /// <param name="cvs"></param>
-        private void drawAxis(ref Canvas cvs)
+        private void Draw_Axis_(ref Canvas cvs)
         {
             float iHeight = (float)cvs.ActualHeight;
             float iWidth = (float)cvs.ActualWidth;

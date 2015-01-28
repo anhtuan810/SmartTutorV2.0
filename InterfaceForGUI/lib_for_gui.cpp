@@ -18,8 +18,8 @@
 #include "realtime_feedback.h"
 
 Sensor_Reader sensor_reader;
-FeatureExtractor feature_extractor;
-OverallAssessment overall_assessment;
+FeatureExtractor feature_extractor(sensor_reader);
+OverallAssessment overall_assessment(feature_extractor);
 Realtime_Feedback realtime_feedback(sensor_reader, overall_assessment);
 
 //////////////////////////////////////////////////////////////////////////
@@ -38,6 +38,8 @@ bool ITurnOnONIFile(char* file_name)
 void ITurnOff()
 {
 	sensor_reader.TurnOff();
+	feature_extractor.Reset();
+	overall_assessment.Reset();
 }
 
 void IQuerySensor()
@@ -59,9 +61,14 @@ char* IGrabCurrentColorFrame()
 //////////////////////////////////////////////////////////////////////////
 #pragma region Feature Exctractor
 
+void IResetFeatureExtractor()
+{
+	feature_extractor.Reset();
+}
+
 void IExtractFeatureNewFrame()
 {
-	feature_extractor.ProcessNewSample(sensor_reader);
+	feature_extractor.ProcessNewSample();
 }
 
 int IGetActualFeatureBufferSize()
@@ -166,7 +173,7 @@ float* IGetFeature_Openness()
 
 void IAssessOneFeatureSet()
 {
-	overall_assessment.AssessOneFeatureSet(feature_extractor);
+	overall_assessment.AssessOneFeatureSet();
 }
 
 int IGetActualScoreBufferSize()

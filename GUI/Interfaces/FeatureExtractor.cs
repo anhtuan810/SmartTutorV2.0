@@ -56,6 +56,7 @@ namespace GUI.Interfaces
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IGetFeature_Openness();
 
+
         public void ExtractFeatureNewFrame()
         {
             IExtractFeatureNewFrame();
