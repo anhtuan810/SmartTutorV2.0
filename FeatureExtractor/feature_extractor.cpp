@@ -384,7 +384,7 @@ void FeatureExtractor::GetF_Openness_()
 	float height = latest_sample_.GetJointPosition(JOINT_HEAD).y;
 	float openness = (sz_X * sz_Y * sz_Z) / height;
 
-	f_openness_.push_back(openness);
+	f_openness_.push_back(openness / 1000);
 	CheckBufferSize_(f_openness_, FEATURE_BUFF_SZ_OPENNESS);
 }
 

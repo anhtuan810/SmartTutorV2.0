@@ -3,6 +3,7 @@
 //	Overall assessment, including analysing the extracted features and giving scores
 //
 //  Created: 2015.01.06
+//	2015.01.30: Return smoothed binary values 
 //
 //  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
 //
@@ -10,7 +11,13 @@
 #include "overall_assessment.h"
 #include "system_configuration.h"
 
-OverallAssessment::OverallAssessment(){}
+OverallAssessment::OverallAssessment()
+{
+	//assess_energy_ = Assess_Energy(*feature_extractor_);
+	//assess_global_displacement_ = Assess_GlobalDisplacement(*feature_extractor_);
+	//assess_hand_gestures_ = Assessor_HandGestures(*feature_extractor_);
+	//assess_posture_ = Assess_Posture(*feature_extractor_);
+}
 
 OverallAssessment::OverallAssessment(FeatureExtractor &feature_extractor)
 {
@@ -57,128 +64,138 @@ std::vector<bool> OverallAssessment::GetBinarySeries_ByCodeword(Codeword codewor
 	switch (codeword)
 	{
 	case Velocity_LeftHand_Low:
-		return bi_velocity_left_hand_low_;
+		return assess_hand_gestures_.GetBinary_Velocity_LeftHand_Low();
 		break;
 	case Velocity_LeftHand_High:
-		return bi_velocity_left_hand_high_;
+		return assess_hand_gestures_.GetBinary_Velocity_LeftHand_High();
 		break;
 	case Velocity_RightHand_Low:
-		return bi_velocity_right_hand_low_;
+		return assess_hand_gestures_.GetBinary_Velocity_RightHand_Low();
 		break;
 	case Velocity_RightHand_High:
-		return bi_velocity_right_hand_high_;
+		return assess_hand_gestures_.GetBinary_Velocity_RightHand_High();
 		break;
 	case Velocity_Global_Low:
-		return bi_velocity_global_low_;
+		return assess_global_displacement_.GetBinary_GlobalVelocity_Low();
 		break;
 	case Velocity_Global_High:
-		return bi_velocity_global_high_;
+		return assess_global_displacement_.GetBinary_GlobalVelocity_High();
 		break;
 	case Velocity_Foot_Low:
-		return bi_velocity_foot_low_;
+		return assess_global_displacement_.GetBinary_FootVelocity_Low();
 		break;
 	case Velocity_Foot_High:
-		return bi_velocity_foot_high_;
+		return assess_global_displacement_.GetBinary_FootVelocity_High();
 		break;
 	case Energy_Low:
-		return bi_energy_low_;
+		return assess_energy_.GetBinary_EnergyLow();
 		break;
 	case Energy_High:
-		return bi_energy_high_;
+		return assess_energy_.GetBinary_EnergyHigh();
 		break;
 	case Direction_Backward:
-		return bi_direction_backward_;
+		return assess_global_displacement_.GetBinary_Direction_Backward();
 		break;
 	case Direction_Forward:
-		return bi_direction_forward_;
+		return assess_global_displacement_.GetBinary_Direction_Forward();
 		break;
 	case Foot_Stretched:
-		return bi_foot_stretched_;
+		return assess_posture_.GetBinary_Foot_Stretched();
 		break;
 	case Foot_Closed:
-		return bi_foot_closed_;
+		return assess_posture_.GetBinary_Foot_Closed();
 		break;
 	case Balance_Backward:
-		return bi_balance_backward_;
+		return assess_posture_.GetBinary_Balance_Backward();
 		break;
 	case Balance_Forward:
-		return bi_balance_forward_;
+		return assess_posture_.GetBinary_Balance_Forward();
 		break;
 	case Balance_LeaningLeft:
-		return bi_balance_left_;
+		return assess_posture_.GetBinary_Balance_Left();
 		break;
 	case Balance_LeaningRight:
-		return bi_balance_right_;
+		return assess_posture_.GetBinary_Balance_Right();
+		break;
+	case Stability_Stable:
+		return assess_posture_.GetBinary_Stability_Stable();
+		break;
+	case Stability_Unstable:
+		return assess_posture_.GetBinary_Stability_Unstable();
+		break;
+	case Openness_Low:
+		return assess_posture_.GetBinary_Openness_Low();
+		break;
+	case Openness_High:
+		return assess_posture_.GetBinary_Openness_High();
 		break;
 	default:
-		return bi_balance_right_;
+		return assess_posture_.GetBinary_Openness_High();
 		break;
 	}
 }
 
-#pragma endregion
+std::vector<bool> OverallAssessment::GetBinarySeries_ByCodeword_Smoothed(Codeword codeword)
+{
+	switch (codeword)
+	{
+	case Foot_Stretched:
+		return assess_posture_.GetBinary_Foot_Stretched_Smoothed();
+		break;
+	case Foot_Closed:
+		return assess_posture_.GetBinary_Foot_Closed_Smoothed();
+		break;
+	case Balance_Backward:
+		return assess_posture_.GetBinary_Balance_Backward_Smoothed();
+		break;
+	case Balance_Forward:
+		return assess_posture_.GetBinary_Balance_Forward_Smoothed();
+		break;
+	case Balance_LeaningLeft:
+		return assess_posture_.GetBinary_Balance_Left_Smoothed();
+		break;
+	case Balance_LeaningRight:
+		return assess_posture_.GetBinary_Balance_Right_Smoothed();
+		break;
+	case Openness_Low:
+		return assess_posture_.GetBinary_Openness_Low_Smoothed();
+		break;
+	case Openness_High:
+		return assess_posture_.GetBinary_Openness_High_Smoothed();
+		break;
+	default:
+		return assess_posture_.GetBinary_Openness_High_Smoothed();
+		break;
+	}
+}
 
+
+#pragma endregion
 
 
 
 //////////////////////////////////////////////////////////////////////////
 #pragma region Perform thresholding and assessment for scores
 
-void OverallAssessment::AssessOneFeatureSet()
+void OverallAssessment::PerformAssessment()
 {
 	ThresholdAllFeatures_();
 	ComputeAllScores_();
 }
+
 void OverallAssessment::ThresholdAllFeatures_()
 {
-	//
-	//	Perform threshold, receive a binary vector marks position of codewords
-	//
-	bi_velocity_left_hand_low_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_LeftHand(), Codeword::Velocity_LeftHand_Low);
-	bi_velocity_left_hand_high_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_LeftHand(), Codeword::Velocity_LeftHand_High);
-	bi_velocity_right_hand_low_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_RightHand(), Codeword::Velocity_RightHand_Low);
-	bi_velocity_right_hand_high_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_RightHand(), Codeword::Velocity_RightHand_High);
-	bi_velocity_global_low_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_Global(), Codeword::Velocity_Global_Low);
-	bi_velocity_global_high_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_Global(), Codeword::Velocity_Global_High);
-	bi_velocity_foot_low_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_Foot(), Codeword::Velocity_Foot_Low);
-	bi_velocity_foot_high_ = ThresholdOneFeature_(feature_extractor_->GetVelocity_Foot(), Codeword::Velocity_Foot_High);
-	bi_energy_low_ = ThresholdOneFeature_(feature_extractor_->GetEnergy(), Codeword::Energy_Low);
-	bi_energy_high_ = ThresholdOneFeature_(feature_extractor_->GetEnergy(), Codeword::Energy_High);
-	bi_direction_backward_ = ThresholdOneFeature_(feature_extractor_->GetDirection_BackForth(), Codeword::Direction_Backward);
-	bi_direction_forward_ = ThresholdOneFeature_(feature_extractor_->GetDirection_BackForth(), Codeword::Direction_Forward);
-	bi_foot_stretched_ = ThresholdOneFeature_(feature_extractor_->GetFootStretch(), Codeword::Foot_Stretched);
-	bi_foot_closed_ = ThresholdOneFeature_(feature_extractor_->GetFootStretch(), Codeword::Foot_Closed);
-	bi_balance_backward_ = ThresholdOneFeature_(feature_extractor_->GetBalanceBackForth(), Codeword::Balance_Backward);
-	bi_balance_forward_ = ThresholdOneFeature_(feature_extractor_->GetBalanceBackForth(), Codeword::Balance_Forward);
-	bi_balance_left_ = ThresholdOneFeature_(feature_extractor_->GetBalanceLeftRight(), Codeword::Balance_LeaningLeft);
-	bi_balance_right_ = ThresholdOneFeature_(feature_extractor_->GetBalanceLeftRight(), Codeword::Balance_LeaningRight);
+	assess_energy_.Link_FeatureExtractor(*feature_extractor_);
+	assess_global_displacement_.Link_FeatureExtractor(*feature_extractor_);
+	assess_hand_gestures_.Link_FeatureExtractor(*feature_extractor_);
+	assess_posture_.Link_FeatureExtractor(*feature_extractor_);
 
-	std::vector<float> test_direction = feature_extractor_->GetDirection_BackForth();
-	std::vector<bool> test_bi_backward = ThresholdOneFeature_(test_direction, Codeword::Direction_Backward);
-	std::vector<bool> test_bi_forward = ThresholdOneFeature_(test_direction, Codeword::Direction_Forward);
-
-	//
-	//	Smooth the appearance of codewords
-	//
-	//SmoothOneBinary_(bi_velocity_left_hand_low);
-	//SmoothOneBinary_(bi_velocity_left_hand_high);
-	//SmoothOneBinary_(bi_velocity_right_hand_low);
-	//SmoothOneBinary_(bi_velocity_right_hand_high);
-	//SmoothOneBinary_(bi_velocity_global_low);
-	//SmoothOneBinary_(bi_velocity_global_high);
-	//SmoothOneBinary_(bi_velocity_foot_low);
-	//SmoothOneBinary_(bi_velocity_foot_high);
-	//SmoothOneBinary_(bi_energy_low);
-	//SmoothOneBinary_(bi_energy_high);
-	//SmoothOneBinary_(bi_direction_backward);
-	//SmoothOneBinary_(bi_direction_forward);
-	//SmoothOneBinary_(bi_foot_stretched);
-	//SmoothOneBinary_(bi_foot_closed);
-	//SmoothOneBinary_(bi_balance_backward);
-	//SmoothOneBinary_(bi_balance_forward);
-	//SmoothOneBinary_(bi_balance_left);
-	//SmoothOneBinary_(bi_balance_right);
+	assess_energy_.PerformAssessment();
+	assess_global_displacement_.PerformAssessment();
+	assess_hand_gestures_.PerformAssessment();
+	assess_posture_.PerformAssessment();
 }
+
 void OverallAssessment::ComputeAllScores_()
 {
 	//
@@ -193,24 +210,22 @@ void OverallAssessment::ComputeAllScores_()
 	//
 	//	Ratio of appearance of codewords
 	//
-	float ratio_velocity_left_hand_low = CountBinaryPositive_(bi_velocity_left_hand_low_);
-	float ratio_velocity_left_hand_high = CountBinaryPositive_(bi_velocity_left_hand_high_);
-	float ratio_velocity_right_hand_low = CountBinaryPositive_(bi_velocity_right_hand_low_);
-	float ratio_velocity_right_hand_high = CountBinaryPositive_(bi_velocity_right_hand_high_);
-	float ratio_velocity_global_low = CountBinaryPositive_(bi_velocity_global_low_);
-	float ratio_velocity_global_high = CountBinaryPositive_(bi_velocity_global_high_);
-	float ratio_velocity_foot_low = CountBinaryPositive_(bi_velocity_foot_low_);
-	float ratio_velocity_foot_high = CountBinaryPositive_(bi_velocity_foot_high_);
-	float ratio_energy_low = CountBinaryPositive_(bi_energy_low_);
-	float ratio_energy_high = CountBinaryPositive_(bi_energy_high_);
-	float ratio_direction_backward = CountBinaryPositive_(bi_direction_backward_);
-	float ratio_direction_forward = CountBinaryPositive_(bi_direction_forward_);
-	float ratio_foot_stretched = CountBinaryPositive_(bi_foot_stretched_);
-	float ratio_foot_closed = CountBinaryPositive_(bi_foot_closed_);
-	float ratio_balance_backward = CountBinaryPositive_(bi_balance_backward_);
-	float ratio_balance_forward = CountBinaryPositive_(bi_balance_forward_);
-	float ratio_balance_left = CountBinaryPositive_(bi_balance_left_);
-	float ratio_balance_right = CountBinaryPositive_(bi_balance_right_);
+	float ratio_velocity_left_hand_low = CountBinaryPositive_(assess_hand_gestures_.GetBinary_Velocity_LeftHand_Low());
+	float ratio_velocity_left_hand_high = CountBinaryPositive_(assess_hand_gestures_.GetBinary_Velocity_LeftHand_High());
+	float ratio_velocity_right_hand_low = CountBinaryPositive_(assess_hand_gestures_.GetBinary_Velocity_RightHand_Low());
+	float ratio_velocity_right_hand_high = CountBinaryPositive_(assess_hand_gestures_.GetBinary_Velocity_RightHand_High());
+	float ratio_velocity_global_low = CountBinaryPositive_(assess_global_displacement_.GetBinary_GlobalVelocity_Low());
+	float ratio_velocity_global_high = CountBinaryPositive_(assess_global_displacement_.GetBinary_GlobalVelocity_High());
+	float ratio_energy_low = CountBinaryPositive_(assess_energy_.GetBinary_EnergyLow());
+	float ratio_energy_high = CountBinaryPositive_(assess_energy_.GetBinary_EnergyHigh());
+	float ratio_direction_backward = CountBinaryPositive_(assess_global_displacement_.GetBinary_Direction_Backward());
+	float ratio_direction_forward = CountBinaryPositive_(assess_global_displacement_.GetBinary_Direction_Forward());
+	float ratio_foot_stretched = CountBinaryPositive_(assess_posture_.GetBinary_Foot_Stretched_Smoothed());
+	float ratio_foot_closed = CountBinaryPositive_(assess_posture_.GetBinary_Foot_Closed_Smoothed());
+	float ratio_balance_backward = CountBinaryPositive_(assess_posture_.GetBinary_Balance_Backward_Smoothed());
+	float ratio_balance_forward = CountBinaryPositive_(assess_posture_.GetBinary_Balance_Forward_Smoothed());
+	float ratio_balance_left = CountBinaryPositive_(assess_posture_.GetBinary_Balance_Left_Smoothed());
+	float ratio_balance_right = CountBinaryPositive_(assess_posture_.GetBinary_Balance_Right_Smoothed());
 	//
 	//	Score simply based on ratio of codewords (positive and negative)
 	//
@@ -250,24 +265,24 @@ void OverallAssessment::ComputeAllScores_()
 
 void OverallAssessment::Reset()
 {
-	bi_velocity_left_hand_low_.clear();
-	bi_velocity_left_hand_high_.clear();
-	bi_velocity_right_hand_low_.clear();
-	bi_velocity_right_hand_high_.clear();
-	bi_velocity_global_low_.clear();
-	bi_velocity_global_high_.clear();
-	bi_velocity_foot_low_.clear();
-	bi_velocity_foot_high_.clear();
-	bi_energy_low_.clear();
-	bi_energy_high_.clear();
-	bi_direction_backward_.clear();
-	bi_direction_forward_.clear();
-	bi_foot_stretched_.clear();
-	bi_foot_closed_.clear();
-	bi_balance_backward_.clear();
-	bi_balance_forward_.clear();
-	bi_balance_left_.clear();
-	bi_balance_right_.clear();
+	//bi_velocity_left_hand_low_.clear();
+	//bi_velocity_left_hand_high_.clear();
+	//bi_velocity_right_hand_low_.clear();
+	//bi_velocity_right_hand_high_.clear();
+	//bi_velocity_global_low_.clear();
+	//bi_velocity_global_high_.clear();
+	//bi_velocity_foot_low_.clear();
+	//bi_velocity_foot_high_.clear();
+	//bi_energy_low_.clear();
+	//bi_energy_high_.clear();
+	//bi_direction_backward_.clear();
+	//bi_direction_forward_.clear();
+	//bi_foot_stretched_.clear();
+	//bi_foot_closed_.clear();
+	//bi_balance_backward_.clear();
+	//bi_balance_forward_.clear();
+	//bi_balance_left_.clear();
+	//bi_balance_right_.clear();
 
 	score_series_hand_gesture_.clear();
 	score_series_global_movement_.clear();
@@ -391,6 +406,8 @@ void OverallAssessment::CheckBufferSize_(std::vector<float>& buffer, int size)
 	if (buffer.size() > size)
 		buffer.erase(buffer.begin());
 }
+
+
 
 #pragma endregion
 

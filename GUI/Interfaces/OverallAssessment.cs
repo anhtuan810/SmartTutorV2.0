@@ -148,6 +148,42 @@ namespace GUI.Interfaces
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IGetBinary_Balance_Right();
 
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Stable();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Unstable();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Openness_Low();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Openness_High();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Foot_Stretched_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Foot_Closed_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Balance_Backward_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Balance_Forward_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Balance_Left_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Balance_Right_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Openness_Low_Smoothed();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr IGetBinary_Openness_High_Smoothed();
+
         List<bool> Copy_IntPtr_bool(IntPtr input)
         {
             int size = IGetActualScoreBufferSize();
@@ -253,6 +289,60 @@ namespace GUI.Interfaces
         public List<bool> GetBinary_Balance_Right()
         {
             return Copy_IntPtr_bool(IGetBinary_Balance_Right());
+        }
+
+        public List<bool> GetBinary_Stability_Stable()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Stable());
+        }
+
+        public List<bool> GetBinary_Stability_Unstable()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Unstable());
+        }
+
+        public List<bool> GetBinary_Openness_High()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Openness_High());
+        }
+
+        public List<bool> GetBinary_Openness_Low()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Openness_Low());
+        }
+
+        public List<bool> GetBinary_Foot_Stretched_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Openness_Low());
+        }
+
+        public List<bool> GetBinary_Foot_Closed_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Foot_Closed_Smoothed());
+        }
+        public List<bool> GetBinary_Balance_Backward_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Balance_Backward_Smoothed());
+        }
+        public List<bool> GetBinary_Balance_Forward_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Balance_Forward_Smoothed());
+        }
+        public List<bool> GetBinary_Balance_Left_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Balance_Left_Smoothed());
+        }
+        public List<bool> GetBinary_Balance_Right_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Balance_Right_Smoothed());
+        }
+        public List<bool> GetBinary_Openness_Low_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Openness_Low_Smoothed());
+        }
+        public List<bool> GetBinary_Openness_High_Smoothed()
+        {
+            return Copy_IntPtr_bool(IGetBinary_Openness_High_Smoothed());
         }
 
         #endregion

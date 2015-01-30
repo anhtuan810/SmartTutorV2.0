@@ -57,7 +57,19 @@ extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Backward(); }
 extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Forward(); }
 extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Left(); }
 extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Right(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Stable(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Unstable(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Openness_Low(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Openness_High(); }
 
+extern "C" { __declspec(dllexport) bool* IGetBinary_Foot_Stretched_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Foot_Closed_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Backward_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Forward_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Left_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Balance_Right_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Openness_Low_Smoothed(); }
+extern "C" { __declspec(dllexport) bool* IGetBinary_Openness_High_Smoothed(); }
 //
 //	Perform overall assessment (scoring)
 //

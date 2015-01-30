@@ -173,7 +173,7 @@ float* IGetFeature_Openness()
 
 void IAssessOneFeatureSet()
 {
-	overall_assessment.AssessOneFeatureSet();
+	overall_assessment.PerformAssessment();
 }
 
 int IGetActualScoreBufferSize()
@@ -318,6 +318,68 @@ bool* IGetBinary_Balance_Right()
 	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Balance_LeaningRight));
 }
 
+bool* IGetBinary_Stable()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Stability_Stable));
+}
+
+bool* IGetBinary_Unstable()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Stability_Unstable));
+}
+
+bool* IGetBinary_Openness_Low()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Openness_Low));
+}
+
+bool* IGetBinary_Openness_High()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword(Codeword::Openness_High));
+}
+
+//
+// Smoothed binary data
+//
+bool* IGetBinary_Foot_Stretched_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Foot_Stretched));
+}
+
+bool* IGetBinary_Foot_Closed_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Foot_Closed));
+}
+
+bool* IGetBinary_Balance_Backward_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Balance_Backward));
+}
+
+bool* IGetBinary_Balance_Forward_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Balance_Forward));
+}
+
+bool* IGetBinary_Balance_Left_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Balance_LeaningLeft));
+}
+
+bool* IGetBinary_Balance_Right_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Balance_LeaningRight));
+}
+
+bool* IGetBinary_Openness_Low_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Openness_Low));
+}
+
+bool* IGetBinary_Openness_High_Smoothed()
+{
+	return copy_vector(overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Openness_High));
+}
 #pragma endregion
 
 

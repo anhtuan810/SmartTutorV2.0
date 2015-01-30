@@ -8,13 +8,12 @@
 //
 
 #include "thresholds.h"
-#include "system_configuration.h"
 
 std::pair<float, float> Thresholds::GetThresholds(Codeword codeword)
 {
 	const float MIN_FLOAT = -10000000;
 	const float MAX_FLOAT = 10000000;
-
+		
 	switch (codeword)
 	{
 	case Codeword::Velocity_LeftHand_Low:
@@ -70,6 +69,18 @@ std::pair<float, float> Thresholds::GetThresholds(Codeword codeword)
 		break;
 	case Codeword::Balance_LeaningRight:
 		return std::pair<float, float>((float)50, MAX_FLOAT);
+		break;	
+	case Codeword::Stability_Stable:
+		return std::pair<float, float>(MIN_FLOAT, (float)20);
+		break;
+	case Codeword::Stability_Unstable:
+		return std::pair<float, float>((float)50, MAX_FLOAT);
+		break;
+	case Openness_Low:
+		return std::pair<float, float>(MIN_FLOAT, (float)100);
+		break;
+	case Openness_High:
+		return std::pair<float, float>((float)500, MAX_FLOAT);
 		break;
 	default:
 		return std::pair<float, float>(MIN_FLOAT, MAX_FLOAT);

@@ -144,8 +144,8 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpOpenness" Margin="0" Width="Auto" Height="Auto"/>
-                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward1" Grid.Row="1" Width="Auto" Height="Auto"/>
-                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward1" Grid.Row="2" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Openness_High" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Openness_Low" Grid.Row="2" Width="Auto" Height="Auto"/>
                 </Grid>
                 <Grid Margin="10" Grid.Row="3" Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -154,8 +154,6 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpImpulsiveness" Margin="0" Width="Auto" Height="Auto"/>
-                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward2" Grid.Row="1" Width="Auto" Height="Auto"/>
-                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward2" Grid.Row="2" Width="Auto" Height="Auto"/>
                 </Grid>
                 <Grid Margin="10" Grid.Row="3" Grid.Column="2">
                     <Grid.RowDefinitions>
@@ -164,8 +162,8 @@
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Visualisation:Graph x:Name="grpStability" Margin="0" Width="Auto" Height="Auto"/>
-                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Forward3" Grid.Row="1" Width="Auto" Height="Auto"/>
-                    <Visualisation:BinaryGraph x:Name="grpBin_Balance_Backward3" Grid.Row="2" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Stability_Stable" Grid.Row="1" Width="Auto" Height="Auto"/>
+                    <Visualisation:BinaryGraph x:Name="grpBin_Stability_Unstable" Grid.Row="2" Width="Auto" Height="Auto"/>
                 </Grid>
             </Grid>
         </Grid>

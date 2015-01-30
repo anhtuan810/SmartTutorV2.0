@@ -114,6 +114,10 @@ namespace GUI
             this.grpBin_Balance_Backward.Title = "Balance Backward";
             this.grpBin_Balance_LeaningLeft.Title = "Leaning Left";
             this.grpBin_Balance_LeaningRight.Title = "Leaning Right";
+            this.grpBin_Stability_Stable.Title = "Stable";
+            this.grpBin_Stability_Unstable.Title = "Unstable";
+            this.grpBin_Openness_High.Title = "Opened";
+            this.grpBin_Openness_Low.Title = "Closed";
         }
 
         void SetGraphData()
@@ -143,13 +147,16 @@ namespace GUI
             this.grpBin_Energy_High.DrawBinaryData(overall_assessment_.GetBinary_Energy_High());
             this.grpBin_Direction_Forward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Forward());
             this.grpBin_Direction_Backward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Backward());
-            this.grpBin_Foot_Stretched.DrawBinaryData(overall_assessment_.GetBinary_Foot_Stretched());
-            this.grpBin_Foot_Closed.DrawBinaryData(overall_assessment_.GetBinary_Foot_Closed());
-            this.grpBin_Balance_Forward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Forward());
-            this.grpBin_Balance_Backward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Backward());
-            this.grpBin_Balance_LeaningLeft.DrawBinaryData(overall_assessment_.GetBinary_Balance_Left());
-            this.grpBin_Balance_LeaningRight.DrawBinaryData(overall_assessment_.GetBinary_Balance_Right());
-
+            this.grpBin_Foot_Stretched.DrawBinaryData(overall_assessment_.GetBinary_Foot_Stretched_Smoothed());
+            this.grpBin_Foot_Closed.DrawBinaryData(overall_assessment_.GetBinary_Foot_Closed_Smoothed());
+            this.grpBin_Balance_Forward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Forward_Smoothed());
+            this.grpBin_Balance_Backward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Backward_Smoothed());
+            this.grpBin_Balance_LeaningLeft.DrawBinaryData(overall_assessment_.GetBinary_Balance_Left_Smoothed());
+            this.grpBin_Balance_LeaningRight.DrawBinaryData(overall_assessment_.GetBinary_Balance_Right_Smoothed());
+            this.grpBin_Stability_Stable.DrawBinaryData(overall_assessment_.GetBinary_Stability_Stable());
+            this.grpBin_Stability_Unstable.DrawBinaryData(overall_assessment_.GetBinary_Stability_Unstable());
+            this.grpBin_Openness_High.DrawBinaryData(overall_assessment_.GetBinary_Openness_High_Smoothed());
+            this.grpBin_Openness_Low.DrawBinaryData(overall_assessment_.GetBinary_Openness_Low_Smoothed());
         }
 
         void ResetONIReader()

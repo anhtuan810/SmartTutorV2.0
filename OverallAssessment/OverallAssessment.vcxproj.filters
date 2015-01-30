@@ -17,6 +17,24 @@
     <ClInclude Include="thresholds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="codewords.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assess_hand_gestures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assess_global_displacement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assess_posture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assess_energy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="overall_assessment.cpp">
@@ -26,6 +44,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="thresholds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assess_energy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assess_global_displacement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assess_posture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assess_hand_gestures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

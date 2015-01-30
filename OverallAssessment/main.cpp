@@ -16,7 +16,7 @@ void main()
 	{
 		sensor_reader.QueryFrame();
 		feature_extractor.ProcessNewSample();
-		overall_assessment.AssessOneFeatureSet();
+		overall_assessment.PerformAssessment();
 		std::cout << i++ << " - " << overall_assessment.GetScoreSeries_Direction().size() << "\n";
 	}
 	std::cin.get();

@@ -89,6 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);G:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
@@ -99,6 +100,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);G:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
@@ -107,10 +109,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="assessor.h" />
+    <ClInclude Include="assess_energy.h" />
+    <ClInclude Include="assess_global_displacement.h" />
+    <ClInclude Include="assess_hand_gestures.h" />
+    <ClInclude Include="assess_posture.h" />
+    <ClInclude Include="codewords.h" />
     <ClInclude Include="overall_assessment.h" />
     <ClInclude Include="thresholds.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="assessor.cpp" />
+    <ClCompile Include="assess_energy.cpp" />
+    <ClCompile Include="assess_global_displacement.cpp" />
+    <ClCompile Include="assess_hand_gestures.cpp" />
+    <ClCompile Include="assess_posture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="overall_assessment.cpp" />
     <ClCompile Include="thresholds.cpp" />
