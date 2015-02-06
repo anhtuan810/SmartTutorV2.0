@@ -1,4 +1,5 @@
 #include "assess_posture.h"
+#include "thresholds.h"
 
 void Assess_Posture::PerformAssessment()
 {
@@ -21,6 +22,8 @@ void Assess_Posture::PerformAssessment()
 	bi_balance_right_smoothed_ = SmoothBinaryArray_(bi_balance_right_, 0.8);
 	bi_openness_low_smoothed_ = SmoothBinaryArray_(bi_openness_low_, 0.8);
 	bi_openness_high_smoothed_ = SmoothBinaryArray_(bi_openness_high_, 0.8);
+
+	CalculatePostureScore_();
 }
 
 std::vector<bool> Assess_Posture::GetBinary_Foot_Stretched()
@@ -111,5 +114,45 @@ std::vector<bool> Assess_Posture::GetBinary_Openness_Low_Smoothed()
 std::vector<bool> Assess_Posture::GetBinary_Openness_High_Smoothed()
 {
 	return bi_openness_high_smoothed_;
+}
+
+void Assess_Posture::CalculatePostureScore_()
+{
+	// Manually set the golden lines, as the middle line of the 2 thresholds
+	//
+	const float golden_foot_stretch = (Thresholds::GetThresholds(Codeword::Foot_Stretched).first + Thresholds::GetThresholds(Codeword::Foot_Closed).second) / 2;
+	const float golden_balance_left_right = (Thresholds::GetThresholds(Codeword::Balance_LeaningRight).first + Thresholds::GetThresholds(Codeword::Balance_LeaningLeft).second) / 2;
+	const float golden_balance_back_forth = (Thresholds::GetThresholds(Codeword::Balance_Forward).first + Thresholds::GetThresholds(Codeword::Balance_Backward).second) / 2;
+
+	// Compute the deviation from the golden lines
+	//
+	float deviation_foot_stretch = CalculateDeviation_From_Golden_Line_(feature_extractor_->GetFootStretch(), golden_foot_stretch);
+	float deviation_balance_left_right = CalculateDeviation_From_Golden_Line_(feature_extractor_->GetBalanceLeftRight(), golden_balance_left_right);
+	float deviation_balance_back_forth = CalculateDeviation_From_Golden_Line_(feature_extractor_->GetBalanceBackForth(), golden_balance_back_forth);
+
+	// Normalize the deviation by the range from low threshold to high threshold
+	//
+	deviation_foot_stretch /= feature_extractor_->GetFootStretch().size() * 
+		(Thresholds::GetThresholds(Codeword::Foot_Stretched).first - Thresholds::GetThresholds(Codeword::Foot_Closed).second);
+	deviation_balance_left_right /= feature_extractor_->GetBalanceLeftRight().size() *
+		(Thresholds::GetThresholds(Codeword::Balance_LeaningRight).first - Thresholds::GetThresholds(Codeword::Balance_LeaningLeft).second);
+	deviation_balance_back_forth /= feature_extractor_->GetBalanceBackForth().size() *
+		(Thresholds::GetThresholds(Codeword::Balance_Forward).first - Thresholds::GetThresholds(Codeword::Balance_Backward).second);
+
+	// Get postural score based on deviation from the golden lines
+	//
+	float ratio_stable = (float)CountBinaryPositive_(bi_stability_stable_) / feature_extractor_->GetStability().size();
+	float ratio_unstable = (float)CountBinaryPositive_(bi_stability_unstable_) / feature_extractor_->GetStability().size();
+	posture_score_ = 9;
+	posture_score_ -= deviation_foot_stretch * 2;
+	posture_score_ -= deviation_balance_left_right * 2;
+	posture_score_ -= deviation_balance_back_forth * 1.5;
+	posture_score_ -= ratio_unstable;
+	posture_score_ += ratio_stable;
+}
+
+float Assess_Posture::GetScore()
+{
+	return posture_score_;
 }
 

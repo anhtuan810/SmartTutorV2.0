@@ -26,17 +26,16 @@ public:
 	OverallAssessment(FeatureExtractor &feature_extractor);
 	~OverallAssessment();
 
+	void Reset();
+	void PerformAssessment();
+
 	std::vector<float> GetScoreSeries_HandGesture();
 	std::vector<float> GetScoreSeries_GlobalMovement();
 	std::vector<float> GetScoreSeries_Energy();
-	std::vector<float> GetScoreSeries_Direction();
 	std::vector<float> GetScoreSeries_Posture();
 	std::vector<float> GetScoreSeries_Overall();
 	std::vector<bool> GetBinarySeries_ByCodeword(Codeword codeword);
 	std::vector<bool> GetBinarySeries_ByCodeword_Smoothed(Codeword codeword);
-
-	void Reset();
-	void PerformAssessment();
 	
 private:
 	FeatureExtractor *feature_extractor_;
@@ -45,39 +44,14 @@ private:
 	Assessor_HandGestures assess_hand_gestures_;
 	Assess_Posture assess_posture_;
 
-	//
-	// List of thresholded features as binary array = appearance of codewords
-	//
-	//std::vector<bool> bi_velocity_left_hand_low_;
-	//std::vector<bool> bi_velocity_left_hand_high_;
-	//std::vector<bool> bi_velocity_right_hand_low_;
-	//std::vector<bool> bi_velocity_right_hand_high_;
-	//std::vector<bool> bi_velocity_global_low_;
-	//std::vector<bool> bi_velocity_global_high_;
-	//std::vector<bool> bi_velocity_foot_low_;
-	//std::vector<bool> bi_velocity_foot_high_;
-	//std::vector<bool> bi_energy_low_;
-	//std::vector<bool> bi_energy_high_;
-	//std::vector<bool> bi_direction_backward_;
-	//std::vector<bool> bi_direction_forward_;
-	//std::vector<bool> bi_foot_stretched_;
-	//std::vector<bool> bi_foot_closed_;
-	//std::vector<bool> bi_balance_backward_;
-	//std::vector<bool> bi_balance_forward_;
-	//std::vector<bool> bi_balance_left_;
-	//std::vector<bool> bi_balance_right_;
-	//std::vector<bool> bi_stability_stable_;
-	//std::vector<bool> bi_stability_unstable_;
-	//
 	//	Score based on percentage of codeword appearance
 	//
 	std::vector<float> score_series_hand_gesture_;
 	std::vector<float> score_series_global_movement_;
 	std::vector<float> score_series_energy_;
-	std::vector<float> score_series_direction_;
 	std::vector<float> score_series_posture_;
 	std::vector<float> score_series_overall_;
-	//
+
 	//	Private functions
 	//
 	void ThresholdAllFeatures_();

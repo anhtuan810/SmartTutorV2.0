@@ -17,7 +17,7 @@ void main()
 		sensor_reader.QueryFrame();
 		feature_extractor.ProcessNewSample();
 		overall_assessment.PerformAssessment();
-		std::cout << i++ << " - " << overall_assessment.GetScoreSeries_Direction().size() << "\n";
+		std::cout << i++ << " - " << overall_assessment.GetBinarySeries_ByCodeword(Codeword::Energy_High).size() << "\n";
 	}
 	std::cin.get();
 }

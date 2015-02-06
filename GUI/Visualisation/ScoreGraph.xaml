@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="GUI.Visualisation.ScoreGraph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="181" Width="307">
+    <Border BorderBrush="#FFE4D4D4" BorderThickness="1">
+        <Grid Name="grdMain" Margin="0" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Line Title" Margin="0" Name="lblTitle" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Left" FontSize="13"/>
+            <Label Content="" Margin="0" VerticalContentAlignment="Center" Grid.Row="2" Foreground="Black" Background="DarkCyan" Opacity="0.3"/>
+            <Label Content="" Margin="0" VerticalContentAlignment="Center" Grid.Row="3" Foreground="Black" Background="DarkCyan" Opacity="0.4"/>
+            <Label Content="" Margin="0" VerticalContentAlignment="Center" Grid.Row="1" Foreground="Black" Background="DarkCyan" Opacity="0.2"/>
+            <Label Content="AAAA" Margin="0" x:Name="lblMaxValue" Background="White" Foreground="#FF020000" Grid.Row="0" HorizontalAlignment="Right"/>
+            <Label Content="" Margin="0" VerticalContentAlignment="Center" Grid.Row="4" Foreground="Black" Background="DarkCyan" Opacity="0.5"/>
+            <Grid Margin="0" Grid.Row="1" x:Name="grdLine" Grid.RowSpan="4"/>
+            <Path Data="M125,0 L125,179.04469" HorizontalAlignment="Left" Margin="0" Grid.RowSpan="5" Stretch="Fill" Stroke="DarkCyan" Width="1" Fill="DarkCyan" StrokeThickness="2" Opacity="0.75"/>
+            <Path Data="M1,179 L305,179" Fill="DarkCyan" Height="1" Margin="0" Grid.Row="4" Stretch="Fill" Stroke="DarkCyan" StrokeThickness="2" VerticalAlignment="Bottom"/>
+
+
+        </Grid>
+    </Border>
+</UserControl>

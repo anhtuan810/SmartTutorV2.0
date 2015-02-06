@@ -17,10 +17,13 @@ public:
 	~Assess_Energy(){};
 
 	void PerformAssessment();
+	float GetScore();
 	std::vector<bool> GetBinary_EnergyLow();
 	std::vector<bool> GetBinary_EnergyHigh();	
 
 private:
 	std::vector<bool> bi_energy_low_;
 	std::vector<bool> bi_energy_high_;
+	float energy_score_;
+	void CalculateEnergyScore_();
 };

@@ -196,11 +196,6 @@ float* IGetScore_Energy()
 	return copy_vector(overall_assessment.GetScoreSeries_Energy());
 }
 
-float* IGetScore_Direction()
-{
-	return copy_vector(overall_assessment.GetScoreSeries_Direction());
-}
-
 float* IGetScore_Posture()
 {
 	return copy_vector(overall_assessment.GetScoreSeries_Posture());
@@ -411,7 +406,7 @@ float* IGetErrorPoints(int index)
 	float x, y;
 	Sample sample = sensor_reader.GetLatestSample();
 	sensor_reader.ConvertJointCoordinateToDepth(sample.GetSkeleton(), nite::JOINT_HEAD, &x, &y);
-	float result[2] = { x, y };
+	float *result = new float[2]{x, y};
 	return result;
 }
 

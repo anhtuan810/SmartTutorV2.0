@@ -81,7 +81,6 @@ extern "C" { __declspec(dllexport) int IGetActualScoreBufferSize(); }
 extern "C" { __declspec(dllexport) float* IGetScore_HandGesture(); }
 extern "C" { __declspec(dllexport) float* IGetScore_GlobalMovement(); }
 extern "C" { __declspec(dllexport) float* IGetScore_Energy(); }
-extern "C" { __declspec(dllexport) float* IGetScore_Direction(); }
 extern "C" { __declspec(dllexport) float* IGetScore_Posture(); }
 extern "C" { __declspec(dllexport) float* IGetScore_Overall(); }
 

@@ -4,6 +4,7 @@
 //
 //  Created: 2015.01.28
 //	2015.01.29: Only take into account the postural behavior that longer than 1.5 seconds
+//	2015.02.05: Change the method for scoring, based on the Golden lines
 //
 //  Copyright (c) 2015 Anh Tuan Nguyen. All rights reserved.
 //
@@ -16,7 +17,10 @@ public:
 	Assess_Posture(){};
 	~Assess_Posture(){};
 
-	void PerformAssessment(); std::vector<bool> GetBinary_Velocity_LeftHand_Low();
+	void PerformAssessment(); 
+	float GetScore();
+
+	std::vector<bool> GetBinary_Velocity_LeftHand_Low();
 	std::vector<bool> GetBinary_Foot_Stretched();
 	std::vector<bool> GetBinary_Foot_Closed();
 	std::vector<bool> GetBinary_Balance_Backward();
@@ -38,6 +42,8 @@ public:
 	std::vector<bool> GetBinary_Openness_High_Smoothed();
 
 private:
+	float posture_score_;
+
 	std::vector<bool> bi_foot_stretched_;
 	std::vector<bool> bi_foot_closed_;
 	std::vector<bool> bi_balance_backward_;
@@ -57,4 +63,7 @@ private:
 	std::vector<bool> bi_balance_right_smoothed_;
 	std::vector<bool> bi_openness_low_smoothed_;
 	std::vector<bool> bi_openness_high_smoothed_;
+
+	
+	void CalculatePostureScore_();
 };

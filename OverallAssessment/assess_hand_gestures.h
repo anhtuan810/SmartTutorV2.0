@@ -16,6 +16,7 @@ public:
 	~Assessor_HandGestures(){};
 
 	void PerformAssessment();
+	float GetScore();
 	std::vector<bool> GetBinary_Velocity_LeftHand_Low();
 	std::vector<bool> GetBinary_Velocity_LeftHand_High();
 	std::vector<bool> GetBinary_Velocity_RightHand_Low();
@@ -26,4 +27,7 @@ private:
 	std::vector<bool> bi_velocity_left_hand_high_;
 	std::vector<bool> bi_velocity_right_hand_low_;
 	std::vector<bool> bi_velocity_right_hand_high_;
+
+	float score_hand_gestures_;
+	void Calculate_Score_Hand_Gestures();
 };

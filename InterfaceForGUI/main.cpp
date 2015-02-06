@@ -2,6 +2,7 @@
 #include "sensor_reader.h"
 #include "overall_assessment.h"
 #include "realtime_feedback.h"
+#include "feature_extractor.h"
 #include <iostream>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
@@ -11,6 +12,30 @@ using namespace cv;
 
 
 void main()
+{
+	Sensor_Reader sensor_reader;
+	sensor_reader.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");
+	FeatureExtractor feature_extractor(sensor_reader);
+	OverallAssessment overall_assessment(feature_extractor);
+	Realtime_Feedback realtime_feedback;
+	realtime_feedback.SetSensorReader(sensor_reader);
+	realtime_feedback.SetOverallAssessment(overall_assessment);
+
+	cv::namedWindow("test");
+	while (true)
+	{
+		sensor_reader.QueryFrame();
+		cv::imshow("test", sensor_reader.GetLatestSample().GetColorFrame());
+		cv::waitKey(30);
+
+		feature_extractor.ProcessNewSample();
+		overall_assessment.PerformAssessment();
+
+		std::cout << overall_assessment.GetBinarySeries_ByCodeword_Smoothed(Codeword::Balance_LeaningLeft).size();
+	}
+}
+
+void main1()
 {
 	Sensor_Reader sensor_reader;
 	sensor_reader.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");

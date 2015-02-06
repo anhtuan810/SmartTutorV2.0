@@ -92,7 +92,6 @@ namespace GUI
             this.grpScore_HandGesture.TitleReal = "Score Hand Gesture";
             this.grpScore_GlobalMovement.TitleReal = "Score Global Movement";
             this.grpScore_Energy.TitleReal = "Score Energy";
-            this.grpScore_Direction.TitleReal = "Score Direction";
             this.grpScore_Posture.TitleReal = "Score Posture";
             this.grpScore_Overall.TitleReal = "Score Overall";
 
@@ -134,29 +133,6 @@ namespace GUI
             this.grpOpenness.DrawRealData(feature_extractor_.GetFeature_Openness());
             this.grpImpulsiveness.DrawRealData(feature_extractor_.GetFeature_Impulsiveness());
             this.grpStability.DrawRealData(feature_extractor_.GetFeature_Stability());
-
-            this.grpBin_VelocityLeftHand_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityLeftHand_Low());
-            this.grpBin_VelocityLeftHand_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityLeftHand_High());
-            this.grpBin_VelocityRightHand_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityRightHand_Low());
-            this.grpBin_VelocityRightHand_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityRightHand_High());
-            this.grpBin_VelocityGlobal_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityGlobal_Low());
-            this.grpBin_VelocityGlobal_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityGlobal_High());
-            this.grpBin_VelocityFoot_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityFoot_Low());
-            this.grpBin_VelocityFoot_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityFoot_High());
-            this.grpBin_Energy_Low.DrawBinaryData(overall_assessment_.GetBinary_Energy_Low());
-            this.grpBin_Energy_High.DrawBinaryData(overall_assessment_.GetBinary_Energy_High());
-            this.grpBin_Direction_Forward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Forward());
-            this.grpBin_Direction_Backward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Backward());
-            this.grpBin_Foot_Stretched.DrawBinaryData(overall_assessment_.GetBinary_Foot_Stretched_Smoothed());
-            this.grpBin_Foot_Closed.DrawBinaryData(overall_assessment_.GetBinary_Foot_Closed_Smoothed());
-            this.grpBin_Balance_Forward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Forward_Smoothed());
-            this.grpBin_Balance_Backward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Backward_Smoothed());
-            this.grpBin_Balance_LeaningLeft.DrawBinaryData(overall_assessment_.GetBinary_Balance_Left_Smoothed());
-            this.grpBin_Balance_LeaningRight.DrawBinaryData(overall_assessment_.GetBinary_Balance_Right_Smoothed());
-            this.grpBin_Stability_Stable.DrawBinaryData(overall_assessment_.GetBinary_Stability_Stable());
-            this.grpBin_Stability_Unstable.DrawBinaryData(overall_assessment_.GetBinary_Stability_Unstable());
-            this.grpBin_Openness_High.DrawBinaryData(overall_assessment_.GetBinary_Openness_High_Smoothed());
-            this.grpBin_Openness_Low.DrawBinaryData(overall_assessment_.GetBinary_Openness_Low_Smoothed());
         }
 
         void ResetONIReader()
@@ -215,15 +191,36 @@ namespace GUI
             //
             overall_assessment_.AssessOneFeatureSet();
             int buffer_score_size = overall_assessment_.GetActualScoreBufferSize();
-            if (buffer_score_size >= 5)
+            if (buffer_score_size >= 10)
             {
+                this.grpBin_VelocityLeftHand_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityLeftHand_Low());
+                this.grpBin_VelocityLeftHand_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityLeftHand_High());
+                this.grpBin_VelocityRightHand_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityRightHand_Low());
+                this.grpBin_VelocityRightHand_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityRightHand_High());
+                this.grpBin_VelocityGlobal_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityGlobal_Low());
+                this.grpBin_VelocityGlobal_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityGlobal_High());
+                this.grpBin_VelocityFoot_Low.DrawBinaryData(overall_assessment_.GetBinary_VelocityFoot_Low());
+                this.grpBin_VelocityFoot_High.DrawBinaryData(overall_assessment_.GetBinary_VelocityFoot_High());
+                this.grpBin_Energy_Low.DrawBinaryData(overall_assessment_.GetBinary_Energy_Low());
+                this.grpBin_Energy_High.DrawBinaryData(overall_assessment_.GetBinary_Energy_High());
+                this.grpBin_Direction_Forward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Forward());
+                this.grpBin_Direction_Backward.DrawBinaryData(overall_assessment_.GetBinary_Direction_Backward());
+                this.grpBin_Foot_Stretched.DrawBinaryData(overall_assessment_.GetBinary_Foot_Stretched_Smoothed());
+                this.grpBin_Foot_Closed.DrawBinaryData(overall_assessment_.GetBinary_Foot_Closed_Smoothed());
+                this.grpBin_Balance_Forward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Forward_Smoothed());
+                this.grpBin_Balance_Backward.DrawBinaryData(overall_assessment_.GetBinary_Balance_Backward_Smoothed());
+                this.grpBin_Balance_LeaningLeft.DrawBinaryData(overall_assessment_.GetBinary_Balance_Left_Smoothed());
+                this.grpBin_Balance_LeaningRight.DrawBinaryData(overall_assessment_.GetBinary_Balance_Right_Smoothed());
+                this.grpBin_Stability_Stable.DrawBinaryData(overall_assessment_.GetBinary_Stability_Stable());
+                this.grpBin_Stability_Unstable.DrawBinaryData(overall_assessment_.GetBinary_Stability_Unstable());
+                this.grpBin_Openness_High.DrawBinaryData(overall_assessment_.GetBinary_Openness_High_Smoothed());
+                this.grpBin_Openness_Low.DrawBinaryData(overall_assessment_.GetBinary_Openness_Low_Smoothed());
+
                 this.grpScore_HandGesture.DrawRealData(overall_assessment_.GetScore_HandGesture());
                 this.grpScore_GlobalMovement.DrawRealData(overall_assessment_.GetScore_GlobalMovement());
                 this.grpScore_Energy.DrawRealData(overall_assessment_.GetScore_Energy());
-                this.grpScore_Direction.DrawRealData(overall_assessment_.GetScore_Direction());
                 this.grpScore_Posture.DrawRealData(overall_assessment_.GetScore_Posture());
                 this.grpScore_Overall.DrawRealData(overall_assessment_.GetScore_Overall());
-
             }
         }
 

@@ -22,12 +22,11 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Image x:Name="imgKinect" Margin="0" Grid.ColumnSpan="2"/>
-                <Visualisation:Graph x:Name="grpScore_HandGesture" Grid.Row="2" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
-                <Visualisation:Graph x:Name="grpScore_GlobalMovement" Grid.Row="3" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
-                <Visualisation:Graph x:Name="grpScore_Energy" Grid.Row="4" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
-                <Visualisation:Graph x:Name="grpScore_Direction" Margin="5,5,0,5" Grid.Row="2" Width="Auto" Height="Auto" Grid.Column="1"/>
-                <Visualisation:Graph x:Name="grpScore_Posture" Margin="5,5,0,5" Grid.Row="3" Width="Auto" Height="Auto" Grid.Column="1"/>
-                <Visualisation:Graph x:Name="grpScore_Overall" Margin="5,5,0,5" Grid.Row="4" Width="Auto" Height="Auto" Grid.Column="1"/>
+                <Visualisation:ScoreGraph x:Name="grpScore_HandGesture" Grid.Row="2" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
+                <Visualisation:ScoreGraph x:Name="grpScore_GlobalMovement" Grid.Row="3" Width="Auto" Height="Auto" Margin="0,5,5,5"/>
+                <Visualisation:ScoreGraph x:Name="grpScore_Energy" Grid.Row="2" Width="Auto" Height="Auto" Margin="5" Grid.Column="1"/>
+                <Visualisation:ScoreGraph x:Name="grpScore_Posture" Margin="5" Grid.Row="3" Width="Auto" Height="Auto" Grid.Column="1"/>
+                <Visualisation:ScoreGraph x:Name="grpScore_Overall" Margin="0,5,5,5" Grid.Row="4" Width="Auto" Height="Auto" Grid.ColumnSpan="2"/>
                 <Grid Grid.ColumnSpan="2" Margin="0" Grid.Row="1">
                     <TextBox x:Name="txtONIfile" HorizontalAlignment="Left" Height="23" Margin="48,3,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="463" IsEnabled="False"/>
                     <RadioButton x:Name="radSensor" Content="Sensor" HorizontalAlignment="Left" Margin="574,7,0,0" VerticalAlignment="Top"/>
@@ -47,7 +46,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid Margin="10" Background="White">
+                <Grid Margin="10" Background="White" Grid.Column="0" Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="50"/>

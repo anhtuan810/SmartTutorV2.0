@@ -23,6 +23,7 @@ public:
 	std::vector<bool> GetBinary_Direction_Forward();
 	std::vector<bool> GetBinary_Direction_Backward();
 	void PerformAssessment();
+	float GetSore();
 
 private:
 	std::vector<bool> bi_velocity_global_low_;
@@ -31,4 +32,8 @@ private:
 	std::vector<bool> bi_velocity_foot_high_;
 	std::vector<bool> bi_direction_backward_;
 	std::vector<bool> bi_direction_forward_;
+
+	float global_disp_score_;
+
+	void Calculate_Global_Disp_Score_();
 };

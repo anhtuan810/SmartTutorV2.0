@@ -77,3 +77,23 @@ std::vector<bool> Assessor::SmoothBinaryArray_(std::vector<bool> &data, const fl
 	}
 	return result;
 }
+
+float Assessor::CalculateDeviation_From_Golden_Line_(std::vector<float>& data, const float& golden_value)
+{
+	float deviate = 0;
+	for (size_t i = 0; i < data.size(); i++)
+	{
+		deviate += std::abs(data[i] - golden_value);
+	}
+	return deviate;
+}
+
+float Assessor::CountBinaryPositive_(std::vector<bool> binary)
+{
+	int count = 0;
+	for (size_t i = 0; i < binary.size(); i++)
+	{
+		if (binary[i]) count++;
+	}
+	return (float)count / binary.size();
+}

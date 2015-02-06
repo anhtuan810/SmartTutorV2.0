@@ -59,10 +59,10 @@ std::pair<float, float> Thresholds::GetThresholds(Codeword codeword)
 		return std::pair<float, float>((float)5.0, MAX_FLOAT);
 		break;
 	case Codeword::Balance_Backward:
-		return std::pair<float, float>(MIN_FLOAT, (float)100.0);
+		return std::pair<float, float>(MIN_FLOAT, (float)-50.0);
 		break;
 	case Codeword::Balance_Forward:
-		return std::pair<float, float>((float)100.0, MAX_FLOAT);
+		return std::pair<float, float>((float)5.0, MAX_FLOAT);
 		break;
 	case Codeword::Balance_LeaningLeft:
 		return std::pair<float, float>(MIN_FLOAT, (float)-50.0);

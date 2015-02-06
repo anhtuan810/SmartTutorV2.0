@@ -30,9 +30,6 @@ namespace GUI.Interfaces
         public static extern IntPtr IGetScore_Energy();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr IGetScore_Direction();
-
-        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr IGetScore_Posture();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -71,11 +68,6 @@ namespace GUI.Interfaces
         public List<float> GetScore_Energy()
         {
             return Copy_IntPtr(IGetScore_Energy());
-        }
-
-        public List<float> GetScore_Direction()
-        {
-            return Copy_IntPtr(IGetScore_Direction());
         }
 
         public List<float> GetScore_Posture()
