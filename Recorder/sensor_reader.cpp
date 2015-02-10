@@ -234,6 +234,24 @@ openni::Status Sensor_Reader::ConvertDepthToColor(int depthX, int depthY, uint16
 	return openni::CoordinateConverter::convertDepthToColor(depth_stream_, color_stream_, depthX, depthY, depthZ, pColorX, pColorY);
 }
 
+bool Sensor_Reader::StartRecording(const char *file_name)
+{
+	recorder_.create(file_name);
+	recorder_.attach(color_stream_);
+	recorder_.attach(depth_stream_);
+
+	if (recorder_.start() != ONI_STATUS_OK)
+		return false;
+	else
+		return true;
+}
+
+void Sensor_Reader::StopRecording()
+{
+	recorder_.stop();
+	recorder_.destroy();
+}
+
 
 
 

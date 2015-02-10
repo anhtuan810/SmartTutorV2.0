@@ -22,7 +22,7 @@ namespace GUI
     public partial class MainWindow : Window
     {
         System.Windows.Threading.DispatcherTimer timer_ = new System.Windows.Threading.DispatcherTimer();
-        private GUI.Interfaces.SensorController controller_ = new SensorController();
+        private GUI.Interfaces.KinectController controller_ = new KinectController();
         private GUI.Interfaces.FeatureExtractor feature_extractor_ = new FeatureExtractor();
         private GUI.Interfaces.OverallAssessment overall_assessment_ = new OverallAssessment();
         private GUI.Interfaces.RealtimeFeedback realtime_feedback_ = new RealtimeFeedback();
@@ -143,7 +143,7 @@ namespace GUI
 
             timer_.Stop();
             controller_.TurnOff();
-            controller_.TurnOnONIFile(oni_file_);
+            controller_.TurnOnONIFile(oni_file_);   
             timer_.Start();
         }
 

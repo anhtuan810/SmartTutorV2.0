@@ -10,6 +10,17 @@ void main()
 {
 	cv::namedWindow("test");
 	Sensor_Reader sensor;
+	sensor.TurnOnOrDie();
+	sensor.StartRecording("G:\\test.oni");
+	cv::waitKey(300);
+	sensor.TurnOff();
+}
+
+
+void main1()
+{
+	cv::namedWindow("test");
+	Sensor_Reader sensor;
 	sensor.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");
 	//sensor.TurnOnOrDie();
 

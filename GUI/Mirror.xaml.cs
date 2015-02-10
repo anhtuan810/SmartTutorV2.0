@@ -22,7 +22,7 @@ namespace GUI
     public partial class Mirror : Window
     {
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        private GUI.Interfaces.SensorController controller = new SensorController();
+        private GUI.Interfaces.KinectController controller = new KinectController();
         private GUI.Interfaces.FeatureExtractor feature_extractor = new FeatureExtractor();
         private GUI.Interfaces.OverallAssessment overall_assessment = new OverallAssessment();
         private GUI.Interfaces.RealtimeFeedback realtime_feedback = new RealtimeFeedback();

@@ -1,0 +1,14 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2013" x:Class="GUI.Home.ucHome" 
+             mc:Ignorable="d" Height="428" Width="756">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Margin="0" Width="511">
+
+        <k:KinectTileButton x:Name="btnPractice" Content="PRACTICE" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Foreground="#FFFCFFFF" Click="btnPractice_Click"/>
+        <k:KinectTileButton x:Name="btnProgress" Content="PROGRESS" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Center" Foreground="White" Click="btnProgress_Click"/>
+
+    </Grid>
+</UserControl>

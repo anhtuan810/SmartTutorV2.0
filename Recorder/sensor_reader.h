@@ -28,6 +28,8 @@ public:
 	bool TurnOnOrDie(char* file_name);
 	void TurnOff();
 	void QueryFrame();
+	bool StartRecording(const char *file_name);
+	void StopRecording();
 
 	void ConvertJointCoordinateToDepth(nite::Skeleton& skel, nite::JointType joint, float* pOutX, float* pOutY);
 	openni::Status ConvertDepthToColor(int depthX, int depthY, uint16_t depthZ, int *pColorX, int *pColorY);
@@ -44,6 +46,7 @@ private:
 	openni::Device device_;
 	openni::VideoStream depth_stream_;
 	openni::VideoStream color_stream_;
+	openni::Recorder recorder_;
 
 	std::vector<Sample> sample_buffer_;
 	Sample GrabSample_();

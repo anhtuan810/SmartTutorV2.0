@@ -42,6 +42,16 @@ void ITurnOff()
 	overall_assessment.Reset();
 }
 
+void IStartRecording(char* file_name)
+{
+	sensor_reader.StartRecording(file_name);
+}
+
+void IStopRecording()
+{
+	sensor_reader.StopRecording();
+}
+
 void IQuerySensor()
 {
 	sensor_reader.QueryFrame();

@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace GUI.Interfaces
 {
-    class SensorController
+    class KinectController
     {
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool ITurnOnKinectSensor();
@@ -19,6 +19,12 @@ namespace GUI.Interfaces
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool ITurnOff();
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void IStartRecording(string file_name);
+
+        [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void IStopRecording();
 
         [DllImport(@"InterfaceForGUI.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void IQuerySensor();
@@ -40,6 +46,16 @@ namespace GUI.Interfaces
         public void TurnOff()
         {
             ITurnOff();
+        }
+
+        public void StartRecording(string file_name)
+        {
+            IStartRecording(file_name);
+        }
+
+        public void StopRecording()
+        {
+            IStopRecording();
         }
 
         public void QuerySensor()

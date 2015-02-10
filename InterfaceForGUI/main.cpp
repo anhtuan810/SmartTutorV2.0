@@ -14,7 +14,8 @@ using namespace cv;
 void main()
 {
 	Sensor_Reader sensor_reader;
-	sensor_reader.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");
+	//sensor_reader.TurnOnOrDie("G:\\Development of SmartTutor\\11.oni");
+	sensor_reader.TurnOnOrDie();
 	FeatureExtractor feature_extractor(sensor_reader);
 	OverallAssessment overall_assessment(feature_extractor);
 	Realtime_Feedback realtime_feedback;
