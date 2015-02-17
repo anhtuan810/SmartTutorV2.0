@@ -6,7 +6,7 @@
 
 using namespace cv;
 
-void main()
+void main1()
 {
 	cv::namedWindow("test");
 	Sensor_Reader sensor;
@@ -17,7 +17,7 @@ void main()
 }
 
 
-void main1()
+void main()
 {
 	cv::namedWindow("test");
 	Sensor_Reader sensor;

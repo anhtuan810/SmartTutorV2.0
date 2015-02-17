@@ -1,7 +1,7 @@
-﻿<Window x:Class="GUI.frmMain"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SmartTutorV2.0" Height="300" Width="300" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-    <Grid x:Name="LayoutRoot">
-    </Grid>
+        xmlns:Practice="clr-namespace:GUI.Practice" x:Class="GUI.frmMain"
+        Title="SmartTutorV2.0" Height="421" Width="572" WindowStartupLocation="CenterScreen" WindowState="Maximized" Closing="Window_Closing">
+    <Grid x:Name="LayoutRoot"/>
 </Window>

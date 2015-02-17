@@ -50,7 +50,7 @@ namespace GUI.Visualisation
         {
             data_real_ = data;
             this.Draw_Graph_();
-        }
+        }   
         
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace GUI.Visualisation
             //
             float dWidth = (float)this.cvsLine.ActualWidth;
             float dHeight = (float)this.cvsLine.ActualHeight;
-
+            
             Path path = new Path();
             path.Stretch = Stretch.Fill;
             path.StrokeThickness = 2;

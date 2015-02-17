@@ -7,9 +7,9 @@
              mc:Ignorable="d" Height="212" Width="212">
     <Grid>
 
-        <k:KinectTileButton x:Name="btnStartStop" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Foreground="White" Content="Start" Click="btnStartStop_Click">
+        <k:KinectTileButton x:Name="btnStartStop" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Foreground="White" Content="Start" Click="btnStartStop_Click" Width="200" Height="200">
         </k:KinectTileButton>
-        <Label x:Name="lblCount" Content="5" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="72"/>
+        <Label x:Name="lblCount" Content="5" Margin="0" FontSize="150" Foreground="#FF811212" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent"/>
 
     </Grid>
 </UserControl>

@@ -1,11 +1,146 @@
-﻿<UserControl x:Class="GUI.Playback.ucPlayback"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:local="clr-namespace:GUI.Playback" xmlns:GUI="clr-namespace:GUI" x:Class="GUI.Playback.ucPlayback" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="480"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="640"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <local:ucMediaPlayer x:Name="media_player" Margin="5,5,5,0"/>
+        <Grid Grid.Column="1" Margin="0" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#FFD3BEB6" Margin="5,2.5" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Label Content="Energy &#xD;&#xA;Performance" Margin="0"/>
+                <Label Content="High Energy" Grid.Row="1" Margin="0"/>
+                <Label Content="Low Energy" Grid.Row="2" Margin="0"/>
+                <Label Content="Impulse" Grid.Row="3" Margin="0"/>
+                <GUI:ucGraphScore x:Name="grpScore_Energy" Grid.Column="1" Margin="5" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Energy_High" Grid.Column="1" Margin="5" Grid.Row="1" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Energy_Low" Grid.Column="1" Margin="5" Grid.Row="2" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="gepBin_Impulse" Grid.Column="1" Margin="5" Grid.Row="3" Height="Auto" Width="Auto"/>
+            </Grid>
+            <Grid Background="#FFD3BEB6" Margin="5,2.5" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Label Content="Posture&#xD;&#xA;Performance" Margin="0"/>
+                <Label Content="Leaning Left" Grid.Row="1" Margin="0"/>
+                <Label Content="Leaning Right" Grid.Row="2" Margin="0"/>
+                <Label Content="Leaning Forward" Grid.Row="3" Margin="0"/>
+                <Label Content="Leaning Backward" Grid.Row="4"/>
+                <Label Content="Stable" Grid.Row="5"/>
+                <Label Content="Unstable" Grid.Row="6"/>
+                <GUI:ucGraphScore x:Name="grpScore_Posture" Grid.Column="1" Margin="5" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Lean_Left" Grid.Column="1" Margin="5" Grid.Row="1" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Lean_Right" Grid.Column="1" Margin="5" Grid.Row="2" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Lean_Forward" Grid.Column="1" Margin="5" Grid.Row="3" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Lean_Backward" Grid.Column="1" Margin="5" Grid.Row="4" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Stable" Grid.Column="1" Margin="5" Grid.Row="5" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Unstable" Grid.Column="1" Margin="5" Grid.Row="6" Height="Auto" Width="Auto"/>
+            </Grid>
+            <Grid Background="#FFD3BEB6" Margin="5,2.5" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Label Content="Global &#xD;&#xA;Displacement&#xD;&#xA;Performance" Margin="0"/>
+                <Label Content="Too Much" Grid.Row="1" Margin="0"/>
+                <Label Content="Too Little" Grid.Row="2" Margin="0"/>
+                <Label Content="Step Forward" Grid.Row="3" Margin="0"/>
+                <Label Content="Step Backward" Grid.Row="4"/>
+                <GUI:ucGraphScore x:Name="grpScore_GlobalDisplacement" Grid.Column="1" Margin="5" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Disp_Too_Much" Grid.Column="1" Margin="5" Grid.Row="1" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Disp_Too_Little" Grid.Column="1" Margin="5" Grid.Row="2" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Disp_Forward" Grid.Column="1" Margin="5" Grid.Row="3" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Disp_Backward" Grid.Column="1" Margin="5" Grid.Row="4" Height="Auto" Width="Auto"/>
+            </Grid>
+            <Grid Background="#FFD3BEB6" Margin="5,2.5,5,5" Grid.Row="4" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Label Content="Hand Gestures&#xD;&#xA;Performance" Margin="0"/>
+                <Label Content="Too Much" Grid.Row="1" Margin="0"/>
+                <Label Content="Too Little" Grid.Row="2" Margin="0"/>
+                <GUI:ucGraphScore x:Name="grpScore_HandGestures" Grid.Column="1" Margin="5" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Hand_TooMuch" Grid.Column="1" Margin="5" Grid.Row="1" Height="Auto" Width="Auto"/>
+                <GUI:ucGraphBinary x:Name="grpBin_Hand_TooLittle" Grid.Column="1" Margin="5" Grid.Row="2" Height="Auto" Width="Auto"/>
+            </Grid>
+            <Grid Background="#FFD3BEB6" Margin="5,0,5,2.5" Height="88.919" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Overall &#xD;&#xA;Performance" Margin="0"/>
+                <GUI:ucGraphScore x:Name="grpScore_Overall" Grid.Column="1" Margin="5" Height="Auto" Width="Auto"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="grdOverallScores" Margin="0" Grid.Row="1" Background="#FFD3BEB6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <GUI:ucOneScore Margin="0" Grid.Row="1"/>
+            <GUI:ucOneScore Grid.Row="1" Grid.Column="1"/>
+            <GUI:ucOneScore Grid.Row="2"/>
+            <GUI:ucOneScore Grid.Row="2" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </UserControl>

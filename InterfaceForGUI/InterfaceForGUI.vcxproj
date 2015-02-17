@@ -107,12 +107,16 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\RealtimeFeedback;..\OverallAssessment;..\FeatureExtractor;..\Recorder;$(OPENNI2_INCLUDE64);$(NITE2_INCLUDE64);G:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OPENNI2_LIB64);$(NITE2_LIB64);G:\Program Files\opencv\build\x64\vc12\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>NiTE2.lib;OpenNI2.lib;opencv_features2d2410.lib;opencv_video2410.lib;opencv_highgui2410.lib;opencv_core2410.lib;opencv_imgproc2410.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

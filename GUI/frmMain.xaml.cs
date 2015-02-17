@@ -24,17 +24,22 @@ namespace GUI
             Home,
             Practice,
             Practice_FullScreen,
+            Playback,
             Result
         }
+
+        private ContentInMainForm content_;
 
         public frmMain()
         {
             InitializeComponent();
-            SwitchWindow(ContentInMainForm.Practice);
+            SwitchWindow(ContentInMainForm.Playback);
         }
 
         public void SwitchWindow(ContentInMainForm content)
         {
+            content_ = content;
+
             this.LayoutRoot.Children.Clear();
             if (content == ContentInMainForm.Home)
             {
@@ -43,24 +48,24 @@ namespace GUI
             }
             if (content == ContentInMainForm.Practice)
             {
-                GUI.Pratice.ucPractice practice = new GUI.Pratice.ucPractice();
+                GUI.Practice.ucPractice1 practice = new GUI.Practice.ucPractice1();
                 this.LayoutRoot.Children.Add(practice);
             }
-            //if (content == ContentInMainForm.Practice)
-            //{
-            //    ucPractice practice = new ucPractice();
-            //    this.LayoutRoot.Children.Add(practice);
-            //}
-            //if (content == ContentInMainForm.Practice_FullScreen)
-            //{
-            //    ucPractice_FullScreen practice_full = new ucPractice_FullScreen();
-            //    this.LayoutRoot.Children.Add(practice_full);
-            //}
-            //if (content == ContentInMainForm.Result)
-            //{
-            //    ucBriefResults result_brief = new ucBriefResults();
-            //    this.LayoutRoot.Children.Add(result_brief);
-            //}
+            if (content == ContentInMainForm.Playback)
+            {
+                GUI.Playback.ucPlayback playback = new Playback.ucPlayback();
+                this.LayoutRoot.Children.Add(playback);
+            }
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (content_ == ContentInMainForm.Practice)
+            {
+                GUI.Practice.ucPractice1 practice = (GUI.Practice.ucPractice1 )this.LayoutRoot.Children[0];
+                practice.Closing();
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ namespace GUI.Practice
         public ucCountDown()
         {
             InitializeComponent();
-            timer_count_down_.Interval = new TimeSpan(0, 0, 0, 0, 30);
+            timer_count_down_.Interval = new TimeSpan(0, 0, 1);
             timer_count_down_.Tick += timer_count_down__Tick;
             this.lblCount.Visibility = System.Windows.Visibility.Hidden;
             this.btnStartStop.Visibility = System.Windows.Visibility.Visible;
